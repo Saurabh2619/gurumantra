@@ -1,11 +1,18 @@
+// src/app/layout.tsx
+import './globals.css';
+
+export const metadata = {
+  title: 'Guru Mantra',
+  description: 'Spiritual and wellness platform',
+  icons: {
+    icon: '/tcr.svg', // This is the important line
+  },
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        {/* Optional: your own layout content */}
-        <div>Layout Page of Guru Mantra Hello Hello sir</div>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
