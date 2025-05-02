@@ -1,7 +1,7 @@
 export default function Layout(){
 return (
   <>
-  Layout Page of Guru Mantra
+  Layout Page of Guru Mantra Hello Hello
   </>
 );
 }
