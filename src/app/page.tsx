@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-    Saurabh Sharma 
+    Welcome to Guru Mantra
     </>
   );
 }
