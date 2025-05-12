@@ -1,12 +1,5 @@
 "use client";
 import MainSlider from "./components/heroslider";
-import { Montserrat} from "next/font/google";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-montserrat",
-});
 
 export default function Home() {
   return (
@@ -21,7 +14,7 @@ export default function Home() {
         {/* <h1 className="text-xl font-semibold">{`Saurabh Sharma Testing ${montserrat.className}`}</h1> */}
         <h1 className="text-xl font-semibold">Saurabh Sharma</h1>
         <p className="mt-2">
-          Welcome to Guru Mantra <br />
+          Welcome to <h1 className="text-2xl font-semibold">Guru_Mantra</h1> <br />
           A 100-word paragraph should focus on a single, manageable topic and
           aim for clarity and conciseness. It typically includes an introductory
           sentence, a few supporting sentences, and a concluding sentence. Think
