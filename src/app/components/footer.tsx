@@ -14,7 +14,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-12 relative overflow-hidden mt-auto">
-      <div className="container mx-auto px-6 md:px-12 lg:px-20 flex flex-col md:flex-row justify-between items-center relative z-10">
+      <div className="container mx-auto px-4 sm:px-8 md:px-12 lg:px-20 flex flex-col md:flex-row justify-between items-center gap-y-4 md:gap-y-0 py-6 relative z-10">
         {/* Logo and Description */}
         <div className="text-center md:text-left mb-6 md:mb-0 max-w-sm">
           <h2 className="text-3xl font-extrabold text-[#2196f3]">GuruMantra</h2>

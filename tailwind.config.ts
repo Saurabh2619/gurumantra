@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,10 +14,17 @@ export default {
       },
       fontFamily: {
         montserrat: "var(--font-montserrat)",
-         raleway: "var(--font-raleway)",
-         merriweather: "var(--font-merriweather)",
+        raleway: "var(--font-raleway)",
+        merriweather: "var(--font-merriweather)",
+        lato: "var(--font-lato)",
+
+        // Optional aliases for clarity
+        heading: "var(--font-montserrat)",
+        body: "var(--font-lato)",
       },
     },
   },
   plugins: [],
-} satisfies Config;
+};
+
+export default config;
