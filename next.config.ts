@@ -1,18 +1,35 @@
-import type { NextConfig } from 'next';
+// import type { NextConfig } from 'next';
 
-/** @type {NextConfig} */
-const nextConfig: NextConfig = {
+// /** @type {NextConfig} */
+// const nextConfig: NextConfig = {
+//   eslint: {
+//     ignoreDuringBuilds: true,
+//   },
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: 'https',
+//         hostname: 'res.cloudinary.com',
+//       },
+//     ],
+//   },
+// };
+
+// export default nextConfig;
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // ✅ Skips ESLint errors during production builds
   },
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
+        protocol: "https",
+        hostname: "res.cloudinary.com", // ✅ Allows images from Cloudinary
       },
     ],
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
