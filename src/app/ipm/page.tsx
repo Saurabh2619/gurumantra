@@ -102,6 +102,34 @@ export default function IPM() {
         </div>
       </div>
 
+      {/* Course Overview Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-[#833589]">
+            Course <span className="text-[#F3B51A]">Overview</span>
+          </h2>
+          <div className="max-w-4xl mx-auto bg-gray-50 p-8 rounded-xl shadow-lg">
+            <p className="text-gray-700 leading-relaxed mb-6">
+              The Indian Institute of Management Kozhikode (IIMK), one of India's most respected and forward-thinking
+              business schools, is now launching its first-ever full-time undergraduate degree programme—the Bachelor of
+              Management Studies (Honours with Research). This pioneering four-year programme will be delivered at the
+              Institute's Kochi Campus and is aimed at preparing a new generation of responsible, globally minded and
+              innovation-driven leaders for all sectors of industry and commerce. This programme provides new choices
+              for aspiring students to explore and master interesting combinations of contemporary and classical
+              subjects and make them prepared for multiple careers.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              The programme, commencing in the 2025–26 academic year, combines the rigour of management education with
+              the richness of interdisciplinary learning. In addition to a Major in Management, students can opt for
+              stackable Minors in fields such as Economics and Public Policy, Artificial Intelligence and Machine
+              Learning, Psychology and Behavioural Sciences, Finance and Big Data, Liberal Studies, and more. With
+              exchange semesters, research opportunities, and internships, the programme reflects IIMK's commitment to
+              progressive and inclusive higher education.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Online Courses Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -111,13 +139,13 @@ export default function IPM() {
           <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
             {/* IPMAT 2025 Course */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 max-w-sm w-full">
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-auto aspect-square overflow-hidden">
                 <Image
                   src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747123983/WhatsApp_Image_2025-05-13_at_13.41.10_e54o1z.jpg"
                   alt="IPMAT 2025 Online Course"
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover"
+                  width={1080}
+                  height={1080}
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="p-6">
@@ -157,14 +185,14 @@ export default function IPM() {
             </div>
 
             {/* IPMAT 2026 Course */}
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 max-w-sm w-full">
-              <div className="relative h-64 overflow-hidden">
+            {/* <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 max-w-sm w-full">
+              <div className="relative h-auto aspect-square overflow-hidden">
                 <Image
                   src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747124808/WhatsApp_Image_2025-05-13_at_13.54.06_vlta8g.jpg"
                   alt="IPMAT 2026 Online Course"
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover"
+                  width={1080}
+                  height={1080}
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div className="p-6">
@@ -189,7 +217,7 @@ export default function IPM() {
                   </span>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -468,18 +496,18 @@ export default function IPM() {
             Our Promising <span className="text-[#F3B51A]">Results</span>
           </h2>
           <div className="mb-12">
-            <div className="relative w-full h-[500px] rounded-xl overflow-hidden shadow-2xl">
+            <div className="relative w-full h-[300px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl">
               <Image
                 src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747075179/42-indore-_ivhcmw.jpg"
                 alt="IIM Indore Results"
                 fill
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", objectPosition: "center" }}
                 className="hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#833589]/80 to-transparent flex items-end">
-                <div className="p-8 text-white">
-                  <h3 className="text-3xl font-bold mb-2">42 Selections in IIM Indore</h3>
-                  <p className="text-xl">
+                <div className="p-4 md:p-8 text-white">
+                  <h3 className="text-xl md:text-3xl font-bold mb-2">42 Selections in IIM Indore</h3>
+                  <p className="text-sm md:text-xl">
                     Our students have secured 42 seats in IIM Indore in 2024, making us one of the leading coaching
                     institutes for IPMAT preparation.
                   </p>
