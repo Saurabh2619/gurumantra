@@ -245,8 +245,8 @@ export default function IPM() {
                   RS
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-lg">Rahul Sharma</h4>
-                  <p className="text-sm text-gray-500">IIM Indore, Batch of 2023</p>
+                  <h4 className="font-semibold text-lg">Parth Goyal</h4>
+                  <p className="text-sm text-gray-500">IIM Indore, Batch of 2024</p>
                 </div>
               </div>
             </div>
@@ -262,8 +262,8 @@ export default function IPM() {
                   AP
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-lg">Ananya Patel</h4>
-                  <p className="text-sm text-gray-500">IIM Rohtak, Batch of 2023</p>
+                  <h4 className="font-semibold text-lg">Ananya Bansal</h4>
+                  <p className="text-sm text-gray-500">IIM Indore, Batch of 2024</p>
                 </div>
               </div>
             </div>
@@ -279,8 +279,8 @@ export default function IPM() {
                   VK
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-semibold text-lg">Vikram Kumar</h4>
-                  <p className="text-sm text-gray-500">IIM Bodhgaya, Batch of 2022</p>
+                  <h4 className="font-semibold text-lg">Om Thakre</h4>
+                  <p className="text-sm text-gray-500">IIM Indore, Batch of 2024</p>
                 </div>
               </div>
             </div>
