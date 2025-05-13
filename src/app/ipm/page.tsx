@@ -150,7 +150,7 @@ export default function IPM() {
                 </ul>
                 <div className="mt-6 text-right">
                   <span className="inline-block bg-[#833589] text-white text-xl font-bold py-2 px-6 rounded-full shadow-md">
-                    ₹45,000
+                    ₹25,000
                   </span>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function IPM() {
             <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 max-w-sm w-full">
               <div className="relative h-64 overflow-hidden">
                 <Image
-                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747123968/WhatsApp_Image_2025-05-13_at_13.41.01_yijuxj.jpg"
+                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747124808/WhatsApp_Image_2025-05-13_at_13.54.06_vlta8g.jpg"
                   alt="IPMAT 2026 Online Course"
                   width={400}
                   height={300}
@@ -168,7 +168,7 @@ export default function IPM() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-[#833589] mb-4">IPMAT 26 Online Course</h3>
+                <h3 className="text-2xl font-bold text-[#833589] mb-4">PI Prepration Kit</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-[#833589] mr-2">»</span>
