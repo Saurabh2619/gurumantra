@@ -13,8 +13,7 @@ export default function Home() {
       <section className="mt-6">
         {/* <h1 className="text-xl font-semibold">{`Saurabh Sharma Testing ${montserrat.className}`}</h1> */}
         <h1 className="text-xl font-semibold">Saurabh Sharma</h1>
-        <p className="mt-2">
-          Welcome to <h1 className="text-2xl font-semibold">Guru_Mantra</h1> <br />
+        <p>Welcome to Guru_Mantra <br />
           A 100-word paragraph should focus on a single, manageable topic and
           aim for clarity and conciseness. It typically includes an introductory
           sentence, a few supporting sentences, and a concluding sentence. Think
