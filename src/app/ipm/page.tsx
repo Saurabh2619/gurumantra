@@ -23,10 +23,10 @@ export default function IPM() {
   }, [currentSlide])
 
   return (
-    <div className="font-sans">
+    <div className="font-sans overflow-x-hidden">
       {/* Header with contact info */}
       <div className="bg-[#833589] text-white p-3 flex items-center justify-end">
-        <div className="container mx-auto flex justify-end">
+        <div className="container mx-auto px-4 max-w-7xl flex justify-end">
           <div className="flex items-center">
             <span>For Enquiry: </span>
             <a href="tel:+919816383524" className="flex items-center ml-2">
@@ -51,18 +51,20 @@ export default function IPM() {
       </div>
 
       {/* Image Slider */}
-      <div className="relative w-full overflow-hidden" style={{ height: "600px" }}>
+      <div className="relative w-full overflow-hidden" style={{ height: "auto" }}>
         <div
           className="flex transition-transform duration-500 ease-in-out h-full"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {[0, 1].map((index) => (
-            <div key={index} className="min-w-full h-full relative">
+            <div key={index} className="min-w-full relative">
               <Image
                 src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747075177/IIM_KOZHIKODE_BMS_2_dcrkrk.png"
                 alt="IIM Kozhikode BMS"
-                fill
-                style={{ objectFit: "contain", backgroundColor: "#f5f5f5" }}
+                width={1200}
+                height={600}
+                className="w-full h-auto object-contain"
+                style={{ backgroundColor: "#f5f5f5" }}
                 priority={index === 0}
               />
             </div>
@@ -102,27 +104,28 @@ export default function IPM() {
 
       {/* Online Courses Section */}
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#833589]">
             Our Online <span className="text-[#F3B51A]">Courses</span>
           </h2>
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
             {/* IPMAT 2025 Course */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 max-w-sm w-full">
-              <div className="relative h-64">
+              <div className="relative h-64 overflow-hidden">
                 <Image
-                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747114467/ipmat_2025_sc7uvp.jpg"
+                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747123983/WhatsApp_Image_2025-05-13_at_13.41.10_e54o1z.jpg"
                   alt="IPMAT 2025 Online Course"
-                  fill
-                  style={{ objectFit: "cover", objectPosition: "center" }}
+                  width={400}
+                  height={300}
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-[#833589] mb-4">IPMAT 25 Online Course</h3>
+                <h3 className="text-2xl font-bold text-[#833589] mb-4">IIM K BMS</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-[#833589] mr-2">»</span>
-                    <span>300+ hours of live interactive sessions</span>
+                    <span>250+ hours of live interactive sessions</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#833589] mr-2">»</span>
@@ -134,7 +137,7 @@ export default function IPM() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#833589] mr-2">»</span>
-                    <span>30+ Hash Mocks and 350+ Concept wise tests</span>
+                    <span>10+ Hash Mocks and 100+ Concept wise tests</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#833589] mr-2">»</span>
@@ -155,12 +158,13 @@ export default function IPM() {
 
             {/* IPMAT 2026 Course */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 max-w-sm w-full">
-              <div className="relative h-64">
+              <div className="relative h-64 overflow-hidden">
                 <Image
-                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747114467/ipmat_2026_cg9isn.jpg"
+                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747123968/WhatsApp_Image_2025-05-13_at_13.41.01_yijuxj.jpg"
                   alt="IPMAT 2026 Online Course"
-                  fill
-                  style={{ objectFit: "cover", objectPosition: "center" }}
+                  width={400}
+                  height={300}
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
@@ -168,86 +172,20 @@ export default function IPM() {
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-[#833589] mr-2">»</span>
-                    <span>550+ hours of live interactive sessions</span>
+                    <span>Mentorship by alumni from IIMs, IITs & top global universities</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#833589] mr-2">»</span>
-                    <span>150+ hours of Foundation building sessions</span>
+                    <span>Real-time mock interviews</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-[#833589] mr-2">»</span>
-                    <span>Access to all recorded sessions anytime, anywhere</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>Dedicated IPMAT Books and Modules</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>50+ Hash Mocks and 650+ Concept wise tests</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>Regular one-on-one or group doubt-clearing sessions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>Detailed Analysis to track your Progress</span>
+                    <span>Profile grooming & answer structuring</span>
                   </li>
                 </ul>
                 <div className="mt-6 text-right">
                   <span className="inline-block bg-[#833589] text-white text-xl font-bold py-2 px-6 rounded-full shadow-md">
                     ₹70,000
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* IPMAT 2027 Course */}
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 max-w-sm w-full">
-              <div className="relative h-64">
-                <Image
-                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747114467/ipmat_2027_lfmgyu.jpg"
-                  alt="IPMAT 2027 Online Course"
-                  fill
-                  style={{ objectFit: "cover", objectPosition: "center" }}
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-[#833589] mb-4">IPMAT 27 Online Course</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>600+ hours of live interactive sessions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>250+ hours of foundation-building sessions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>Access to all recorded sessions with unlimited revision support</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>Dedicated IPMAT Study Material including books and modules</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>60+ Hash Mocks and 700+ Concept-wise tests</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>Regular personalized one-on-one or group doubt-clearing sessions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-[#833589] mr-2">»</span>
-                    <span>In-depth analysis to track your progress effectively</span>
-                  </li>
-                </ul>
-                <div className="mt-6 text-right">
-                  <span className="inline-block bg-[#833589] text-white text-xl font-bold py-2 px-6 rounded-full shadow-md">
-                    ₹1,20,000
                   </span>
                 </div>
               </div>
@@ -258,7 +196,7 @@ export default function IPM() {
 
       {/* Words by our students */}
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-[#833589]">
             Words By Our <span className="text-[#F3B51A]">Students</span>
           </h2>
@@ -324,7 +262,7 @@ export default function IPM() {
 
       {/* YouTube Video Section */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-[#833589]">
             Watch Our <span className="text-[#F3B51A]">Success Stories</span>
           </h2>
@@ -338,7 +276,7 @@ export default function IPM() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/6ZsYsn-ykpk"
+                src="https://www.youtube.com/embed/HK-uySxC2vw?feature=shared"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -375,7 +313,7 @@ export default function IPM() {
 
       {/* Why Choose IPM Careers */}
       <section className="py-16 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-[#833589]">
             Why Choose <span className="text-[#F3B51A]">IPM Careers</span>
           </h2>
@@ -525,7 +463,7 @@ export default function IPM() {
 
       {/* Our Promising Results */}
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#833589]">
             Our Promising <span className="text-[#F3B51A]">Results</span>
           </h2>
@@ -583,7 +521,7 @@ export default function IPM() {
 
       {/* India's Premium IPMAT Coaching */}
       <section className="py-16 bg-[#833589] text-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">India's Premium IPMAT Coaching</h2>
             <p className="text-xl mb-8">Join now to grab the opportunity to learn from our experts</p>
@@ -607,7 +545,7 @@ export default function IPM() {
 
       {/* Footer */}
       <footer className="bg-[#833589] text-white py-12">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-8 md:mb-0 text-center md:text-left">
               <h3 className="text-2xl font-bold">IPM Careers</h3>
