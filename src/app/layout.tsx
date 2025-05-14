@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
-import Toup from "./components/toup";
 import NextTopLoader from "nextjs-toploader";
 
 // Font imports
@@ -29,19 +26,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${montserrat.variable} ${lato.variable}`}>
       <body className="flex flex-col min-h-screen font-body">
-        <NextTopLoader speed={1000} color="#2196f3" />
-        <header>
-          <div>
-            <Navbar />
-          </div>
-        </header>
-
-        
-        <main className="pt-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">{children}</main>
-        
-
-        <Toup />
-        <Footer />
+        <NextTopLoader  color="#2196f3" />
+        <main>{children}</main>        
       </body>
     </html>
   );

@@ -1,17 +1,15 @@
 "use client";
 import MainSlider from "./components/heroslider";
-
+import DefaultLayout from "./defaultlayout";
 export default function Home() {
   return (
     <>
-      {/* Make slider full width by cancelling layout padding */}
+    <DefaultLayout>
       <div className="-mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12 xl:-mx-20">
         <MainSlider />
       </div>
 
-      {/* Written content stays aligned within layout padding */}
       <section className="mt-6">
-        {/* <h1 className="text-xl font-semibold">{`Saurabh Sharma Testing ${montserrat.className}`}</h1> */}
         <h1 className="text-xl font-semibold">Saurabh Sharma</h1>
         <p>Welcome to Guru_Mantra <br />
           A 100-word paragraph should focus on a single, manageable topic and
@@ -23,6 +21,7 @@ export default function Home() {
           the reader to grasp the core concept in a few sentences.
         </p>
       </section>
+      </DefaultLayout>
     </>
   );
 }
