@@ -1,8 +1,10 @@
-import React from 'react'
+import React from "react";
+import DefaultLayout from "../defaultlayout";
 
-const about = () => {
-  return (
+export default function About(){
+  return(
     <>
+    <DefaultLayout>
     <div>
       This is my about Component
     </div>
@@ -254,11 +256,8 @@ const about = () => {
     </div>
     <div>
       This is my about Component
-    </div>
+    </div> 
+    </DefaultLayout>
     </>
   )
 }
-
-export default about
-
-  

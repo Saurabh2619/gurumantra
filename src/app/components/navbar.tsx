@@ -1,122 +1,80 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
-import { Montserrat, Lato } from "next/font/google";
-import { motion, AnimatePresence } from "framer-motion";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-montserrat",
-});
-
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-lato",
-});
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { Menu, X, ChevronDown, ChevronUp, GraduationCap } from "lucide-react"
+import { Button } from "./ui/button"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 500);
-    };
+      setIsScrolled(window.scrollY > 100)
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add("overflow-hidden");
+      document.body.classList.add("overflow-hidden")
     } else {
-      document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove("overflow-hidden")
     }
-  }, [isOpen]);
+  }, [isOpen])
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 h-16 flex items-center transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md" : "bg-gray-200/10 backdrop-blur-md"
+    <header
+      className={`sticky top-0 z-50 w-full shadow-sm transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/95 bg-white supports-[backdrop-filter]:bg-background/60 shadow-xl"
+          : "bg-background/95 bg-white supports-[backdrop-filter]:bg-background/60"
       }`}
     >
-      <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 md:px-10 lg:px-16 w-full py-4">
-        <Link
-          href="/"
-          className={`text-3xl font-bold text-[#2196f3] ${montserrat.className}`}
-        >
-          GuruMantra
-        </Link>
+      <div className="container flex h-16 items-center justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-2">
+          <GraduationCap className="h-8 w-8 text-[#3730A3]" />
+          <h1 className="text-3xl font-bold text-[#111827]">GuruMantra</h1>
+        </div>
 
-        <motion.button
-          className="md:hidden z-50"
-          onClick={() => setIsOpen(!isOpen)}
-          animate={{ rotate: isOpen ? 180 : 0, scale: isOpen ? 1.2 : 1 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </motion.button>
+        <nav className="hidden md:flex items-center gap-6 text-lg">
+          <Link href="/" className="font-medium transition-colors hover:text-[#3730A3]">
+            Home
+          </Link>
+          <Link href="/mba" className="font-medium text-muted-foreground transition-colors hover:text-[#3730A3]">
+            MBA
+          </Link>
+          <Link href="#" className="font-medium text-muted-foreground transition-colors hover:text-[#3730A3]">
+            Programs
+          </Link>
+          <Link href="/about" className="font-medium text-muted-foreground transition-colors hover:text-[#3730A3]">
+            About Us
+          </Link>
+          <Link href="#" className="font-medium text-muted-foreground transition-colors hover:text-[#3730A3]">
+            Contact
+          </Link>
+        </nav>
 
-        <ul className={`hidden md:flex space-x-10 ${lato.className} text-md`}>
-          <li>
-            <Link href="/" className="hover:text-[#2196f3]">
-              Home
-            </Link>
-          </li>
-          <li className="relative group">
-            <Link href="/mba" className="hover:text-[#2196f3]">
-              MBA
-            </Link>
-            <motion.ul
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="absolute left-0 hidden group-hover:flex flex-col bg-white backdrop-blur-md shadow-2xl py-3 px-5 rounded-lg transition-all duration-300 ease-in-out border border-gray-200"
-            >
-              <li>
-                <Link
-                  href="/mba/cat"
-                  className="block px-6 py-2 text-gray-700 hover:text-[#2196f3] hover:bg-gray-100 rounded-md transition-all duration-200"
-                >
-                  CAT
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/mba/2"
-                  className="block px-6 py-2 text-gray-700 hover:text-[#2196f3] hover:bg-gray-100 rounded-md transition-all duration-200"
-                >
-                  2
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/mba/3"
-                  className="block px-6 py-2 text-gray-700 hover:text-[#2196f3] hover:bg-gray-100 rounded-md transition-all duration-200"
-                >
-                  3
-                </Link>
-              </li>
-            </motion.ul>
-          </li>
-          <li>
-            <Link href="/about" className="hover:text-blue-500">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="hover:text-blue-500">
-              Contact
-            </Link>
-          </li>
-        </ul>
+        <div className="flex items-center gap-4">
+          <Button variant="outline" className="hidden md:flex">
+            Log in
+          </Button>
+          <Button className="bg-[#3730A3] hover:bg-[#3730A3]/90 hidden md:flex">Get Started</Button>
+
+          <motion.button
+            className="md:hidden z-50"
+            onClick={() => setIsOpen(!isOpen)}
+            animate={{ rotate: isOpen ? 180 : 0, scale: isOpen ? 1.2 : 1 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </motion.button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -136,22 +94,27 @@ export default function Navbar() {
               animate={{ x: "0%", borderRadius: "0" }}
               exit={{ x: "-100%", borderRadius: "50% 0 0 50%" }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="fixed top-0 left-0 w-4/5 h-screen bg-[#2196f3] backdrop-blur-md shadow-lg flex flex-col items-center justify-center text-lg z-50"
+              className="fixed top-0 left-0 w-4/5 h-screen bg-[#3730A3] backdrop-blur-md shadow-lg flex flex-col items-center justify-center text-lg z-50"
             >
               <motion.div>
-                <Link
-                  href="/"
-                  className={`text-3xl font-bold text-white mb-6 ${montserrat.className}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  GuruMantra
+                <Link href="/" className="text-3xl font-bold text-white mb-6" onClick={() => setIsOpen(false)}>
+                  <div className="flex items-center gap-2">
+                    <GraduationCap className="h-8 w-8" />
+                    <span>EduMatch</span>
+                  </div>
                 </Link>
               </motion.div>
 
               <nav className="flex flex-col items-center space-y-6">
-                {["Home", "MBA", "About", "Contact"].map((item, index) => (
+                {[
+                  { name: "Home", path: "/" },
+                  { name: "Colleges", path: "/colleges" },
+                  { name: "Programs", path: "/programs" },
+                  { name: "About Us", path: "/about" },
+                  { name: "Contact", path: "/contact" },
+                ].map((item, index) => (
                   <motion.div
-                    key={item}
+                    key={item.name}
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
@@ -162,39 +125,51 @@ export default function Navbar() {
                   >
                     <div className="flex items-center space-x-2">
                       <Link
-                        href={`/${item.toLowerCase()}`}
-                        className="hover:text-blue-500 text-xl font-semibold"
+                        href={item.path}
+                        className="text-white hover:text-[#EAB308] text-xl font-semibold"
                         onClick={() => setIsOpen(false)}
                       >
-                        {item}
+                        {item.name}
                       </Link>
-                      {item === "MBA" && (
-                        <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                      {item.name === "Programs" && (
+                        <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="text-white">
                           {isDropdownOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                         </button>
                       )}
                     </div>
-                    {item === "MBA" && isDropdownOpen && (
+                    {item.name === "Programs" && isDropdownOpen && (
                       <motion.ul
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.3 }}
-                        className="pl-6 space-y-2"
+                        className="pl-6 space-y-2 text-white"
                       >
                         <li>
-                          <Link href="/mba/1" className="block px-4 py-2 hover:bg-gray-200">
-                            1
+                          <Link
+                            href="/programs/undergraduate"
+                            className="block px-4 py-2 hover:bg-[#3730A3]/80 rounded-md"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Undergraduate
                           </Link>
                         </li>
                         <li>
-                          <Link href="/mba/2" className="block px-4 py-2 hover:bg-gray-200">
-                            2
+                          <Link
+                            href="/programs/graduate"
+                            className="block px-4 py-2 hover:bg-[#3730A3]/80 rounded-md"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Graduate
                           </Link>
                         </li>
                         <li>
-                          <Link href="/mba/3" className="block px-4 py-2 hover:bg-gray-200">
-                            3
+                          <Link
+                            href="/programs/certificate"
+                            className="block px-4 py-2 hover:bg-[#3730A3]/80 rounded-md"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Certificate
                           </Link>
                         </li>
                       </motion.ul>
@@ -202,10 +177,23 @@ export default function Navbar() {
                   </motion.div>
                 ))}
               </nav>
+
+              <div className="mt-8 flex flex-col gap-4">
+                <Button
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-[#3730A3]"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Log in
+                </Button>
+                <Button className="bg-[#EAB308] text-[#111827] hover:bg-[#EAB308]/90" onClick={() => setIsOpen(false)}>
+                  Get Started
+                </Button>
+              </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-    </nav>
-  );
+    </header>
+  )
 }
