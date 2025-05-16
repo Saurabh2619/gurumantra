@@ -1,45 +1,26 @@
 "use client";
-// import MainSlider from "./components/heroslider";
 import DefaultLayout from "./defaultlayout";
 import { Search, MapPin, BookOpen } from 'lucide-react';
 export default function Home() {
   return (
     <>
     <DefaultLayout>
-      {/* <div className="">
-        <MainSlider />
-      </div>
-
-      <section className="mt-3 mb-3 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-xl font-semibold">Saurabh Sharma</h1>
-        <p>Welcome to Guru_Mantra <br />
-          A 100-word paragraph should focus on a single, manageable topic and
-          aim for clarity and conciseness. It typically includes an introductory
-          sentence, a few supporting sentences, and a concluding sentence. Think
-          of it as a mini-essay, introducing the main idea, providing some
-          evidence or explanation, and then summarizing the main point. The goal
-          is to convey the key information in a clear and concise way, allowing
-          the reader to grasp the core concept in a few sentences.
-        </p>
-      </section> */}
-      <div className="relative bg-gradient-to-br from-indigo-700 via-blue-800 to-blue-900 pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-      {/* Animated Decorative Elements */}
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-[#0d47a1] via-[#1565c0] to-[#1976d2] pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+      
       <div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-10 -right-10 w-40 h-40 md:w-80 md:h-80 bg-cyan-500 rounded-full opacity-10 blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-10 -left-20 w-60 h-60 bg-purple-500 rounded-full opacity-10 blur-3xl animate-float"></div>
         <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-indigo-400 rounded-full opacity-10 blur-2xl animate-float-delay"></div>
-        
-        {/* Subtle Grid Pattern */}
+                
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       </div>
-
-      {/* Main Container */}
+      
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row md:items-center">
-          
-          {/* Text Section */}
+                    
           <div className="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
-            <span className="inline-block px-4 py-1 rounded-full bg-indigo-700/30 backdrop-blur-sm text-cyan-300 text-xl font-medium mb-6 border border-indigo-600/40 transform transition-all duration-300 hover:scale-105">
+            <span className="inline-block px-4 py-1 rounded-full bg-indigo-900/70 backdrop-blur-sm text-cyan-300 text-xl font-medium mb-6 border border-indigo-600/40 transform transition-all duration-300 hover:scale-105">
               Find Your Academic Path
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight">
@@ -63,15 +44,13 @@ export default function Home() {
             <div className="mt-8 pt-6 border-t border-white/10 hidden md:block">
             </div>
           </div>
-
-          {/* Right Side Box */}
+          
           <div className="md:w-1/2 md:pl-8">
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl shadow-xl p-6 border border-white/20 transform transition-all duration-500 hover:shadow-2xl">
+            <div className="bg-white/10 backdrop-blur-lg rounded-xl shadow-xl p-6 border border-white/90 transform transition-all duration-500 hover:shadow-2xl">
               <h3 className="text-xl font-semibold text-white mb-4 text-center">
                 Find Colleges Based on Your Profile
               </h3>
-
-              {/* Inputs with Improved Styling */}
+              
               <div className="space-y-4">
                 <div className="relative">
                   <input
@@ -97,8 +76,7 @@ export default function Home() {
                   Find Matching Colleges
                 </button>
               </div>
-
-              {/* Features with Icons */}
+              
               <div className="mt-6 pt-5 border-t border-white/20">
                 <div className="grid grid-cols-3 gap-2 text-center">
                   <div className="group">
@@ -125,7 +103,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </div> {/* Hero Section End */}
 
       </DefaultLayout>
     </>
