@@ -1,6 +1,7 @@
 "use client";
 import DefaultLayout from "./defaultlayout";
 import { Search, MapPin, BookOpen } from 'lucide-react';
+import PartnerSlider from "./components/partener-slider"
 export default function Home() {
   return (
     <>
@@ -105,6 +106,17 @@ export default function Home() {
       </div>
     </div> {/* Hero Section End */}
 
+
+      {/* Partner Slider Section */}
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="text-center">
+    <h1 className="mt-5 text-3xl font-bold text-gray-900">Top Colleges You Can Trust</h1>
+    <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
+      Explore leading institutions renowned for quality education and excellent placement records. These colleges collaborate with us to bring exclusive opportunities and benefits to students like you.
+    </p>
+  </div>
+  <PartnerSlider />
+</div>
       </DefaultLayout>
     </>
   );
