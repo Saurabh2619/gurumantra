@@ -108,15 +108,20 @@ export default function Home() {
 
 
       {/* Partner Slider Section */}
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div className="text-center">
-    <h1 className="mt-5 text-3xl font-bold text-gray-900">Top Colleges You Can Trust</h1>
-    <p className="mt-2 text-gray-600 max-w-2xl mx-auto">
-      Explore leading institutions renowned for quality education and excellent placement records. These colleges collaborate with us to bring exclusive opportunities and benefits to students like you.
-    </p>
-  </div>
-  <PartnerSlider />
-</div>
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="text-center space-y-6">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+          Top Colleges You Can Trust
+        </h1>
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Explore leading institutions renowned for quality education and excellent placement records. These colleges
+          collaborate with us to bring exclusive opportunities and benefits to students like you.
+        </p>
+      </div>
+      <div className="mt-10">
+        <PartnerSlider />
+      </div>
+    </div>
       </DefaultLayout>
     </>
   );

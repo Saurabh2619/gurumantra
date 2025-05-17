@@ -111,7 +111,7 @@ const PartnerSlider = () => {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-0">
         <div className="flex justify-center items-center h-[300px]">
           <div className="animate-pulse flex space-x-4">
             <div className="rounded-xl bg-gray-200 h-[300px] w-full md:w-[600px]"></div>
@@ -122,7 +122,7 @@ const PartnerSlider = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 relative">
+    <div className="container mx-auto px-4 py-0 relative">
       <div className="slider-container">
         <Slider {...settings}>
           {colleges.map((college) => (
