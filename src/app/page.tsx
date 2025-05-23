@@ -1,6 +1,6 @@
 "use client";
 import DefaultLayout from "./defaultlayout";
-import { Search, MapPin, BookOpen } from 'lucide-react';
+import {ArrowRight, Search, MapPin, BookOpen } from 'lucide-react';
 import PartnerSlider from "./components/partener-slider"
 export default function Home() {
   return (
@@ -110,7 +110,7 @@ export default function Home() {
       {/* Partner Slider Section */}
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center space-y-6">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+        <h1 className="text-3xl md:text-3xl font-bold text-gray-900 leading-tight tracking-tight">
           Top Colleges You Can Trust
         </h1>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -122,6 +122,18 @@ export default function Home() {
         <PartnerSlider />
       </div>
     </div>
+    <div className="flex justify-center mb-3">
+      <div className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-200/90 cursor-pointer">
+        <span>View All Partner Colleges</span>
+      </div>
+    </div>
+
+    <section className = "py-12">
+      <div className = "container">
+        <h2 className="text-3xl font-bold text-center mb-12">How Guru Mantra Works</h2>
+        <div className = "grid md:grid-cols-3 gap-8"></div>
+        </div> 
+    </section>
       </DefaultLayout>
     </>
   );
