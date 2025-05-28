@@ -571,7 +571,7 @@ export default function MilestonePage() {
                 {/* Mobile swipe indicator */}
                 {isMobile && (
                   <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 bg-white/80 px-2 py-0.5 rounded text-center">
-                    👆 Swipe to navigate
+                    {/* 👆 Swipe to navigate */}
                   </div>
                 )}
               </div>
