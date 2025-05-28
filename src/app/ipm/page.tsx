@@ -1,206 +1,375 @@
 "use client"
 
-import type React from "react"
-
 import { useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight, Crown, Sparkles, Star, Zap } from "lucide-react"
+import {
+  ChevronLeft,
+  ChevronRight,
+  Crown,
+  Star,
+  Zap,
+  Trophy,
+  Target,
+  Award,
+  TrendingUp,
+  Medal,
+  Brain,
+  Calculator,
+  MessageCircle,
+  BookOpen,
+  Users,
+} from "lucide-react"
 
 export default function MilestonePage() {
-  const [currentPage, setCurrentPage] = useState(0)
-  const [isFlipping, setIsFlipping] = useState(false)
+  const [currentView, setCurrentView] = useState(0)
   const [showCelebration, setShowCelebration] = useState(true)
   const [pageLoaded, setPageLoaded] = useState(false)
-  const [showFireworks, setShowFireworks] = useState(true)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   useEffect(() => {
-    // Check if mobile
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-
-    // Page load animation with proper timing
     const loadTimer = setTimeout(() => {
       setPageLoaded(true)
     }, 100)
 
-    // Hide celebration after 4 seconds
     const celebrationTimer = setTimeout(() => {
       setShowCelebration(false)
-    }, 4000)
-
-    // Hide fireworks slightly earlier to prevent stuck animation
-    const fireworksTimer = setTimeout(() => {
-      setShowFireworks(false)
-    }, 3500)
+    }, 3000)
 
     return () => {
       clearTimeout(loadTimer)
       clearTimeout(celebrationTimer)
-      clearTimeout(fireworksTimer)
-      window.removeEventListener("resize", checkMobile)
     }
   }, [])
 
-  const pages = [
+  const views = [
     {
       id: 1,
+      title: "The Champion",
       content: (
-        <div className="h-full flex flex-col items-center justify-center p-2 sm:p-6 lg:p-8 text-center bg-gradient-to-br from-white to-purple-50">
-          <div className="w-16 h-16 sm:w-28 sm:h-28 lg:w-36 lg:h-36 rounded-full bg-gradient-to-br from-[#833589] to-purple-400 mb-2 sm:mb-6 flex items-center justify-center shadow-xl relative">
-            <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-[#f2ad00] rounded-full p-1">
-              <Star className="w-2 h-2 sm:w-4 sm:h-4 text-white" />
+        <div className="flex flex-col items-center justify-center h-full py-1 px-2">
+          <div className="relative mb-3">
+            <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-[#833589] p-2 mx-auto">
+              <img
+                src="/placeholder.svg?height=150&width=150"
+                alt="Nikhilesh"
+                className="w-full h-full rounded-full object-cover border-2 border-white"
+              />
             </div>
-            <img
-              src="/placeholder.svg?height=140&width=140"
-              alt="Nikhilesh"
-              className="w-12 h-12 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full object-cover border-2 sm:border-3 border-white"
-            />
+            <div className="absolute -bottom-2 -right-2 bg-[#f2ad00] rounded-full p-2 shadow-lg">
+              <Star className="w-5 h-5 text-white" />
+            </div>
           </div>
-          <h3 className="text-sm sm:text-2xl lg:text-3xl font-bold text-[#833589] mb-1 sm:mb-4">Nikhilesh Kumar</h3>
-          <div className="bg-gradient-to-r from-[#f2ad00] to-yellow-500 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-full font-bold text-xs sm:text-lg mb-2 sm:mb-4">
+
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#833589] mb-2 text-center">Nikhilesh Kumar</h2>
+
+          <div className="bg-[#f2ad00] text-white px-4 py-2 rounded-full font-bold text-lg inline-block shadow-lg mb-3">
             🏆 AIR 1 - IPMAT 2024 🏆
           </div>
-          <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed italic px-1 sm:px-2">
-            "Test Paragraph Here"
-          </p>
+
+          <div className="grid grid-cols-3 gap-3 w-full max-w-sm mb-3">
+            <div className="bg-[#833589] text-white p-2.5 rounded-xl text-center">
+              <Trophy className="w-5 h-5 mx-auto mb-1 text-[#f2ad00]" />
+              <div className="text-lg font-bold">1st</div>
+              <div className="text-sm opacity-90">All India</div>
+            </div>
+            <div className="bg-[#f2ad00] text-white p-2.5 rounded-xl text-center">
+              <Target className="w-5 h-5 mx-auto mb-1" />
+              <div className="text-lg font-bold">99.9%</div>
+              <div className="text-sm opacity-90">Percentile</div>
+            </div>
+            <div className="bg-green-500 text-white p-2.5 rounded-xl text-center">
+              <Award className="w-5 h-5 mx-auto mb-1" />
+              <div className="text-lg font-bold">Top</div>
+              <div className="text-sm opacity-90">Performer</div>
+            </div>
+          </div>
+
+          <blockquote className="text-sm text-gray-700 italic max-w-sm mx-auto bg-gray-50 p-3 rounded-xl border-l-4 border-[#833589] text-center">
+            "Success is not just about reaching the destination, but about the journey of consistent effort and
+            dedication."
+          </blockquote>
         </div>
       ),
     },
     {
       id: 2,
+      title: "Ashutosh Sir - The Mentor",
       content: (
-        <div className="h-full flex flex-col items-center justify-center p-2 sm:p-6 lg:p-8 text-center bg-gradient-to-br from-white to-purple-50">
-          <div className="w-16 h-16 sm:w-28 sm:h-28 lg:w-36 lg:h-36 rounded-full bg-gradient-to-br from-[#833589] to-purple-600 mb-2 sm:mb-6 flex items-center justify-center shadow-xl">
-            <img
-              src="/placeholder.svg?height=140&width=140"
-              alt="Ashutosh Sir"
-              className="w-12 h-12 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full object-cover border-2 sm:border-3 border-white"
-            />
+        <div className="h-full py-2">
+          <h2 className="text-2xl font-bold text-[#833589] text-center mb-3">Ashutosh Sir</h2>
+          <div className="w-16 h-0.5 bg-[#833589] mx-auto rounded-full mb-4"></div>
+
+          <div className="bg-white rounded-xl p-3 shadow-lg border border-[#833589]/20 mx-auto max-w-full">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="flex flex-col items-center md:items-start">
+                <div className="relative mb-3">
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-[#833589] p-1.5 mx-auto md:mx-0">
+                    <img
+                      src="/placeholder.svg?height=120&width=120"
+                      alt="Ashutosh Sir"
+                      className="w-full h-full rounded-full object-cover border-2 border-white"
+                    />
+                  </div>
+                  <div className="absolute -top-1 -right-1 bg-[#f2ad00] rounded-full p-1.5 shadow-lg">
+                    <Brain className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1">Ashutosh Sir</h3>
+                <p className="text-lg text-[#f2ad00] font-semibold text-center md:text-left mb-2">
+                  Mentor & Strategic Guide
+                </p>
+                <div className="bg-[#833589] text-white px-3 py-1.5 rounded-full text-sm font-semibold">
+                  15+ Years Experience
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="bg-[#833589] text-white p-3 rounded-lg">
+                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1">
+                    <Target className="text-[#f2ad00] w-5 h-5" />
+                    Expertise Areas
+                  </h4>
+                  <ul className="space-y-0.5 text-base">
+                    <li>• Strategic Planning & Goal Setting</li>
+                    <li>• Motivation & Mental Conditioning</li>
+                    <li>• Performance Analysis</li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-50 p-3 rounded-lg border-l-3 border-[#833589]">
+                  <h4 className="text-lg font-bold text-[#833589] mb-1">Success Mantra</h4>
+                  <p className="text-gray-700 italic text-base">
+                    "Every student has the potential to achieve greatness through strategic guidance."
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-[#f2ad00] text-white p-2 rounded-lg text-center">
+                    <div className="text-xl font-bold">500+</div>
+                    <div className="text-sm opacity-90">Students</div>
+                  </div>
+                  <div className="bg-green-500 text-white p-2 rounded-lg text-center">
+                    <div className="text-xl font-bold">95%</div>
+                    <div className="text-sm opacity-90">Success</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 className="text-sm sm:text-2xl lg:text-3xl font-bold text-[#833589] mb-1 sm:mb-4">Ashutosh Sir</h3>
-          <div className="bg-gradient-to-r from-[#833589] to-purple-600 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-full font-semibold mb-2 sm:mb-4 text-xs sm:text-base">
-            Mentor & Guide
-          </div>
-          <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed italic px-1 sm:px-2">
-            "Test Paragraph 2 Here"
-          </p>
         </div>
       ),
     },
     {
       id: 3,
+      title: "Nikhil Sir - QA Master",
       content: (
-        <div className="h-full flex flex-col items-center justify-center p-2 sm:p-6 lg:p-8 text-center bg-gradient-to-br from-white to-orange-50">
-          <div className="w-16 h-16 sm:w-28 sm:h-28 lg:w-36 lg:h-36 rounded-full bg-gradient-to-br from-[#833589] to-orange-500 mb-2 sm:mb-6 flex items-center justify-center shadow-xl">
-            <img
-              src="/placeholder.svg?height=140&width=140"
-              alt="Nikhil Sir"
-              className="w-12 h-12 sm:w-24 lg:h-32 rounded-full object-cover border-2 sm:border-3 border-white"
-            />
+        <div className="h-full py-2">
+          <h2 className="text-2xl font-bold text-[#f2ad00] text-center mb-3">Nikhil Sir</h2>
+          <div className="w-16 h-0.5 bg-[#f2ad00] mx-auto rounded-full mb-4"></div>
+
+          <div className="bg-white rounded-xl p-3 shadow-lg border border-[#f2ad00]/20 mx-auto max-w-full">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="flex flex-col items-center md:items-start">
+                <div className="relative mb-3">
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-[#f2ad00] p-1.5 mx-auto md:mx-0">
+                    <img
+                      src="/placeholder.svg?height=120&width=120"
+                      alt="Nikhil Sir"
+                      className="w-full h-full rounded-full object-cover border-2 border-white"
+                    />
+                  </div>
+                  <div className="absolute -top-1 -right-1 bg-[#833589] rounded-full p-1.5 shadow-lg">
+                    <Calculator className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1">Nikhil Sir</h3>
+                <p className="text-lg text-[#f2ad00] font-semibold text-center md:text-left mb-2">QA Faculty</p>
+                <div className="bg-[#f2ad00] text-white px-3 py-1.5 rounded-full text-sm font-semibold">
+                  QA Specialist
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="bg-[#f2ad00] text-white p-3 rounded-lg">
+                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1">
+                    <Calculator className="text-white w-5 h-5" />
+                    Teaching Approach
+                  </h4>
+                  <ul className="space-y-0.5 text-base">
+                    <li>• Concept-based Learning</li>
+                    <li>• Speed & Accuracy Enhancement</li>
+                    <li>• Shortcut Techniques</li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-50 p-3 rounded-lg border-l-3 border-[#f2ad00]">
+                  <h4 className="text-lg font-bold text-[#833589] mb-1">Teaching Philosophy</h4>
+                  <p className="text-gray-700 italic text-base">
+                    "Mathematics is about understanding patterns. Speed follows naturally."
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-[#833589] text-white p-2 rounded-lg text-center">
+                    <div className="text-xl font-bold">1000+</div>
+                    <div className="text-sm opacity-90">Problems</div>
+                  </div>
+                  <div className="bg-green-500 text-white p-2 rounded-lg text-center">
+                    <div className="text-xl font-bold">98%</div>
+                    <div className="text-sm opacity-90">Accuracy</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 className="text-sm sm:text-2xl lg:text-3xl font-bold text-[#833589] mb-1 sm:mb-4">Nikhil Sir</h3>
-          <div className="bg-gradient-to-r from-[#833589] to-orange-600 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-full font-semibold mb-2 sm:mb-4 text-xs sm:text-base">
-            QA Faculty
-          </div>
-          <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed italic px-1 sm:px-2">
-            "Test Paragraph 3 Here"
-          </p>
         </div>
       ),
     },
     {
       id: 4,
+      title: "Taruna Maam - VA Expert",
       content: (
-        <div className="h-full flex flex-col items-center justify-center p-2 sm:p-6 lg:p-8 text-center bg-gradient-to-br from-white to-yellow-50">
-          <div className="w-16 h-16 sm:w-28 sm:h-28 lg:w-36 lg:h-36 rounded-full bg-gradient-to-br from-[#833589] to-yellow-500 mb-2 sm:mb-6 flex items-center justify-center shadow-xl">
-            <img
-              src="/placeholder.svg?height=140&width=140"
-              alt="Taruna Maam"
-              className="w-12 h-12 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full object-cover border-2 sm:border-3 border-white"
-            />
+        <div className="h-full py-2">
+          <h2 className="text-2xl font-bold text-[#833589] text-center mb-3">Taruna Maam</h2>
+          <div className="w-16 h-0.5 bg-purple-600 mx-auto rounded-full mb-4"></div>
+
+          <div className="bg-white rounded-xl p-3 shadow-lg border border-purple-600/20 mx-auto max-w-full">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="flex flex-col items-center md:items-start">
+                <div className="relative mb-3">
+                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-purple-600 p-1.5 mx-auto md:mx-0">
+                    <img
+                      src="/placeholder.svg?height=120&width=120"
+                      alt="Taruna Maam"
+                      className="w-full h-full rounded-full object-cover border-2 border-white"
+                    />
+                  </div>
+                  <div className="absolute -top-1 -right-1 bg-purple-600 rounded-full p-1.5 shadow-lg">
+                    <MessageCircle className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1">Taruna Maam</h3>
+                <p className="text-lg text-[#833589] font-semibold text-center md:text-left mb-2">VA Faculty</p>
+                <div className="bg-[#833589] text-white px-3 py-1.5 rounded-full text-sm font-semibold">
+                  Language Expert
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <div className="bg-[#833589] text-white p-3 rounded-lg">
+                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1">
+                    <MessageCircle className="text-white w-5 h-5" />
+                    Specializations
+                  </h4>
+                  <ul className="space-y-0.5 text-base">
+                    <li>• Reading Comprehension</li>
+                    <li>• Vocabulary Building</li>
+                    <li>• Grammar & Communication</li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-50 p-3 rounded-lg border-l-3 border-[#833589]">
+                  <h4 className="text-lg font-bold text-[#833589] mb-1">Teaching Methodology</h4>
+                  <p className="text-gray-700 italic text-base">
+                    "Language is the bridge between thoughts and expression."
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="bg-[#f2ad00] text-white p-2 rounded-lg text-center">
+                    <div className="text-xl font-bold">2000+</div>
+                    <div className="text-sm opacity-90">Words</div>
+                  </div>
+                  <div className="bg-green-500 text-white p-2 rounded-lg text-center">
+                    <div className="text-xl font-bold">96%</div>
+                    <div className="text-sm opacity-90">Improvement</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 className="text-sm sm:text-2xl lg:text-3xl font-bold text-[#833589] mb-1 sm:mb-4">Taruna Maam</h3>
-          <div className="bg-gradient-to-r from-[#833589] to-yellow-600 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-full font-semibold mb-2 sm:mb-4 text-xs sm:text-base">
-            VA Faculty
-          </div>
-          <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed italic px-1 sm:px-2">
-            "Test Paragraph 4 Here"
-          </p>
         </div>
       ),
     },
     {
       id: 5,
+      title: "Success Journey",
       content: (
-        <div className="h-full flex flex-col justify-start p-2 sm:p-4 lg:p-6 bg-gradient-to-br from-white to-yellow-50 overflow-y-auto">
-          <div className="text-center mb-3 sm:mb-4">
-            <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold text-[#833589] flex items-center justify-center gap-2">
-              <Zap className="text-[#f2ad00] w-4 h-4 sm:w-6 sm:h-6" />
-              Success Blueprint
-              <Zap className="text-[#f2ad00] w-4 h-4 sm:w-6 sm:h-6" />
-            </h3>
-            <div className="w-16 sm:w-24 h-0.5 bg-gradient-to-r from-[#833589] to-[#f2ad00] mx-auto mt-2"></div>
-          </div>
+        <div className="h-full py-2">
+          <h2 className="text-xl font-bold text-[#833589] text-center mb-2 flex items-center justify-center gap-2">
+            <TrendingUp className="text-[#f2ad00] w-5 h-5" />
+            Success Blueprint
+            <TrendingUp className="text-[#f2ad00] w-5 h-5" />
+          </h2>
+          <div className="w-20 h-0.5 bg-[#f2ad00] mx-auto rounded-full mb-3"></div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 flex-1">
-            <div className="bg-gradient-to-br from-[#833589]/10 to-purple-50 p-2 sm:p-3 rounded-lg border border-[#833589]/20 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#833589] rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs sm:text-sm font-bold">📚</span>
+          <div className="relative max-w-3xl mx-auto px-3">
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-64 bg-[#833589] rounded-full hidden md:block"></div>
+
+            <div className="space-y-2">
+              {[
+                {
+                  icon: BookOpen,
+                  title: "Daily Foundation",
+                  description: "6 hours study + 2 hours revision",
+                  bgColor: "bg-[#833589]",
+                  side: "left",
+                },
+                {
+                  icon: Zap,
+                  title: "QA Mastery",
+                  description: "100+ questions + concept building",
+                  bgColor: "bg-[#f2ad00]",
+                  side: "right",
+                },
+                {
+                  icon: Users,
+                  title: "VA Excellence",
+                  description: "Daily reading + vocabulary building",
+                  bgColor: "bg-purple-500",
+                  side: "left",
+                },
+                {
+                  icon: Trophy,
+                  title: "Mock Mastery",
+                  description: "3 tests per week + analysis",
+                  bgColor: "bg-green-500",
+                  side: "right",
+                },
+              ].map((item, index) => (
+                <div key={index} className={`flex items-center ${item.side === "right" && "md:flex-row-reverse"}`}>
+                  <div className={`w-full md:w-5/12 ${item.side === "right" && "md:text-right"}`}>
+                    <div
+                      className={`${item.bgColor} text-white p-2.5 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                    >
+                      <div className={`flex items-center gap-2 mb-1 ${item.side === "right" && "md:flex-row-reverse"}`}>
+                        <item.icon className="w-5 h-5" />
+                        <h3 className="text-base font-bold">{item.title}</h3>
+                      </div>
+                      <p className="text-sm opacity-90">{item.description}</p>
+                    </div>
+                  </div>
+
+                  <div className="hidden md:flex w-2/12 justify-center">
+                    <div className={`w-3 h-3 rounded-full ${item.bgColor} border-2 border-white shadow-lg`}></div>
+                  </div>
+
+                  <div className="hidden md:block w-5/12"></div>
                 </div>
-                <h4 className="font-bold text-[#833589] text-xs sm:text-sm lg:text-base">Daily Routine</h4>
-              </div>
-              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                6 hours focused study + 2 hours revision + 1 hour analysis
-              </p>
+              ))}
             </div>
 
-            <div className="bg-gradient-to-br from-[#f2ad00]/10 to-yellow-50 p-2 sm:p-3 rounded-lg border border-[#f2ad00]/20 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#f2ad00] rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs sm:text-sm font-bold">🧮</span>
-                </div>
-                <h4 className="font-bold text-[#f2ad00] text-xs sm:text-sm lg:text-base">QA Strategy</h4>
+            <div className="text-center mt-3">
+              <div className="inline-flex items-center gap-2 bg-[#833589] text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                <Medal className="w-4 h-4 text-[#f2ad00]" />
+                Consistency + Strategy = Success
+                <Medal className="w-4 h-4 text-[#f2ad00]" />
               </div>
-              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                100+ questions daily + concept building + speed enhancement
-              </p>
             </div>
 
-            <div className="bg-gradient-to-br from-[#833589]/10 to-purple-50 p-2 sm:p-3 rounded-lg border border-[#833589]/20 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#833589] rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs sm:text-sm font-bold">📖</span>
-                </div>
-                <h4 className="font-bold text-[#833589] text-xs sm:text-sm lg:text-base">VA Approach</h4>
+            <div className="mt-2 text-center">
+              <div className="bg-[#833589] text-white px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg">
+                🎯 The Journey to Excellence 🎯
               </div>
-              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                Daily reading + vocabulary building + grammar mastery
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-[#f2ad00]/10 to-yellow-50 p-2 sm:p-3 rounded-lg border border-[#f2ad00]/20 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#f2ad00] rounded-full flex items-center justify-center">
-                  <span className="text-white text-xs sm:text-sm font-bold">🎯</span>
-                </div>
-                <h4 className="font-bold text-[#f2ad00] text-xs sm:text-sm lg:text-base">Mock Tests</h4>
-              </div>
-              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                3 tests per week + detailed analysis + improvement tracking
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-3 sm:mt-4 text-center">
-            <div className="inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-[#833589] to-[#f2ad00] text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
-              <Star className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span>Consistency is Key</span>
-              <Star className="w-3 h-3 sm:w-4 sm:h-4" />
             </div>
           </div>
         </div>
@@ -208,105 +377,75 @@ export default function MilestonePage() {
     },
   ]
 
-  const nextPage = () => {
-    if (currentPage < pages.length - 1 && !isFlipping) {
-      setIsFlipping(true)
+  const nextView = () => {
+    if (!isTransitioning && currentView < views.length - 1) {
+      setIsTransitioning(true)
       setTimeout(() => {
-        setCurrentPage(currentPage + 1)
-        setIsFlipping(false)
-      }, 600)
+        setCurrentView((prev) => prev + 1)
+        setIsTransitioning(false)
+      }, 200)
     }
   }
 
-  const prevPage = () => {
-    if (currentPage > 0 && !isFlipping) {
-      setIsFlipping(true)
+  const prevView = () => {
+    if (!isTransitioning && currentView > 0) {
+      setIsTransitioning(true)
       setTimeout(() => {
-        setCurrentPage(currentPage - 1)
-        setIsFlipping(false)
-      }, 600)
+        setCurrentView((prev) => prev - 1)
+        setIsTransitioning(false)
+      }, 200)
     }
   }
 
-  // Touch handlers for mobile
-  const [touchStart, setTouchStart] = useState<number | null>(null)
-  const [touchEnd, setTouchEnd] = useState<number | null>(null)
-
-  const minSwipeDistance = 50
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientX)
-  }
-
-  const onTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX)
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-    const distance = touchStart - touchEnd
-    const isLeftSwipe = distance > minSwipeDistance
-    const isRightSwipe = distance < -minSwipeDistance
-
-    if (isLeftSwipe && currentPage < pages.length - 1) {
-      nextPage()
-    }
-    if (isRightSwipe && currentPage > 0) {
-      prevPage()
+  const goToView = (index: number) => {
+    if (!isTransitioning && index !== currentView) {
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentView(index)
+        setIsTransitioning(false)
+      }, 200)
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-yellow-50 relative overflow-x-hidden">
-      {/* Fireworks Animation - Fixed timing */}
-      {showFireworks && (
-        <div className="fixed inset-0 pointer-events-none z-40">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={`firework-${i}`}
-              className="absolute"
-              style={{
-                left: `${20 + Math.random() * 60}%`,
-                top: `${10 + Math.random() * 40}%`,
-                animationDelay: `${Math.random() * 1.5}s`,
-              }}
-            >
-              <div className="firework">
-                <div className="explosion">
-                  {[...Array(8)].map((_, j) => (
-                    <div
-                      key={j}
-                      className="spark"
-                      style={{
-                        transform: `rotate(${j * 45}deg)`,
-                        backgroundColor: j % 2 === 0 ? "#833589" : "#f2ad00",
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Confetti Animation - Reduced for better performance */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-white to-yellow-100 relative overflow-hidden">
+      {/* Clean Celebration Animation */}
       {showCelebration && (
-        <div className="fixed inset-0 pointer-events-none z-30">
-          {[...Array(50)].map((_, i) => (
+        <div className="fixed inset-0 pointer-events-none z-50">
+          {/* Simple Confetti */}
+          {[...Array(12)].map((_, i) => (
             <div
               key={`confetti-${i}`}
               className="absolute"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `-10%`,
-                animationDelay: `${Math.random() * 2}s`,
+                left: `${20 + Math.random() * 60}%`,
+                top: `-5%`,
+                animationDelay: `${Math.random() * 1}s`,
               }}
             >
               <div
-                className="w-2 h-2 rotate-45 animate-bounce"
+                className="w-2 h-2 rotate-45"
                 style={{
                   backgroundColor: Math.random() > 0.5 ? "#833589" : "#f2ad00",
-                  animation: `fall ${2 + Math.random() * 1}s linear infinite`,
+                  animation: `fall 2.5s linear infinite`,
+                }}
+              />
+            </div>
+          ))}
+
+          {/* Corner Stars */}
+          {[
+            { top: "15%", left: "15%" },
+            { top: "15%", right: "15%" },
+          ].map((position, i) => (
+            <div key={i} className="absolute" style={position}>
+              <Star
+                className="text-[#f2ad00] animate-pulse"
+                style={{
+                  width: "20px",
+                  height: "20px",
+                  animation: `twinkle 2s ease-in-out infinite`,
+                  animationDelay: `${i * 0.5}s`,
                 }}
               />
             </div>
@@ -314,312 +453,101 @@ export default function MilestonePage() {
         </div>
       )}
 
-      {/* Cracker Burst Animation - Page Load */}
-      {showCelebration && (
-        <div className="fixed inset-0 pointer-events-none z-25">
-          {/* Left side crackers */}
-          <div className="absolute left-4 top-1/4">
-            <div className="cracker-burst">
-              {[...Array(12)].map((_, i) => (
-                <div
-                  key={`left-cracker-${i}`}
-                  className="cracker-piece"
-                  style={{
-                    transform: `rotate(${i * 30}deg)`,
-                    backgroundColor: i % 3 === 0 ? "#833589" : i % 3 === 1 ? "#f2ad00" : "#ff6b6b",
-                    animationDelay: `${0.5 + i * 0.1}s`,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Right side crackers */}
-          <div className="absolute right-4 top-1/3">
-            <div className="cracker-burst">
-              {[...Array(12)].map((_, i) => (
-                <div
-                  key={`right-cracker-${i}`}
-                  className="cracker-piece"
-                  style={{
-                    transform: `rotate(${i * 30}deg)`,
-                    backgroundColor: i % 3 === 0 ? "#833589" : i % 3 === 1 ? "#f2ad00" : "#4ade80",
-                    animationDelay: `${0.8 + i * 0.1}s`,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom crackers */}
-          <div className="absolute left-1/4 bottom-1/4">
-            <div className="cracker-burst">
-              {[...Array(10)].map((_, i) => (
-                <div
-                  key={`bottom-cracker-${i}`}
-                  className="cracker-piece"
-                  style={{
-                    transform: `rotate(${i * 36}deg)`,
-                    backgroundColor: i % 2 === 0 ? "#833589" : "#f2ad00",
-                    animationDelay: `${1.2 + i * 0.08}s`,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Top right crackers */}
-          <div className="absolute right-1/4 top-1/5">
-            <div className="cracker-burst">
-              {[...Array(8)].map((_, i) => (
-                <div
-                  key={`top-cracker-${i}`}
-                  className="cracker-piece"
-                  style={{
-                    transform: `rotate(${i * 45}deg)`,
-                    backgroundColor: i % 2 === 0 ? "#f2ad00" : "#a855f7",
-                    animationDelay: `${1.5 + i * 0.12}s`,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Enhanced Party Poppers - Strategic positioning */}
-      {showCelebration && (
-        <div className="fixed inset-0 pointer-events-none z-28">
-          {/* Top left popper */}
-          <div className="absolute left-8 top-16">
-            <div className="party-popper-enhanced" style={{ animationDelay: "0.3s" }}>
-              <div className="popper-cone bg-gradient-to-r from-[#833589] to-purple-600"></div>
-              <div className="popper-burst">
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={`tl-burst-${i}`}
-                    className="burst-particle"
-                    style={{
-                      transform: `rotate(${i * 60}deg)`,
-                      backgroundColor: i % 2 === 0 ? "#f2ad00" : "#833589",
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Top right popper */}
-          <div className="absolute right-8 top-20">
-            <div className="party-popper-enhanced" style={{ animationDelay: "0.6s" }}>
-              <div className="popper-cone bg-gradient-to-r from-[#f2ad00] to-yellow-600"></div>
-              <div className="popper-burst">
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={`tr-burst-${i}`}
-                    className="burst-particle"
-                    style={{
-                      transform: `rotate(${i * 60}deg)`,
-                      backgroundColor: i % 2 === 0 ? "#833589" : "#4ade80",
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom left popper */}
-          <div className="absolute left-12 bottom-20">
-            <div className="party-popper-enhanced" style={{ animationDelay: "0.9s" }}>
-              <div className="popper-cone bg-gradient-to-r from-[#833589] to-[#f2ad00]"></div>
-              <div className="popper-burst">
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={`bl-burst-${i}`}
-                    className="burst-particle"
-                    style={{
-                      transform: `rotate(${i * 60}deg)`,
-                      backgroundColor: i % 2 === 0 ? "#f2ad00" : "#ff6b6b",
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom right popper */}
-          <div className="absolute right-12 bottom-24">
-            <div className="party-popper-enhanced" style={{ animationDelay: "1.2s" }}>
-              <div className="popper-cone bg-gradient-to-r from-yellow-500 to-[#f2ad00]"></div>
-              <div className="popper-burst">
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={`br-burst-${i}`}
-                    className="burst-particle"
-                    style={{
-                      transform: `rotate(${i * 60}deg)`,
-                      backgroundColor: i % 2 === 0 ? "#833589" : "#a855f7",
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Party Poppers - Simplified */}
-      {/*{showCelebration && (
-        <div className="fixed inset-0 pointer-events-none z-35">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={`popper-${i}`}
-              className="absolute"
-              style={{
-                left: `${15 + i * 20}%`,
-                top: "15%",
-                animationDelay: `${i * 0.3}s`,
-              }}
-            >
-              <div className="party-popper">
-                <Sparkles className="text-[#f2ad00] w-4 h-4 sm:w-6 sm:h-6 animate-spin" />
-              </div>
-            </div>
-          ))}
-        </div>
-      )}*/}
-
-      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-6 lg:py-8 relative z-10">
-        {/* Header Section */}
+      <div className="container mx-auto px-4 py-2 sm:py-3 relative z-10">
+        {/* Compact Header */}
         <div
-          className={`text-center mb-4 sm:mb-16 lg:mb-20 transition-all duration-1000 ${pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
+          className={`text-center mb-3 sm:mb-4 transition-all duration-1000 ${
+            pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
+          }`}
         >
-          <div className="relative inline-block mb-4 sm:mb-8">
-            <h1 className="text-2xl sm:text-4xl lg:text-6xl xl:text-7xl font-extrabold bg-gradient-to-r from-[#833589] via-purple-600 to-[#f2ad00] bg-clip-text text-transparent px-2">
-              🎉 MILESTONE ACHIEVED 🎉
+          <div className="relative inline-block">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#833589] mb-2 relative">
+              MILESTONE
+              <span className="absolute -top-2 -right-2 text-xl sm:text-2xl">🎉</span>
             </h1>
-            <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 animate-bounce">
-              <Star className="text-[#f2ad00] w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8" />
-            </div>
-            <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 animate-bounce delay-300">
-              <Star className="text-[#833589] w-3 h-3 sm:w-4 sm:h-4 lg:w-6 lg:h-6" />
-            </div>
+            <div className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#833589] mb-2">ACHIEVED</div>
           </div>
-          <div className="bg-gradient-to-r from-[#833589] to-[#f2ad00] text-white px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 rounded-full inline-block mb-4 sm:mb-6 text-sm sm:text-lg lg:text-xl font-bold shadow-lg">
+
+          <div className="bg-[#f2ad00] text-white px-4 sm:px-6 py-2 rounded-full inline-block text-sm sm:text-lg font-bold shadow-2xl hover:bg-[#f2ad00]/90 transition-colors">
             🏆 ALL INDIA RANK 1 - IPMAT 2024 🏆
           </div>
-          <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-700 max-w-5xl mx-auto leading-relaxed px-4">
-            Hello World 123, the testing paragraph is here.
-            <span className="font-bold text-[#833589]"> our champion Nikhilesh</span>! 🌟
+
+          <p className="text-gray-700 text-sm sm:text-base max-w-3xl mx-auto mt-2 sm:mt-3 leading-relaxed px-4">
+            Celebrating the extraordinary journey of dedication, mentorship, and triumph.
           </p>
         </div>
 
-        {/* Book Section - Enhanced for all screens */}
+        {/* Main Showcase */}
         <div
-          className={`flex justify-center items-center relative transition-all duration-1000 delay-300 ${pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`transition-all duration-1000 delay-300 ${
+            pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
         >
-          <div className="relative w-full max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6">
-            {/* Book Container - Optimized for all screens */}
-            <div className="relative flex justify-center">
-              {/* Crown positioned properly */}
-              <div className="absolute -top-4 sm:-top-6 lg:-top-8 left-4 sm:left-8 lg:left-12 z-40">
-                <div className="bg-gradient-to-br from-[#f2ad00] via-yellow-500 to-yellow-600 rounded-full p-2 sm:p-3 lg:p-4 shadow-2xl border-2 sm:border-4 border-white">
-                  <Crown className="text-white w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 xl:w-10 xl:h-10" />
-                </div>
-              </div>
-
-              <div
-                className="relative bg-gradient-to-br from-white via-[#833589]/5 to-purple-100 rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-2xl overflow-hidden border-2 sm:border-3 lg:border-4 border-[#833589]/20"
-                style={{
-                  width: isMobile ? "85%" : "90%",
-                  maxWidth: isMobile ? "350px" : "800px",
-                  height: isMobile ? "440px" : "470px",
-                  aspectRatio: isMobile ? "4/5" : "16/9",
-                }}
-                onTouchStart={isMobile ? onTouchStart : undefined}
-                onTouchMove={isMobile ? onTouchMove : undefined}
-                onTouchEnd={isMobile ? onTouchEnd : undefined}
-              >
-                {/* Book Spine */}
-                <div className="absolute left-0 top-0 w-2 sm:w-4 lg:w-6 h-full bg-gradient-to-b from-[#833589] via-purple-600 to-[#833589] z-20 shadow-lg"></div>
-
-                {/* Page Container */}
-                <div className="ml-2 sm:ml-4 lg:ml-6 h-full relative overflow-hidden">
-                  {/* Current Page */}
-                  <div
-                    className={`absolute inset-0 bg-white transition-all duration-600 ease-in-out transform origin-left ${
-                      isFlipping ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"
-                    }`}
-                  >
-                    <div className="h-full w-full">{pages[currentPage].content}</div>
-                  </div>
-                </div>
-
-                {/* Page Number */}
-                <div className="absolute bottom-2 sm:bottom-4 right-3 sm:right-6 bg-[#833589] text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full font-bold text-xs sm:text-sm lg:text-base shadow-lg">
-                  {currentPage + 1} / {pages.length}
-                </div>
-
-                {/* Decorative corners */}
-                <div className="absolute top-2 sm:top-4 right-2 sm:right-4 text-[#f2ad00]">
-                  <Star className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 animate-spin" />
-                </div>
-                <div className="absolute bottom-2 sm:bottom-4 left-4 sm:left-8 text-[#833589]">
-                  <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
-                </div>
-
-                {/* Mobile swipe indicator */}
-                {isMobile && (
-                  <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 bg-white/80 px-2 py-0.5 rounded text-center">
-                    {/* 👆 Swipe to navigate */}
-                  </div>
-                )}
+          <div className="max-w-6xl mx-auto relative">
+            {/* Crown positioned at top-left corner */}
+            <div className="absolute -top-3 left-4 sm:left-6 z-30">
+              <div className="bg-[#f2ad00] rounded-full p-2 sm:p-3 shadow-xl border-3 border-white">
+                <Crown className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </div>
             </div>
 
-            {/* Navigation Buttons - Always show below book */}
-            <div className="flex justify-center items-center gap-3 sm:gap-6 mt-4 sm:mt-6">
-              <button
-                onClick={prevPage}
-                disabled={currentPage === 0 || isFlipping}
-                className="bg-gradient-to-r from-[#833589] to-purple-600 hover:from-[#833589]/90 hover:to-purple-600/90 text-white px-3 py-1.5 sm:px-6 sm:py-3 rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg text-xs sm:text-base font-semibold flex items-center"
-              >
-                <ChevronLeft className="w-3 h-3 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                <span className="hidden sm:inline">Previous</span>
-                <span className="sm:hidden">Prev</span>
-              </button>
+            {/* Left Arrow Button */}
+            <button
+              onClick={prevView}
+              disabled={currentView === 0 || isTransitioning}
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-3 z-20 bg-[#833589] hover:bg-[#833589]/90 disabled:opacity-30 disabled:cursor-not-allowed text-white p-2 sm:p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
 
-              <button
-                onClick={nextPage}
-                disabled={currentPage === pages.length - 1 || isFlipping}
-                className="bg-gradient-to-r from-[#f2ad00] to-yellow-600 hover:from-[#f2ad00]/90 hover:to-yellow-600/90 text-white px-3 py-1.5 sm:px-6 sm:py-3 rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-lg text-xs sm:text-base font-semibold flex items-center"
+            {/* Right Arrow Button */}
+            <button
+              onClick={nextView}
+              disabled={currentView === views.length - 1 || isTransitioning}
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-3 z-20 bg-[#f2ad00] hover:bg-[#f2ad00]/90 disabled:opacity-30 disabled:cursor-not-allowed text-white p-2 sm:p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+
+            {/* Content Book - More Rectangular Shape with Increased Width */}
+            <div className="relative">
+              <div
+                className={`bg-white rounded-3xl shadow-2xl border-4 border-[#833589] 
+                  h-[520px] sm:h-[530px] md:h-[550px] 
+                  w-full max-w-[99%] sm:max-w-[98%] md:max-w-[95%] mx-auto
+                  transition-all duration-200 ${isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"}`}
               >
-                <span className="hidden sm:inline">Next</span>
-                <span className="sm:hidden">Next</span>
-                <ChevronRight className="w-3 h-3 sm:w-5 sm:h-5 ml-1 sm:ml-2" />
-              </button>
+                <div className="p-4 sm:p-6 h-full flex flex-col">
+                  <div className="text-center mb-3">
+                    <h2 className="text-xl sm:text-2xl font-bold text-[#833589]">{views[currentView].title}</h2>
+                  </div>
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="w-full">{views[currentView].content}</div>
+                  </div>
+
+                  {/* Page Number */}
+                  <div className="text-right">
+                    <span className="text-xs text-gray-500 italic">
+                      {currentView + 1}/{views.length}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Page Indicators */}
-            <div className="flex justify-center mt-3 sm:mt-4">
-              <div className="flex space-x-1.5 sm:space-x-3">
-                {pages.map((_, index) => (
-                  <div
+            <div className="flex justify-center mt-4 sm:mt-5">
+              <div className="flex space-x-2">
+                {views.map((_, index) => (
+                  <button
                     key={index}
-                    className={`w-2.5 h-2.5 sm:w-4 sm:h-4 rounded-full transition-all duration-300 cursor-pointer ${
-                      index === currentPage
-                        ? "bg-gradient-to-r from-[#833589] to-[#f2ad00] scale-125 shadow-lg"
+                    onClick={() => goToView(index)}
+                    disabled={isTransitioning}
+                    className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                      index === currentView
+                        ? "bg-[#f2ad00] scale-125 shadow-lg"
                         : "bg-gray-300 hover:bg-gray-400 hover:scale-110"
                     }`}
-                    onClick={() => {
-                      if (!isFlipping && index !== currentPage) {
-                        setIsFlipping(true)
-                        setTimeout(() => {
-                          setCurrentPage(index)
-                          setIsFlipping(false)
-                        }, 600)
-                      }
-                    }}
                   />
                 ))}
               </div>
@@ -627,16 +555,26 @@ export default function MilestonePage() {
           </div>
         </div>
 
-        {/* Celebration Footer */}
+        {/* Compact Footer */}
         <div
-          className={`text-center mt-4 sm:mt-12 lg:mt-16 transition-all duration-1000 delay-500 ${pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`text-center mt-4 sm:mt-6 transition-all duration-1000 delay-500 ${
+            pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
         >
-          <div className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-[#833589] via-purple-600 to-[#f2ad00] text-white px-4 py-3 sm:px-8 sm:py-4 lg:px-10 lg:py-5 rounded-full text-sm sm:text-lg lg:text-xl font-bold shadow-2xl">
-            <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />🎊 CONGRATULATIONS NIKHILESH! 🎊
-            <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />
+          <div className="relative inline-block">
+            <div className="bg-[#833589] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold shadow-2xl hover:bg-[#833589]/90 transition-colors">
+              <div className="flex items-center gap-2">
+                <Trophy className="w-5 h-5 text-[#f2ad00]" />
+                <span className="text-sm sm:text-base">CONGRATULATIONS NIKHILESH!</span>
+                <Trophy className="w-5 h-5 text-[#f2ad00]" />
+              </div>
+            </div>
+            <div className="absolute -top-1 -right-1 animate-bounce">
+              <Star className="w-5 h-5 text-[#f2ad00]" />
+            </div>
           </div>
-          <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-gray-600 font-semibold px-4">
-            From our entire team - You've made us proud! 🌟
+          <p className="mt-3 text-sm sm:text-base text-gray-600 font-semibold px-4">
+            From our entire team - You've made us incredibly proud! 🌟
           </p>
         </div>
       </div>
@@ -653,162 +591,14 @@ export default function MilestonePage() {
           }
         }
 
-        .firework {
-          position: relative;
-        }
-
-        .explosion {
-          position: relative;
-          animation: explode 1.5s ease-out forwards;
-        }
-
-        .spark {
-          position: absolute;
-          width: 3px;
-          height: 15px;
-          border-radius: 2px;
-          transform-origin: bottom;
-          animation: sparkle 1.5s ease-out forwards;
-        }
-
-        @keyframes explode {
-          0% {
-            transform: scale(0);
-            opacity: 1;
+        @keyframes twinkle {
+          0%, 100% {
+            opacity: 0.5;
+            transform: scale(0.9);
           }
           50% {
-            transform: scale(1);
             opacity: 1;
-          }
-          100% {
-            transform: scale(1.2);
-            opacity: 0;
-          }
-        }
-
-        @keyframes sparkle {
-          0% {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-80px) scale(0);
-            opacity: 0;
-          }
-        }
-
-        .party-popper {
-          animation: popperBurst 0.8s ease-out forwards;
-        }
-
-        @keyframes popperBurst {
-          0% {
-            transform: scale(0) rotate(0deg);
-            opacity: 0;
-          }
-          50% {
-            transform: scale(1.2) rotate(180deg);
-            opacity: 1;
-          }
-          100% {
-            transform: scale(1) rotate(360deg);
-            opacity: 0;
-          }
-        }
-
-        /* New Cracker Burst Animations */
-        .cracker-burst {
-          position: relative;
-          width: 20px;
-          height: 20px;
-        }
-
-        .cracker-piece {
-          position: absolute;
-          width: 4px;
-          height: 12px;
-          border-radius: 2px;
-          transform-origin: bottom center;
-          animation: crackerExplode 1.5s ease-out forwards;
-          opacity: 0;
-        }
-
-        @keyframes crackerExplode {
-          0% {
-            transform: translateY(0) scale(0);
-            opacity: 0;
-          }
-          20% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-          100% {
-            transform: translateY(-60px) scale(0.3);
-            opacity: 0;
-          }
-        }
-
-        /* Enhanced Party Popper Animations */
-        .party-popper-enhanced {
-          position: relative;
-          animation: popperShake 0.3s ease-in-out;
-        }
-
-        .popper-cone {
-          width: 12px;
-          height: 20px;
-          border-radius: 0 0 6px 6px;
-          position: relative;
-          z-index: 2;
-        }
-
-        .popper-burst {
-          position: absolute;
-          top: -5px;
-          left: 50%;
-          transform: translateX(-50%);
-          animation: burstOut 1s ease-out 0.3s forwards;
-          opacity: 0;
-        }
-
-        .burst-particle {
-          position: absolute;
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          transform-origin: center;
-          animation: particleFly 1.2s ease-out forwards;
-        }
-
-        @keyframes popperShake {
-          0%, 100% { transform: rotate(0deg); }
-          25% { transform: rotate(-5deg); }
-          75% { transform: rotate(5deg); }
-        }
-
-        @keyframes burstOut {
-          0% {
-            opacity: 0;
-            transform: translateX(-50%) scale(0);
-          }
-          30% {
-            opacity: 1;
-            transform: translateX(-50%) scale(1);
-          }
-          100% {
-            opacity: 0;
-            transform: translateX(-50%) scale(1.5);
-          }
-        }
-
-        @keyframes particleFly {
-          0% {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-40px) scale(0.3);
-            opacity: 0;
+            transform: scale(1.1);
           }
         }
       `}</style>
