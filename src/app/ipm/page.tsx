@@ -59,7 +59,9 @@ export default function MilestonePage() {
             </div>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#833589] mb-2 text-center">Nikhilesh Kumar</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#833589] mb-2 text-center font-montserrat">
+            Nikhilesh Kumar
+          </h2>
 
           <div className="bg-[#f2ad00] text-white px-4 py-2 rounded-full font-bold text-lg inline-block shadow-lg mb-3">
             🏆 AIR 1 - IPMAT 2024 🏆
@@ -94,15 +96,15 @@ export default function MilestonePage() {
       id: 2,
       title: "Ashutosh Sir - The Mentor",
       content: (
-        <div className="h-full py-2">
-          <h2 className="text-2xl font-bold text-[#833589] text-center mb-3">Ashutosh Sir</h2>
+        <div className="h-[400px] sm:h-full overflow-y-auto scrollbar-container py-2 px-2">
+          <h2 className="text-2xl font-bold text-[#833589] text-center mb-3 font-montserrat">Ashutosh Sir</h2>
           <div className="w-16 h-0.5 bg-[#833589] mx-auto rounded-full mb-4"></div>
 
           <div className="bg-white rounded-xl p-3 shadow-lg border border-[#833589]/20 mx-auto max-w-full">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="flex flex-col items-center md:items-start">
                 <div className="relative mb-3">
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-[#833589] p-1.5 mx-auto md:mx-0">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#833589] p-1.5 mx-auto md:mx-0">
                     <img
                       src="/placeholder.svg?height=120&width=120"
                       alt="Ashutosh Sir"
@@ -113,7 +115,9 @@ export default function MilestonePage() {
                     <Brain className="w-4 h-4 text-white" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1">Ashutosh Sir</h3>
+                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1 font-montserrat">
+                  Ashutosh Sir
+                </h3>
                 <p className="text-lg text-[#f2ad00] font-semibold text-center md:text-left mb-2">
                   Mentor & Strategic Guide
                 </p>
@@ -124,7 +128,7 @@ export default function MilestonePage() {
 
               <div className="space-y-3">
                 <div className="bg-[#833589] text-white p-3 rounded-lg">
-                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1">
+                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1 font-montserrat">
                     <Target className="text-[#f2ad00] w-5 h-5" />
                     Expertise Areas
                   </h4>
@@ -136,7 +140,7 @@ export default function MilestonePage() {
                 </div>
 
                 <div className="bg-gray-50 p-3 rounded-lg border-l-3 border-[#833589]">
-                  <h4 className="text-lg font-bold text-[#833589] mb-1">Success Mantra</h4>
+                  <h4 className="text-lg font-bold text-[#833589] mb-1 font-montserrat">Success Mantra</h4>
                   <p className="text-gray-700 italic text-base">
                     "Every student has the potential to achieve greatness through strategic guidance."
                   </p>
@@ -162,15 +166,15 @@ export default function MilestonePage() {
       id: 3,
       title: "Nikhil Sir - QA Master",
       content: (
-        <div className="h-full py-2">
-          <h2 className="text-2xl font-bold text-[#f2ad00] text-center mb-3">Nikhil Sir</h2>
+        <div className="h-[400px] sm:h-full overflow-y-auto scrollbar-container py-2 px-2">
+          <h2 className="text-2xl font-bold text-[#f2ad00] text-center mb-3 font-montserrat">Nikhil Sir</h2>
           <div className="w-16 h-0.5 bg-[#f2ad00] mx-auto rounded-full mb-4"></div>
 
           <div className="bg-white rounded-xl p-3 shadow-lg border border-[#f2ad00]/20 mx-auto max-w-full">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="flex flex-col items-center md:items-start">
                 <div className="relative mb-3">
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-[#f2ad00] p-1.5 mx-auto md:mx-0">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#f2ad00] p-1.5 mx-auto md:mx-0">
                     <img
                       src="/placeholder.svg?height=120&width=120"
                       alt="Nikhil Sir"
@@ -181,7 +185,9 @@ export default function MilestonePage() {
                     <Calculator className="w-4 h-4 text-white" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1">Nikhil Sir</h3>
+                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1 font-montserrat">
+                  Nikhil Sir
+                </h3>
                 <p className="text-lg text-[#f2ad00] font-semibold text-center md:text-left mb-2">QA Faculty</p>
                 <div className="bg-[#f2ad00] text-white px-3 py-1.5 rounded-full text-sm font-semibold">
                   QA Specialist
@@ -190,7 +196,7 @@ export default function MilestonePage() {
 
               <div className="space-y-3">
                 <div className="bg-[#f2ad00] text-white p-3 rounded-lg">
-                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1">
+                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1 font-montserrat">
                     <Calculator className="text-white w-5 h-5" />
                     Teaching Approach
                   </h4>
@@ -202,7 +208,7 @@ export default function MilestonePage() {
                 </div>
 
                 <div className="bg-gray-50 p-3 rounded-lg border-l-3 border-[#f2ad00]">
-                  <h4 className="text-lg font-bold text-[#833589] mb-1">Teaching Philosophy</h4>
+                  <h4 className="text-lg font-bold text-[#833589] mb-1 font-montserrat">Teaching Philosophy</h4>
                   <p className="text-gray-700 italic text-base">
                     "Mathematics is about understanding patterns. Speed follows naturally."
                   </p>
@@ -228,15 +234,15 @@ export default function MilestonePage() {
       id: 4,
       title: "Taruna Maam - VA Expert",
       content: (
-        <div className="h-full py-2">
-          <h2 className="text-2xl font-bold text-[#833589] text-center mb-3">Taruna Maam</h2>
+        <div className="h-[400px] sm:h-full overflow-y-auto scrollbar-container py-2 px-2">
+          <h2 className="text-2xl font-bold text-[#833589] text-center mb-3 font-montserrat">Taruna Maam</h2>
           <div className="w-16 h-0.5 bg-purple-600 mx-auto rounded-full mb-4"></div>
 
           <div className="bg-white rounded-xl p-3 shadow-lg border border-purple-600/20 mx-auto max-w-full">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="flex flex-col items-center md:items-start">
                 <div className="relative mb-3">
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-purple-600 p-1.5 mx-auto md:mx-0">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-purple-600 p-1.5 mx-auto md:mx-0">
                     <img
                       src="/placeholder.svg?height=120&width=120"
                       alt="Taruna Maam"
@@ -247,7 +253,9 @@ export default function MilestonePage() {
                     <MessageCircle className="w-4 h-4 text-white" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1">Taruna Maam</h3>
+                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1 font-montserrat">
+                  Taruna Maam
+                </h3>
                 <p className="text-lg text-[#833589] font-semibold text-center md:text-left mb-2">VA Faculty</p>
                 <div className="bg-[#833589] text-white px-3 py-1.5 rounded-full text-sm font-semibold">
                   Language Expert
@@ -256,7 +264,7 @@ export default function MilestonePage() {
 
               <div className="space-y-3">
                 <div className="bg-[#833589] text-white p-3 rounded-lg">
-                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1">
+                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1 font-montserrat">
                     <MessageCircle className="text-white w-5 h-5" />
                     Specializations
                   </h4>
@@ -268,7 +276,7 @@ export default function MilestonePage() {
                 </div>
 
                 <div className="bg-gray-50 p-3 rounded-lg border-l-3 border-[#833589]">
-                  <h4 className="text-lg font-bold text-[#833589] mb-1">Teaching Methodology</h4>
+                  <h4 className="text-lg font-bold text-[#833589] mb-1 font-montserrat">Teaching Methodology</h4>
                   <p className="text-gray-700 italic text-base">
                     "Language is the bridge between thoughts and expression."
                   </p>
@@ -294,8 +302,8 @@ export default function MilestonePage() {
       id: 5,
       title: "Success Journey",
       content: (
-        <div className="h-full py-2">
-          <h2 className="text-xl font-bold text-[#833589] text-center mb-2 flex items-center justify-center gap-2">
+        <div className="h-[400px] sm:h-full overflow-y-auto scrollbar-container py-2 px-2">
+          <h2 className="text-xl font-bold text-[#833589] text-center mb-2 flex items-center justify-center gap-2 font-montserrat">
             <TrendingUp className="text-[#f2ad00] w-5 h-5" />
             Success Blueprint
             <TrendingUp className="text-[#f2ad00] w-5 h-5" />
@@ -343,7 +351,7 @@ export default function MilestonePage() {
                     >
                       <div className={`flex items-center gap-2 mb-1 ${item.side === "right" && "md:flex-row-reverse"}`}>
                         <item.icon className="w-5 h-5" />
-                        <h3 className="text-base font-bold">{item.title}</h3>
+                        <h3 className="text-base font-bold font-montserrat">{item.title}</h3>
                       </div>
                       <p className="text-sm opacity-90">{item.description}</p>
                     </div>
@@ -509,20 +517,22 @@ export default function MilestonePage() {
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
 
-            {/* Content Book - More Rectangular Shape with Increased Width */}
+            {/* Content Book - Responsive Height */}
             <div className="relative">
               <div
                 className={`bg-white rounded-3xl shadow-2xl border-4 border-[#833589] 
-                  h-[520px] sm:h-[530px] md:h-[550px] 
+                  h-[520px] sm:h-[540px] md:h-[560px] lg:h-[580px] xl:h-[600px]
                   w-full max-w-[99%] sm:max-w-[98%] md:max-w-[95%] mx-auto
                   transition-all duration-200 ${isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"}`}
               >
                 <div className="p-4 sm:p-6 h-full flex flex-col">
                   <div className="text-center mb-3">
-                    <h2 className="text-xl sm:text-2xl font-bold text-[#833589]">{views[currentView].title}</h2>
+                    <h2 className="text-xl sm:text-2xl font-bold text-[#833589] font-montserrat">
+                      {views[currentView].title}
+                    </h2>
                   </div>
                   <div className="flex-1 flex items-center justify-center">
-                    <div className="w-full">{views[currentView].content}</div>
+                    <div className={`w-full ${currentView > 0 ? "h-full" : ""}`}>{views[currentView].content}</div>
                   </div>
 
                   {/* Page Number */}
@@ -533,6 +543,15 @@ export default function MilestonePage() {
                   </div>
                 </div>
               </div>
+
+              {/* Mobile Scroll Indicator - Only visible on mobile when on pages 2-5 */}
+              {currentView > 0 && (
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 sm:hidden">
+                  <div className="animate-bounce bg-[#833589]/70 text-white text-xs px-2 py-1 rounded-full">
+                    Scroll for more
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Page Indicators */}
@@ -580,6 +599,37 @@ export default function MilestonePage() {
       </div>
 
       <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+        
+        .font-montserrat {
+          font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Custom scrollbar styling */
+        .scrollbar-container::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        .scrollbar-container::-webkit-scrollbar-track {
+          background: rgba(241, 241, 241, 0.5);
+          border-radius: 10px;
+        }
+
+        .scrollbar-container::-webkit-scrollbar-thumb {
+          background: #833589;
+          border-radius: 10px;
+        }
+
+        .scrollbar-container::-webkit-scrollbar-thumb:hover {
+          background: #f2ad00;
+        }
+
+        /* For Firefox */
+        .scrollbar-container {
+          scrollbar-width: thin;
+          scrollbar-color: #833589 rgba(241, 241, 241, 0.5);
+        }
+
         @keyframes fall {
           0% {
             transform: translateY(-100vh) rotate(0deg);
