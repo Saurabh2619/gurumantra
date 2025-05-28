@@ -65,8 +65,7 @@ export default function MilestonePage() {
             🏆 AIR 1 - IPMAT 2024 🏆
           </div>
           <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed italic px-1 sm:px-2">
-            "Success is not just about reaching the destination, but about the journey of dedication, perseverance, and
-            continuous learning. Achieving AIR 1 in IPMAT is just the beginning of my journey towards excellence."
+            "Test Paragraph Here"
           </p>
         </div>
       ),
@@ -87,9 +86,7 @@ export default function MilestonePage() {
             Mentor & Guide
           </div>
           <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed italic px-1 sm:px-2">
-            "Nikhilesh exemplifies what dedication and smart work can achieve. His consistent approach to
-            problem-solving and his never-give-up attitude made this success inevitable. Proud to have been part of his
-            journey!"
+            "Test Paragraph 2 Here"
           </p>
         </div>
       ),
@@ -102,7 +99,7 @@ export default function MilestonePage() {
             <img
               src="/placeholder.svg?height=140&width=140"
               alt="Nikhil Sir"
-              className="w-12 h-12 sm:w-24 sm:w-32 lg:h-32 rounded-full object-cover border-2 sm:border-3 border-white"
+              className="w-12 h-12 sm:w-24 lg:h-32 rounded-full object-cover border-2 sm:border-3 border-white"
             />
           </div>
           <h3 className="text-sm sm:text-2xl lg:text-3xl font-bold text-[#833589] mb-1 sm:mb-4">Nikhil Sir</h3>
@@ -110,9 +107,7 @@ export default function MilestonePage() {
             QA Faculty
           </div>
           <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed italic px-1 sm:px-2">
-            "As his Quantitative Aptitude faculty, I witnessed Nikhilesh's analytical prowess firsthand. His ability to
-            grasp complex mathematical concepts and apply them strategically is truly remarkable. Well deserved
-            success!"
+            "Test Paragraph 3 Here"
           </p>
         </div>
       ),
@@ -133,9 +128,7 @@ export default function MilestonePage() {
             VA Faculty
           </div>
           <p className="text-xs sm:text-sm lg:text-base text-gray-700 leading-relaxed italic px-1 sm:px-2">
-            "Nikhilesh's command over Verbal Ability and his articulate expression of thoughts always impressed me. His
-            dedication to improving his language skills contributed significantly to his overall success.
-            Congratulations!"
+            "Test Paragraph 4 Here"
           </p>
         </div>
       ),
@@ -143,34 +136,71 @@ export default function MilestonePage() {
     {
       id: 5,
       content: (
-        <div className="h-full flex flex-col justify-center p-2 sm:p-6 lg:p-8 bg-gradient-to-br from-white to-yellow-50">
-          <h3 className="text-sm sm:text-2xl lg:text-3xl font-bold text-[#833589] mb-2 sm:mb-6 text-center flex items-center justify-center gap-2">
-            <Zap className="text-[#f2ad00] w-5 h-5 sm:w-6 sm:h-6" />
-            Success Blueprint
-            <Zap className="text-[#f2ad00] w-5 h-5 sm:w-6 sm:h-6" />
-          </h3>
-          <div className="space-y-3 sm:space-y-4">
-            <div className="bg-gradient-to-r from-[#833589]/20 to-purple-100 p-3 sm:p-4 rounded-xl border-l-4 border-[#833589] shadow-md">
-              <h4 className="font-bold text-[#833589] mb-2 text-sm sm:text-lg">📚 Daily Routine</h4>
-              <p className="text-xs sm:text-sm text-gray-700">
+        <div className="h-full flex flex-col justify-start p-2 sm:p-4 lg:p-6 bg-gradient-to-br from-white to-yellow-50 overflow-y-auto">
+          <div className="text-center mb-3 sm:mb-4">
+            <h3 className="text-lg sm:text-2xl lg:text-3xl font-bold text-[#833589] flex items-center justify-center gap-2">
+              <Zap className="text-[#f2ad00] w-4 h-4 sm:w-6 sm:h-6" />
+              Success Blueprint
+              <Zap className="text-[#f2ad00] w-4 h-4 sm:w-6 sm:h-6" />
+            </h3>
+            <div className="w-16 sm:w-24 h-0.5 bg-gradient-to-r from-[#833589] to-[#f2ad00] mx-auto mt-2"></div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 flex-1">
+            <div className="bg-gradient-to-br from-[#833589]/10 to-purple-50 p-2 sm:p-3 rounded-lg border border-[#833589]/20 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#833589] rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs sm:text-sm font-bold">📚</span>
+                </div>
+                <h4 className="font-bold text-[#833589] text-xs sm:text-sm lg:text-base">Daily Routine</h4>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
                 6 hours focused study + 2 hours revision + 1 hour analysis
               </p>
             </div>
-            <div className="bg-gradient-to-r from-[#f2ad00]/20 to-yellow-100 p-3 sm:p-4 rounded-xl border-l-4 border-[#f2ad00] shadow-md">
-              <h4 className="font-bold text-[#f2ad00] mb-2 text-sm sm:text-lg">🧮 QA Strategy</h4>
-              <p className="text-xs sm:text-sm text-gray-700">
+
+            <div className="bg-gradient-to-br from-[#f2ad00]/10 to-yellow-50 p-2 sm:p-3 rounded-lg border border-[#f2ad00]/20 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#f2ad00] rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs sm:text-sm font-bold">🧮</span>
+                </div>
+                <h4 className="font-bold text-[#f2ad00] text-xs sm:text-sm lg:text-base">QA Strategy</h4>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
                 100+ questions daily + concept building + speed enhancement
               </p>
             </div>
-            <div className="bg-gradient-to-r from-[#833589]/20 to-purple-100 p-3 sm:p-4 rounded-xl border-l-4 border-[#833589] shadow-md">
-              <h4 className="font-bold text-[#833589] mb-2 text-sm sm:text-lg">📖 VA Approach</h4>
-              <p className="text-xs sm:text-sm text-gray-700">Daily reading + vocabulary building + grammar mastery</p>
+
+            <div className="bg-gradient-to-br from-[#833589]/10 to-purple-50 p-2 sm:p-3 rounded-lg border border-[#833589]/20 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#833589] rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs sm:text-sm font-bold">📖</span>
+                </div>
+                <h4 className="font-bold text-[#833589] text-xs sm:text-sm lg:text-base">VA Approach</h4>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                Daily reading + vocabulary building + grammar mastery
+              </p>
             </div>
-            <div className="bg-gradient-to-r from-[#f2ad00]/20 to-yellow-100 p-3 sm:p-4 rounded-xl border-l-4 border-[#f2ad00] shadow-md">
-              <h4 className="font-bold text-[#f2ad00] mb-2 text-sm sm:text-lg">🎯 Mock Tests</h4>
-              <p className="text-xs sm:text-sm text-gray-700">
+
+            <div className="bg-gradient-to-br from-[#f2ad00]/10 to-yellow-50 p-2 sm:p-3 rounded-lg border border-[#f2ad00]/20 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#f2ad00] rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs sm:text-sm font-bold">🎯</span>
+                </div>
+                <h4 className="font-bold text-[#f2ad00] text-xs sm:text-sm lg:text-base">Mock Tests</h4>
+              </div>
+              <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
                 3 tests per week + detailed analysis + improvement tracking
               </p>
+            </div>
+          </div>
+
+          <div className="mt-3 sm:mt-4 text-center">
+            <div className="inline-flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-[#833589] to-[#f2ad00] text-white px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
+              <Star className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span>Consistency is Key</span>
+              <Star className="w-3 h-3 sm:w-4 sm:h-4" />
             </div>
           </div>
         </div>
@@ -479,9 +509,7 @@ export default function MilestonePage() {
             🏆 ALL INDIA RANK 1 - IPMAT 2024 🏆
           </div>
           <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-gray-700 max-w-5xl mx-auto leading-relaxed px-4">
-            Witness the incredible journey of dedication, passion, and excellence that led to this remarkable
-            achievement. Discover what Nikhilesh did and how he conquered India's toughest management entrance exam to
-            secure AIR 1. Explore the pages filled with the hardwork, passion, and determination of
+            Hello World 123, the testing paragraph is here.
             <span className="font-bold text-[#833589]"> our champion Nikhilesh</span>! 🌟
           </p>
         </div>
@@ -505,7 +533,7 @@ export default function MilestonePage() {
                 style={{
                   width: isMobile ? "85%" : "90%",
                   maxWidth: isMobile ? "350px" : "800px",
-                  height: isMobile ? "420px" : "450px",
+                  height: isMobile ? "440px" : "470px",
                   aspectRatio: isMobile ? "4/5" : "16/9",
                 }}
                 onTouchStart={isMobile ? onTouchStart : undefined}
