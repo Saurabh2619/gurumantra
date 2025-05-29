@@ -33,8 +33,8 @@ export default function IPMADirectoryPage() {
               style={
                 student.isTop3
                   ? {
-                      backgroundImage: "linear-gradient(110deg, #6b21a8, #833589, #7b2cbf, #833589, #6b21a8)", // Richer purple gradient
-                      backgroundSize: "250% 200%", // Adjusted for smoother pan
+                      backgroundImage: "linear-gradient(110deg, #6b21a8, #833589, #7b2cbf, #833589, #6b21a8)", 
+                      backgroundSize: "250% 200%", 
                       animationDelay: `${student.shimmerDelay}s`,
                     }
                   : {}
@@ -42,9 +42,9 @@ export default function IPMADirectoryPage() {
             >
               {student.isTop3 && (
                 <div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-shimmer-slide mix-blend-overlay" // Softer overlay
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-shimmer-slide mix-blend-overlay" 
                   style={{
-                    animationDelay: `${student.shimmerDelay + 0.4}s`, // Slightly adjusted delay
+                    animationDelay: `${student.shimmerDelay + 0.4}s`, 
                   }}
                 />
               )}
@@ -55,7 +55,7 @@ export default function IPMADirectoryPage() {
                   <div className="flex-shrink-0">
                     <div
                       className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base border-2 border-white/30 transition-transform duration-300 group-hover:scale-110"
-                      style={{ backgroundColor: "#f2ad00" }} // Gold color
+                      style={{ backgroundColor: "#f2ad00" }} 
                     >
                       {student.id}
                     </div>
@@ -65,7 +65,7 @@ export default function IPMADirectoryPage() {
                   <div className="flex-shrink-0">
                     <div className="relative w-12 h-12 sm:w-16 sm:h-16 lg:w-[4.5rem] lg:h-[4.5rem] rounded-full overflow-hidden border-2 sm:border-3 border-white/30 transition-transform duration-300 group-hover:scale-105">
                       <Image
-                        src={`https://picsum.photos/seed/${student.id}/72/72`}
+                        src={``}
                         alt={`${student.name} profile`}
                         width={72}
                         height={72}
