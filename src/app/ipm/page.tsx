@@ -1,6 +1,9 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import {
   ChevronLeft,
   ChevronRight,
@@ -25,6 +28,10 @@ export default function MilestonePage() {
   const [pageLoaded, setPageLoaded] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
+  const [dragStartX, setDragStartX] = useState<number | null>(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const SWIPE_THRESHOLD = 50
+
   useEffect(() => {
     const loadTimer = setTimeout(() => {
       setPageLoaded(true)
@@ -32,9 +39,11 @@ export default function MilestonePage() {
 
     const celebrationTimer = setTimeout(() => {
       setShowCelebration(false)
-    }, 3000)
+    }, 4000)
 
     return () => {
+      document.removeEventListener("mousemove", handleDocumentMouseMove)
+      document.removeEventListener("mouseup", handleDocumentMouseUp)
       clearTimeout(loadTimer)
       clearTimeout(celebrationTimer)
     }
@@ -45,183 +54,229 @@ export default function MilestonePage() {
       id: 1,
       title: "The Champion",
       content: (
-        <div className="flex flex-col items-center justify-center h-full py-1 px-2">
-          <div className="relative mb-3">
-            <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-[#833589] p-2 mx-auto">
-              <img
-                src="/placeholder.svg?height=150&width=150"
-                alt="Nikhilesh"
-                className="w-full h-full rounded-full object-cover border-2 border-white"
-              />
-            </div>
-            <div className="absolute -bottom-2 -right-2 bg-[#f2ad00] rounded-full p-2 shadow-lg">
-              <Star className="w-5 h-5 text-white" />
-            </div>
-          </div>
-
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#833589] mb-2 text-center font-montserrat">
-            Nikhilesh Kumar
-          </h2>
-
-          <div className="bg-[#f2ad00] text-white px-4 py-2 rounded-full font-bold text-lg inline-block shadow-lg mb-3">
-            🏆 AIR 1 - IPMAT 2024 🏆
-          </div>
-
-          <div className="grid grid-cols-3 gap-3 w-full max-w-sm mb-3">
-            <div className="bg-[#833589] text-white p-2.5 rounded-xl text-center">
-              <Trophy className="w-5 h-5 mx-auto mb-1 text-[#f2ad00]" />
-              <div className="text-lg font-bold">1st</div>
-              <div className="text-sm opacity-90">All India</div>
-            </div>
-            <div className="bg-[#f2ad00] text-white p-2.5 rounded-xl text-center">
-              <Target className="w-5 h-5 mx-auto mb-1" />
-              <div className="text-lg font-bold">99.9%</div>
-              <div className="text-sm opacity-90">Percentile</div>
-            </div>
-            <div className="bg-green-500 text-white p-2.5 rounded-xl text-center">
-              <Award className="w-5 h-5 mx-auto mb-1" />
-              <div className="text-lg font-bold">Top</div>
-              <div className="text-sm opacity-90">Performer</div>
+        <div className="h-full flex flex-col text-center">
+          {/* Sticky Profile Section */}
+          <div className="flex-shrink-0 z-10 bg-white pb-1 sm:pb-2">
+            <div className="flex flex-col items-center justify-start">
+              <div className="relative mb-1.5 sm:mb-2">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#833589] p-1.5 sm:p-2 mx-auto">
+                  <Image
+                    src="https://picsum.photos/seed/nikhilesh_champion/150/150"
+                    alt="Nikhilesh Kumar"
+                    width={150}
+                    height={150}
+                    className="w-full h-full rounded-full object-cover border-2 border-white"
+                    unoptimized={true}
+                  />
+                </div>
+                <div className="absolute -bottom-1.5 -right-1.5 sm:-bottom-2 sm:-right-2 bg-[#f2ad00] rounded-full p-1 sm:p-1.5 shadow-lg">
+                  <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white" />
+                </div>
+              </div>
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#833589] mb-1 sm:mb-1.5 font-montserrat">
+                Nikhilesh Kumar
+              </h2>
+              <div className="bg-[#f2ad00] text-white px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full font-bold text-sm sm:text-base md:text-lg inline-block shadow-lg">
+                🏆 AIR 1 - IPMAT 2024 🏆
+              </div>
             </div>
           </div>
-
-          <blockquote className="text-sm text-gray-700 italic max-w-sm mx-auto bg-gray-50 p-3 rounded-xl border-l-4 border-[#833589] text-center">
-            "Success is not just about reaching the destination, but about the journey of consistent effort and
-            dedication."
-          </blockquote>
+          {/* Scrollable Content Section */}
+          <div className="flex-1 overflow-y-auto custom-scrollbar pt-1.5 sm:pt-2">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-2 w-full max-w-[280px] sm:max-w-xs mx-auto mb-1.5 sm:mb-2">
+              <div className="bg-[#833589] text-white p-1.5 sm:p-2 rounded-lg sm:rounded-xl text-center">
+                <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4 mx-auto mb-0.5 text-[#f2ad00]" />
+                <div className="text-sm sm:text-base font-bold">1st</div>
+                <div className="text-[10px] sm:text-xs opacity-90">All India</div>
+              </div>
+              <div className="bg-[#f2ad00] text-white p-1.5 sm:p-2 rounded-lg sm:rounded-xl text-center">
+                <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 mx-auto mb-0.5" />
+                <div className="text-sm sm:text-base font-bold">99.9%</div>
+                <div className="text-[10px] sm:text-xs opacity-90">Percentile</div>
+              </div>
+              <div className="bg-green-500 text-white p-1.5 sm:p-2 rounded-lg sm:rounded-xl text-center">
+                <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 mx-auto mb-0.5" />
+                <div className="text-sm sm:text-base font-bold">Top</div>
+                <div className="text-[10px] sm:text-xs opacity-90">Performer</div>
+              </div>
+            </div>
+            <blockquote className="text-[11px] sm:text-xs text-gray-700 italic max-w-[280px] sm:max-w-xs mx-auto bg-gray-50 p-1.5 sm:p-2 rounded-lg sm:rounded-xl border-l-2 sm:border-l-4 border-[#833589]">
+              {
+                '"Success is not just about reaching the destination, but about the journey of consistent effort and dedication."'
+              }
+            </blockquote>
+          </div>
         </div>
       ),
     },
-    {
-      id: 2,
-      title: "Ashutosh Sir - The Mentor",
+    // Mentor Card Structure (Views 2, 3, 4)
+    ...[
+      {
+        id: 2,
+        title: "Ashutosh Sir - The Mentor",
+        profile: {
+          name: "Ashutosh Sir",
+          imageSeed: "ashutosh_mentor",
+          role: "Mentor & Strategic Guide",
+          experience: "15+ Years Experience",
+          icon: Brain,
+          bgColor: "bg-[#833589]",
+          borderColor: "border-[#833589]/20",
+          accentColor: "text-[#f2ad00]",
+          iconBg: "bg-[#f2ad00]",
+        },
+        details: {
+          expertiseTitle: "Expertise Areas",
+          expertiseIcon: Target,
+          expertise: ["Strategic Planning & Goal Setting", "Motivation & Mental Conditioning", "Performance Analysis"],
+          mantraTitle: "Success Mantra",
+          mantra: "Every student has the potential to achieve greatness through strategic guidance.",
+          stat1Val: "500+",
+          stat1Label: "Students",
+          stat1Bg: "bg-[#f2ad00]",
+          stat2Val: "95%",
+          stat2Label: "Success",
+          stat2Bg: "bg-green-500",
+        },
+      },
+      {
+        id: 3,
+        title: "Nikhil Sir - QA Master",
+        profile: {
+          name: "Nikhil Sir",
+          imageSeed: "nikhil_mentor",
+          role: "QA Faculty",
+          experience: "QA Specialist",
+          icon: Calculator,
+          bgColor: "bg-[#f2ad00]",
+          borderColor: "border-[#f2ad00]/20",
+          accentColor: "text-[#833589]",
+          iconBg: "bg-[#833589]",
+        },
+        details: {
+          expertiseTitle: "Teaching Approach",
+          expertiseIcon: Calculator, // Using Calculator icon for consistency
+          expertise: ["Concept-based Learning", "Speed & Accuracy Enhancement", "Shortcut Techniques"],
+          mantraTitle: "Teaching Philosophy",
+          mantra: "Mathematics is about understanding patterns. Speed follows naturally.",
+          stat1Val: "1000+",
+          stat1Label: "Problems",
+          stat1Bg: "bg-[#833589]",
+          stat2Val: "98%",
+          stat2Label: "Accuracy",
+          stat2Bg: "bg-green-500",
+        },
+      },
+      {
+        id: 4,
+        title: "Taruna Maam - VA Expert",
+        profile: {
+          name: "Taruna Maam",
+          imageSeed: "taruna_mentor",
+          role: "VA Faculty",
+          experience: "Language Expert",
+          icon: MessageCircle,
+          bgColor: "bg-[#833589]", // Main color for Taruna Maam
+          borderColor: "border-[#833589]/20",
+          accentColor: "text-[#f2ad00]", // Accent color
+          iconBg: "bg-[#f2ad00]", // Icon background with accent
+        },
+        details: {
+          expertiseTitle: "Specializations",
+          expertiseIcon: MessageCircle,
+          expertise: ["Reading Comprehension", "Vocabulary Building", "Grammar & Communication"],
+          mantraTitle: "Teaching Methodology",
+          mantra: "Language is the bridge between thoughts and expression.",
+          stat1Val: "2000+",
+          stat1Label: "Words",
+          stat1Bg: "bg-[#f2ad00]",
+          stat2Val: "96%",
+          stat2Label: "Improvement",
+          stat2Bg: "bg-green-500",
+        },
+      },
+    ].map((mentorView) => ({
+      id: mentorView.id,
+      title: mentorView.title,
       content: (
-        <div className="h-[400px] sm:h-full overflow-y-auto scrollbar-container py-2 px-2">
-          <h2 className="text-2xl font-bold text-[#833589] text-center mb-3 font-montserrat">Ashutosh Sir</h2>
-          <div className="w-16 h-0.5 bg-[#833589] mx-auto rounded-full mb-4"></div>
-
-          <div className="bg-white rounded-xl p-3 shadow-lg border border-[#833589]/20 mx-auto max-w-full">
-            <div className="grid md:grid-cols-2 gap-4">
+        <div className="h-full flex flex-col">
+          <div
+            className={`bg-white rounded-xl shadow-lg ${mentorView.profile.borderColor} mx-auto max-w-full 
+                          flex flex-col flex-1 md:grid md:grid-cols-2 md:gap-2 lg:md:gap-3 p-1.5 sm:p-2`}
+          >
+            {/* Profile Section (Sticky on mobile, first grid col on desktop) */}
+            <div className="flex-shrink-0 z-10 bg-white md:bg-transparent pb-1.5 md:pb-0">
               <div className="flex flex-col items-center md:items-start">
-                <div className="relative mb-3">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#833589] p-1.5 mx-auto md:mx-0">
-                    <img
-                      src="/placeholder.svg?height=120&width=120"
-                      alt="Ashutosh Sir"
+                <div className="relative mb-1.5 sm:mb-2">
+                  <div
+                    className={`w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full ${mentorView.profile.bgColor} p-1 sm:p-1.5 mx-auto md:mx-0`}
+                  >
+                    <Image
+                      src={`https://picsum.photos/seed/${mentorView.profile.imageSeed}/120/120`}
+                      alt={mentorView.profile.name}
+                      width={120}
+                      height={120}
                       className="w-full h-full rounded-full object-cover border-2 border-white"
+                      unoptimized={true}
                     />
                   </div>
-                  <div className="absolute -top-1 -right-1 bg-[#f2ad00] rounded-full p-1.5 shadow-lg">
-                    <Brain className="w-4 h-4 text-white" />
+                  <div
+                    className={`absolute -top-0.5 -right-0.5 sm:-top-1 sm:-right-1 ${mentorView.profile.iconBg} rounded-full p-1 sm:p-1.5 shadow-lg`}
+                  >
+                    <mentorView.profile.icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-white" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1 font-montserrat">
-                  Ashutosh Sir
+                <h3
+                  className={`text-md sm:text-lg md:text-xl font-bold ${mentorView.profile.accentColor === "text-[#f2ad00]" ? "text-[#833589]" : "text-[#f2ad00]"} text-center md:text-left mb-0.5 font-montserrat`}
+                >
+                  {mentorView.profile.name}
                 </h3>
-                <p className="text-lg text-[#f2ad00] font-semibold text-center md:text-left mb-2">
-                  Mentor & Strategic Guide
+                <p
+                  className={`text-sm sm:text-base ${mentorView.profile.accentColor} font-semibold text-center md:text-left mb-1 sm:mb-1.5`}
+                >
+                  {mentorView.profile.role}
                 </p>
-                <div className="bg-[#833589] text-white px-3 py-1.5 rounded-full text-sm font-semibold">
-                  15+ Years Experience
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="bg-[#833589] text-white p-3 rounded-lg">
-                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1 font-montserrat">
-                    <Target className="text-[#f2ad00] w-5 h-5" />
-                    Expertise Areas
-                  </h4>
-                  <ul className="space-y-0.5 text-base">
-                    <li>• Strategic Planning & Goal Setting</li>
-                    <li>• Motivation & Mental Conditioning</li>
-                    <li>• Performance Analysis</li>
-                  </ul>
-                </div>
-
-                <div className="bg-gray-50 p-3 rounded-lg border-l-3 border-[#833589]">
-                  <h4 className="text-lg font-bold text-[#833589] mb-1 font-montserrat">Success Mantra</h4>
-                  <p className="text-gray-700 italic text-base">
-                    "Every student has the potential to achieve greatness through strategic guidance."
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="bg-[#f2ad00] text-white p-2 rounded-lg text-center">
-                    <div className="text-xl font-bold">500+</div>
-                    <div className="text-sm opacity-90">Students</div>
-                  </div>
-                  <div className="bg-green-500 text-white p-2 rounded-lg text-center">
-                    <div className="text-xl font-bold">95%</div>
-                    <div className="text-sm opacity-90">Success</div>
-                  </div>
+                <div
+                  className={`${mentorView.profile.bgColor} text-white px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold`}
+                >
+                  {mentorView.profile.experience}
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      id: 3,
-      title: "Nikhil Sir - QA Master",
-      content: (
-        <div className="h-[400px] sm:h-full overflow-y-auto scrollbar-container py-2 px-2">
-          <h2 className="text-2xl font-bold text-[#f2ad00] text-center mb-3 font-montserrat">Nikhil Sir</h2>
-          <div className="w-16 h-0.5 bg-[#f2ad00] mx-auto rounded-full mb-4"></div>
-
-          <div className="bg-white rounded-xl p-3 shadow-lg border border-[#f2ad00]/20 mx-auto max-w-full">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="flex flex-col items-center md:items-start">
-                <div className="relative mb-3">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-[#f2ad00] p-1.5 mx-auto md:mx-0">
-                    <img
-                      src="/placeholder.svg?height=120&width=120"
-                      alt="Nikhil Sir"
-                      className="w-full h-full rounded-full object-cover border-2 border-white"
+            {/* Details Section (Scrollable on mobile, second grid col on desktop) */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar pt-1.5 md:pt-0">
+              <div className="space-y-1.5 sm:space-y-2">
+                <div className={`${mentorView.profile.bgColor} text-white p-1.5 sm:p-2 rounded-md`}>
+                  <h4 className="text-sm sm:text-base font-bold mb-0.5 sm:mb-1 flex items-center gap-1 font-montserrat">
+                    <mentorView.details.expertiseIcon
+                      className={`${mentorView.profile.accentColor === "text-[#f2ad00]" ? "text-[#f2ad00]" : "text-white"} w-3.5 h-3.5 sm:w-4 sm:h-4`}
                     />
-                  </div>
-                  <div className="absolute -top-1 -right-1 bg-[#833589] rounded-full p-1.5 shadow-lg">
-                    <Calculator className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1 font-montserrat">
-                  Nikhil Sir
-                </h3>
-                <p className="text-lg text-[#f2ad00] font-semibold text-center md:text-left mb-2">QA Faculty</p>
-                <div className="bg-[#f2ad00] text-white px-3 py-1.5 rounded-full text-sm font-semibold">
-                  QA Specialist
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="bg-[#f2ad00] text-white p-3 rounded-lg">
-                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1 font-montserrat">
-                    <Calculator className="text-white w-5 h-5" />
-                    Teaching Approach
+                    {mentorView.details.expertiseTitle}
                   </h4>
-                  <ul className="space-y-0.5 text-base">
-                    <li>• Concept-based Learning</li>
-                    <li>• Speed & Accuracy Enhancement</li>
-                    <li>• Shortcut Techniques</li>
+                  <ul className="space-y-0.5 text-[10px] sm:text-xs">
+                    {mentorView.details.expertise.map((item) => (
+                      <li key={item}>• {item}</li>
+                    ))}
                   </ul>
                 </div>
-
-                <div className="bg-gray-50 p-3 rounded-lg border-l-3 border-[#f2ad00]">
-                  <h4 className="text-lg font-bold text-[#833589] mb-1 font-montserrat">Teaching Philosophy</h4>
-                  <p className="text-gray-700 italic text-base">
-                    "Mathematics is about understanding patterns. Speed follows naturally."
-                  </p>
+                <div
+                  className={`bg-gray-50 p-1.5 sm:p-2 rounded-md border-l-2 sm:border-l-3 ${mentorView.profile.borderColor.replace("border-", "border-l-")}`}
+                >
+                  <h4
+                    className={`text-sm sm:text-base font-bold ${mentorView.profile.accentColor === "text-[#f2ad00]" ? "text-[#833589]" : "text-[#f2ad00]"} mb-0.5 font-montserrat`}
+                  >
+                    {mentorView.details.mantraTitle}
+                  </h4>
+                  <p className="text-[10px] sm:text-xs text-gray-700 italic">{`"${mentorView.details.mantra}"`}</p>
                 </div>
-
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="bg-[#833589] text-white p-2 rounded-lg text-center">
-                    <div className="text-xl font-bold">1000+</div>
-                    <div className="text-sm opacity-90">Problems</div>
+                <div className="grid grid-cols-2 gap-1 sm:gap-1.5">
+                  <div className={`${mentorView.details.stat1Bg} text-white p-1 sm:p-1.5 rounded-md text-center`}>
+                    <div className="text-md sm:text-lg font-bold">{mentorView.details.stat1Val}</div>
+                    <div className="text-[9px] sm:text-[10px] opacity-90">{mentorView.details.stat1Label}</div>
                   </div>
-                  <div className="bg-green-500 text-white p-2 rounded-lg text-center">
-                    <div className="text-xl font-bold">98%</div>
-                    <div className="text-sm opacity-90">Accuracy</div>
+                  <div className={`${mentorView.details.stat2Bg} text-white p-1 sm:p-1.5 rounded-md text-center`}>
+                    <div className="text-md sm:text-lg font-bold">{mentorView.details.stat2Val}</div>
+                    <div className="text-[9px] sm:text-[10px] opacity-90">{mentorView.details.stat2Label}</div>
                   </div>
                 </div>
               </div>
@@ -229,154 +284,90 @@ export default function MilestonePage() {
           </div>
         </div>
       ),
-    },
-    {
-      id: 4,
-      title: "Taruna Maam - VA Expert",
-      content: (
-        <div className="h-[400px] sm:h-full overflow-y-auto scrollbar-container py-2 px-2">
-          <h2 className="text-2xl font-bold text-[#833589] text-center mb-3 font-montserrat">Taruna Maam</h2>
-          <div className="w-16 h-0.5 bg-purple-600 mx-auto rounded-full mb-4"></div>
-
-          <div className="bg-white rounded-xl p-3 shadow-lg border border-purple-600/20 mx-auto max-w-full">
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="flex flex-col items-center md:items-start">
-                <div className="relative mb-3">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-purple-600 p-1.5 mx-auto md:mx-0">
-                    <img
-                      src="/placeholder.svg?height=120&width=120"
-                      alt="Taruna Maam"
-                      className="w-full h-full rounded-full object-cover border-2 border-white"
-                    />
-                  </div>
-                  <div className="absolute -top-1 -right-1 bg-purple-600 rounded-full p-1.5 shadow-lg">
-                    <MessageCircle className="w-4 h-4 text-white" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-[#833589] text-center md:text-left mb-1 font-montserrat">
-                  Taruna Maam
-                </h3>
-                <p className="text-lg text-[#833589] font-semibold text-center md:text-left mb-2">VA Faculty</p>
-                <div className="bg-[#833589] text-white px-3 py-1.5 rounded-full text-sm font-semibold">
-                  Language Expert
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="bg-[#833589] text-white p-3 rounded-lg">
-                  <h4 className="text-lg font-bold mb-2 flex items-center gap-1 font-montserrat">
-                    <MessageCircle className="text-white w-5 h-5" />
-                    Specializations
-                  </h4>
-                  <ul className="space-y-0.5 text-base">
-                    <li>• Reading Comprehension</li>
-                    <li>• Vocabulary Building</li>
-                    <li>• Grammar & Communication</li>
-                  </ul>
-                </div>
-
-                <div className="bg-gray-50 p-3 rounded-lg border-l-3 border-[#833589]">
-                  <h4 className="text-lg font-bold text-[#833589] mb-1 font-montserrat">Teaching Methodology</h4>
-                  <p className="text-gray-700 italic text-base">
-                    "Language is the bridge between thoughts and expression."
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="bg-[#f2ad00] text-white p-2 rounded-lg text-center">
-                    <div className="text-xl font-bold">2000+</div>
-                    <div className="text-sm opacity-90">Words</div>
-                  </div>
-                  <div className="bg-green-500 text-white p-2 rounded-lg text-center">
-                    <div className="text-xl font-bold">96%</div>
-                    <div className="text-sm opacity-90">Improvement</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
-    },
+    })),
     {
       id: 5,
       title: "Success Journey",
       content: (
-        <div className="h-[400px] sm:h-full overflow-y-auto scrollbar-container py-2 px-2">
-          <h2 className="text-xl font-bold text-[#833589] text-center mb-2 flex items-center justify-center gap-2 font-montserrat">
-            <TrendingUp className="text-[#f2ad00] w-5 h-5" />
-            Success Blueprint
-            <TrendingUp className="text-[#f2ad00] w-5 h-5" />
-          </h2>
-          <div className="w-20 h-0.5 bg-[#f2ad00] mx-auto rounded-full mb-3"></div>
-
-          <div className="relative max-w-3xl mx-auto px-3">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-64 bg-[#833589] rounded-full hidden md:block"></div>
-
-            <div className="space-y-2">
-              {[
-                {
-                  icon: BookOpen,
-                  title: "Daily Foundation",
-                  description: "6 hours study + 2 hours revision",
-                  bgColor: "bg-[#833589]",
-                  side: "left",
-                },
-                {
-                  icon: Zap,
-                  title: "QA Mastery",
-                  description: "100+ questions + concept building",
-                  bgColor: "bg-[#f2ad00]",
-                  side: "right",
-                },
-                {
-                  icon: Users,
-                  title: "VA Excellence",
-                  description: "Daily reading + vocabulary building",
-                  bgColor: "bg-purple-500",
-                  side: "left",
-                },
-                {
-                  icon: Trophy,
-                  title: "Mock Mastery",
-                  description: "3 tests per week + analysis",
-                  bgColor: "bg-green-500",
-                  side: "right",
-                },
-              ].map((item, index) => (
-                <div key={index} className={`flex items-center ${item.side === "right" && "md:flex-row-reverse"}`}>
-                  <div className={`w-full md:w-5/12 ${item.side === "right" && "md:text-right"}`}>
+        <div className="h-full flex flex-col">
+          {/* Sticky Section */}
+          <div className="flex-shrink-0 z-10 bg-white pb-1.5 sm:pb-2 text-center">
+            <h2 className="text-md sm:text-lg md:text-xl font-bold text-[#833589] mb-1 sm:mb-1.5 flex items-center justify-center gap-1.5 sm:gap-2 font-montserrat">
+              <TrendingUp className="text-[#f2ad00] w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+              Success Blueprint
+              <TrendingUp className="text-[#f2ad00] w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+            </h2>
+            <div className="w-16 sm:w-20 h-0.5 bg-[#f2ad00] mx-auto rounded-full"></div>
+          </div>
+          {/* Scrollable Section */}
+          <div className="flex-1 overflow-y-auto custom-scrollbar pt-1.5 sm:pt-2">
+            <div className="relative max-w-3xl mx-auto px-1 sm:px-2">
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full top-0.5 bottom-0.5 sm:top-1 sm:bottom-1 bg-[#833589]/30 rounded-full hidden md:block"></div>
+              <div className="space-y-1 sm:space-y-1.5 md:space-y-2">
+                {[
+                  {
+                    icon: BookOpen,
+                    title: "Daily Foundation",
+                    description: "6h study + 2h revision",
+                    bgColor: "bg-[#833589]",
+                    side: "left",
+                  },
+                  {
+                    icon: Zap,
+                    title: "QA Mastery",
+                    description: "100+Q + concepts",
+                    bgColor: "bg-[#f2ad00]",
+                    side: "right",
+                  },
+                  {
+                    icon: Users,
+                    title: "VA Excellence",
+                    description: "Reading + vocab",
+                    bgColor: "bg-purple-500",
+                    side: "left",
+                  },
+                  {
+                    icon: Trophy,
+                    title: "Mock Mastery",
+                    description: "3 tests/wk + analysis",
+                    bgColor: "bg-green-500",
+                    side: "right",
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className={`flex items-start md:items-center ${item.side === "right" ? "md:flex-row-reverse" : "md:flex-row"} relative z-10`}
+                  >
                     <div
-                      className={`${item.bgColor} text-white p-2.5 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                      className={`w-full md:w-5/12 ${item.side === "right" ? "md:text-right md:pl-3" : "md:text-left md:pr-3"}`}
                     >
-                      <div className={`flex items-center gap-2 mb-1 ${item.side === "right" && "md:flex-row-reverse"}`}>
-                        <item.icon className="w-5 h-5" />
-                        <h3 className="text-base font-bold font-montserrat">{item.title}</h3>
+                      <div
+                        className={`${item.bgColor} text-white p-1.5 sm:p-2 rounded-md shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                      >
+                        <div
+                          className={`flex items-center gap-1 sm:gap-1.5 mb-0.5 ${item.side === "right" ? "md:flex-row-reverse justify-end" : "justify-start"}`}
+                        >
+                          <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                          <h3 className="text-xs sm:text-sm font-bold font-montserrat">{item.title}</h3>
+                        </div>
+                        <p className="text-[10px] sm:text-xs opacity-90">{item.description}</p>
                       </div>
-                      <p className="text-sm opacity-90">{item.description}</p>
                     </div>
+                    <div className="hidden md:flex w-2/12 justify-center items-center">
+                      <div
+                        className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full ${item.bgColor} border-2 border-white shadow-lg`}
+                      ></div>
+                    </div>
+                    <div className="hidden md:block w-5/12"></div>
                   </div>
-
-                  <div className="hidden md:flex w-2/12 justify-center">
-                    <div className={`w-3 h-3 rounded-full ${item.bgColor} border-2 border-white shadow-lg`}></div>
-                  </div>
-
-                  <div className="hidden md:block w-5/12"></div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center mt-3">
-              <div className="inline-flex items-center gap-2 bg-[#833589] text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-                <Medal className="w-4 h-4 text-[#f2ad00]" />
-                Consistency + Strategy = Success
-                <Medal className="w-4 h-4 text-[#f2ad00]" />
+                ))}
               </div>
-            </div>
-
-            <div className="mt-2 text-center">
-              <div className="bg-[#833589] text-white px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg">
-                🎯 The Journey to Excellence 🎯
+              <div className="text-center mt-1.5 sm:mt-2">
+                <div className="inline-flex items-center gap-1 sm:gap-1.5 bg-[#833589] text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full font-bold text-[10px] sm:text-xs shadow-lg">
+                  <Medal className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f2ad00]" />
+                  Consistency + Strategy = Success
+                  <Medal className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#f2ad00]" />
+                </div>
               </div>
             </div>
           </div>
@@ -386,186 +377,220 @@ export default function MilestonePage() {
   ]
 
   const nextView = () => {
-    if (!isTransitioning && currentView < views.length - 1) {
-      setIsTransitioning(true)
-      setTimeout(() => {
-        setCurrentView((prev) => prev + 1)
-        setIsTransitioning(false)
-      }, 200)
-    }
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setCurrentView((prev) => (prev < views.length - 1 ? prev + 1 : prev))
+      setIsTransitioning(false)
+    }, 200)
   }
 
   const prevView = () => {
-    if (!isTransitioning && currentView > 0) {
-      setIsTransitioning(true)
-      setTimeout(() => {
-        setCurrentView((prev) => prev - 1)
-        setIsTransitioning(false)
-      }, 200)
-    }
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setCurrentView((prev) => (prev > 0 ? prev - 1 : prev))
+      setIsTransitioning(false)
+    }, 200)
   }
 
   const goToView = (index: number) => {
-    if (!isTransitioning && index !== currentView) {
-      setIsTransitioning(true)
-      setTimeout(() => {
-        setCurrentView(index)
-        setIsTransitioning(false)
-      }, 200)
+    if (isTransitioning || index === currentView) return
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setCurrentView(index)
+      setIsTransitioning(false)
+    }, 200)
+  }
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (isTransitioning) return
+    setDragStartX(e.touches[0].clientX)
+    setIsDragging(true)
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging || dragStartX === null || isTransitioning) {
+      setIsDragging(false)
+      return
     }
+    const clientX = e.changedTouches[0].clientX
+    const deltaX = clientX - dragStartX
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+      if (deltaX < 0) nextView()
+      else prevView()
+    }
+    setDragStartX(null)
+    setIsDragging(false)
+  }
+
+  const handleDocumentMouseMove = (e: MouseEvent) => {}
+
+  const handleDocumentMouseUp = (e: MouseEvent) => {
+    document.removeEventListener("mousemove", handleDocumentMouseMove)
+    document.removeEventListener("mouseup", handleDocumentMouseUp)
+    setIsDragging(false)
+    if (dragStartX === null || isTransitioning) return
+    const deltaX = e.clientX - dragStartX
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+      if (deltaX < 0) nextView()
+      else prevView()
+    }
+    setDragStartX(null)
+  }
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTransitioning) return
+    // Allow dragging only on the book container, not its interactive children like buttons
+    if ((e.target as HTMLElement).closest("button")) {
+      return
+    }
+    e.preventDefault()
+    setDragStartX(e.clientX)
+    setIsDragging(true)
+    document.addEventListener("mousemove", handleDocumentMouseMove)
+    document.addEventListener("mouseup", handleDocumentMouseUp)
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-white to-yellow-100 relative overflow-hidden">
-      {/* Clean Celebration Animation */}
       {showCelebration && (
         <div className="fixed inset-0 pointer-events-none z-50">
-          {/* Simple Confetti */}
-          {[...Array(12)].map((_, i) => (
+          {[...Array(25)].map((_, i) => (
             <div
               key={`confetti-${i}`}
               className="absolute"
               style={{
-                left: `${20 + Math.random() * 60}%`,
-                top: `-5%`,
-                animationDelay: `${Math.random() * 1}s`,
+                left: `${Math.random() * 100}%`,
+                top: `-10%`,
+                animationDelay: `${Math.random() * 2}s`,
+                transform: `scale(${0.5 + Math.random() * 0.8})`,
               }}
             >
               <div
-                className="w-2 h-2 rotate-45"
+                className="w-2 h-3 opacity-80"
                 style={{
                   backgroundColor: Math.random() > 0.5 ? "#833589" : "#f2ad00",
-                  animation: `fall 2.5s linear infinite`,
+                  clipPath: Math.random() > 0.5 ? "polygon(50% 0%, 0% 100%, 100% 100%)" : "circle(50% at 50% 50%)",
+                  animation: `fall ${2 + Math.random() * 2}s linear infinite`,
                 }}
               />
             </div>
           ))}
-
-          {/* Corner Stars */}
           {[
-            { top: "15%", left: "15%" },
-            { top: "15%", right: "15%" },
-          ].map((position, i) => (
-            <div key={i} className="absolute" style={position}>
-              <Star
-                className="text-[#f2ad00] animate-pulse"
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  animation: `twinkle 2s ease-in-out infinite`,
-                  animationDelay: `${i * 0.5}s`,
-                }}
-              />
-            </div>
+            { top: "10%", left: "10%", delay: "0s" },
+            { top: "15%", right: "12%", delay: "0.3s" },
+            { bottom: "10%", left: "15%", delay: "0.6s" },
+            { bottom: "12%", right: "10%", delay: "0.9s" },
+          ].map((pos, i) => (
+            <Star
+              key={`star-${i}`}
+              className="absolute text-[#f2ad00] opacity-0"
+              style={{
+                width: `${20 + Math.random() * 15}px`,
+                height: `${20 + Math.random() * 15}px`,
+                animation: `twinkle-pop 2.5s ease-in-out infinite ${pos.delay}`,
+                ...pos,
+              }}
+            />
           ))}
         </div>
       )}
 
-      <div className="container mx-auto px-4 py-2 sm:py-3 relative z-10">
-        {/* Compact Header */}
+      <div className="container mx-auto px-2 sm:px-4 py-2 sm:py-3 relative z-10">
         <div
           className={`text-center mb-3 sm:mb-4 transition-all duration-1000 ${
             pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"
           }`}
         >
           <div className="relative inline-block">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#833589] mb-2 relative">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#833589] mb-1 sm:mb-2 relative font-montserrat">
               MILESTONE
-              <span className="absolute -top-2 -right-2 text-xl sm:text-2xl">🎉</span>
+              <span className="absolute -top-2 -right-3 text-xl sm:text-3xl animate-pulse">🎉</span>
             </h1>
-            <div className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#833589] mb-2">ACHIEVED</div>
+            <div className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#833589] mb-2 font-montserrat">
+              ACHIEVED
+            </div>
           </div>
-
           <div className="bg-[#f2ad00] text-white px-4 sm:px-6 py-2 rounded-full inline-block text-sm sm:text-lg font-bold shadow-2xl hover:bg-[#f2ad00]/90 transition-colors">
             🏆 ALL INDIA RANK 1 - IPMAT 2024 🏆
           </div>
-
-          <p className="text-gray-700 text-sm sm:text-base max-w-3xl mx-auto mt-2 sm:mt-3 leading-relaxed px-4">
+          <p className="text-gray-700 text-xs sm:text-sm md:text-base max-w-3xl mx-auto mt-2 sm:mt-3 leading-relaxed px-2 sm:px-4">
             Celebrating the extraordinary journey of dedication, mentorship, and triumph.
           </p>
         </div>
 
-        {/* Main Showcase */}
         <div
           className={`transition-all duration-1000 delay-300 ${
             pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <div className="max-w-6xl mx-auto relative">
-            {/* Crown positioned at top-left corner */}
-            <div className="absolute -top-3 left-4 sm:left-6 z-30">
-              <div className="bg-[#f2ad00] rounded-full p-2 sm:p-3 shadow-xl border-3 border-white">
-                <Crown className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+          <div className="max-w-4xl mx-auto relative">
+            <div className="absolute -top-3 left-2 sm:left-4 z-30">
+              <div className="bg-[#f2ad00] rounded-full p-1.5 sm:p-2 md:p-3 shadow-xl border-2 border-white">
+                <Crown className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white" />
               </div>
             </div>
-
-            {/* Left Arrow Button */}
             <button
               onClick={prevView}
               disabled={currentView === 0 || isTransitioning}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-3 z-20 bg-[#833589] hover:bg-[#833589]/90 disabled:opacity-30 disabled:cursor-not-allowed text-white p-2 sm:p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
+              aria-label="Previous slide"
+              className="absolute left-0 sm:-left-1 md:-left-2 top-1/2 transform -translate-y-1/2 z-20 bg-[#833589] hover:bg-[#833589]/90 disabled:opacity-30 disabled:cursor-not-allowed text-white p-1.5 sm:p-2 md:p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#833589] focus:ring-offset-2"
             >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
-
-            {/* Right Arrow Button */}
             <button
               onClick={nextView}
               disabled={currentView === views.length - 1 || isTransitioning}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-3 z-20 bg-[#f2ad00] hover:bg-[#f2ad00]/90 disabled:opacity-30 disabled:cursor-not-allowed text-white p-2 sm:p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110"
+              aria-label="Next slide"
+              className="absolute right-0 sm:-right-1 md:-right-2 top-1/2 transform -translate-y-1/2 z-20 bg-[#f2ad00] hover:bg-[#f2ad00]/90 disabled:opacity-30 disabled:cursor-not-allowed text-white p-1.5 sm:p-2 md:p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#f2ad00] focus:ring-offset-2"
             >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
-
-            {/* Content Book - Responsive Height */}
             <div className="relative">
               <div
-                className={`bg-white rounded-3xl shadow-2xl border-4 border-[#833589] 
-                  h-[520px] sm:h-[540px] md:h-[560px] lg:h-[580px] xl:h-[600px]
-                  w-full max-w-[99%] sm:max-w-[98%] md:max-w-[95%] mx-auto
-                  transition-all duration-200 ${isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"}`}
+                className={`bg-white rounded-2xl sm:rounded-3xl shadow-2xl border-2 sm:border-4 border-[#833589] 
+                h-[500px] sm:h-[520px] md:h-[540px] lg:h-[560px] 
+                w-full max-w-[98%] sm:max-w-[95%] md:max-w-[90%] mx-auto 
+                transition-all duration-300 ease-in-out select-none ${isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"}`}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+                onMouseDown={handleMouseDown}
+                style={{ cursor: isDragging ? "grabbing" : "grab" }}
               >
-                <div className="p-4 sm:p-6 h-full flex flex-col">
-                  <div className="text-center mb-3">
-                    <h2 className="text-xl sm:text-2xl font-bold text-[#833589] font-montserrat">
+                {/* Removed pointer-events-none from direct child, content itself will handle its events */}
+                <div className="p-1.5 sm:p-2 md:p-3 lg:p-4 h-full flex flex-col">
+                  <div className="text-center mb-1 sm:mb-1.5 md:mb-2 flex-shrink-0">
+                    {" "}
+                    {/* flex-shrink-0 for title */}
+                    <h2 className="text-md sm:text-lg md:text-xl font-bold text-[#833589] font-montserrat">
                       {views[currentView].title}
                     </h2>
                   </div>
-                  <div className="flex-1 flex items-center justify-center">
-                    <div className={`w-full ${currentView > 0 ? "h-full" : ""}`}>{views[currentView].content}</div>
-                  </div>
-
-                  {/* Page Number */}
-                  <div className="text-right">
-                    <span className="text-xs text-gray-500 italic">
-                      {currentView + 1}/{views.length}
+                  {/* This div will contain the actual view content and manage its own scrolling if necessary */}
+                  <div className="flex-1 flex flex-col overflow-hidden">{views[currentView].content}</div>
+                  <div className="text-right mt-1 sm:mt-1.5 flex-shrink-0">
+                    {" "}
+                    {/* flex-shrink-0 for page number */}
+                    <span className="text-[10px] sm:text-xs text-gray-500 italic">
+                      Page {currentView + 1} of {views.length}
                     </span>
                   </div>
                 </div>
               </div>
-
-              {/* Mobile Scroll Indicator - Only visible on mobile when on pages 2-5 */}
-              {currentView > 0 && (
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 sm:hidden">
-                  <div className="animate-bounce bg-[#833589]/70 text-white text-xs px-2 py-1 rounded-full">
-                    Scroll for more
-                  </div>
-                </div>
-              )}
             </div>
-
-            {/* Page Indicators */}
-            <div className="flex justify-center mt-4 sm:mt-5">
-              <div className="flex space-x-2">
+            <div className="flex justify-center mt-2 sm:mt-3 md:mt-4">
+              <div className="flex space-x-1.5 sm:space-x-2">
                 {views.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToView(index)}
                     disabled={isTransitioning}
-                    className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                    aria-label={`Go to page ${index + 1}`}
+                    className={`w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-1 sm:focus:ring-2 focus:ring-offset-1 sm:focus:ring-offset-2 ${
                       index === currentView
-                        ? "bg-[#f2ad00] scale-125 shadow-lg"
-                        : "bg-gray-300 hover:bg-gray-400 hover:scale-110"
+                        ? "bg-[#f2ad00] scale-125 shadow-md focus:ring-[#f2ad00]"
+                        : "bg-gray-300 hover:bg-gray-400 hover:scale-110 focus:ring-gray-400"
                     }`}
                   />
                 ))}
@@ -574,82 +599,73 @@ export default function MilestonePage() {
           </div>
         </div>
 
-        {/* Compact Footer */}
         <div
-          className={`text-center mt-4 sm:mt-6 transition-all duration-1000 delay-500 ${
+          className={`text-center mt-3 sm:mt-4 md:mt-6 transition-all duration-1000 delay-500 ${
             pageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           <div className="relative inline-block">
-            <div className="bg-[#833589] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold shadow-2xl hover:bg-[#833589]/90 transition-colors">
-              <div className="flex items-center gap-2">
-                <Trophy className="w-5 h-5 text-[#f2ad00]" />
-                <span className="text-sm sm:text-base">CONGRATULATIONS NIKHILESH!</span>
-                <Trophy className="w-5 h-5 text-[#f2ad00]" />
+            <div className="bg-[#833589] text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full text-sm sm:text-base md:text-lg font-bold shadow-2xl hover:bg-[#833589]/90 transition-colors">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-[#f2ad00]" />
+                <span className="text-xs sm:text-sm md:text-base">CONGRATULATIONS NIKHILESH!</span>
+                <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-[#f2ad00]" />
               </div>
             </div>
-            <div className="absolute -top-1 -right-1 animate-bounce">
-              <Star className="w-5 h-5 text-[#f2ad00]" />
+            <div className="absolute -top-1 sm:-top-1.5 -right-1 sm:-right-1.5 animate-bounce">
+              <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#f2ad00]" />
             </div>
           </div>
-          <p className="mt-3 text-sm sm:text-base text-gray-600 font-semibold px-4">
+          <p className="mt-2 sm:mt-3 text-xs sm:text-sm md:text-base text-gray-600 font-semibold px-2 sm:px-4">
             From our entire team - You've made us incredibly proud! 🌟
           </p>
         </div>
       </div>
 
       <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
         
         .font-montserrat {
           font-family: 'Montserrat', sans-serif;
         }
 
-        /* Custom scrollbar styling */
-        .scrollbar-container::-webkit-scrollbar {
-          width: 8px;
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 4px; /* Even thinner scrollbar */
         }
-
-        .scrollbar-container::-webkit-scrollbar-track {
-          background: rgba(241, 241, 241, 0.5);
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(220, 220, 220, 0.1); /* More transparent track */
           border-radius: 10px;
         }
-
-        .scrollbar-container::-webkit-scrollbar-thumb {
-          background: #833589;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #d8b4fe; /* Purple-300 for a very soft purple */
           border-radius: 10px;
         }
-
-        .scrollbar-container::-webkit-scrollbar-thumb:hover {
-          background: #f2ad00;
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #fde047; /* Yellow-300 for soft gold */
         }
-
         /* For Firefox */
-        .scrollbar-container {
+        .custom-scrollbar {
           scrollbar-width: thin;
-          scrollbar-color: #833589 rgba(241, 241, 241, 0.5);
+          scrollbar-color: #d8b4fe rgba(220, 220, 220, 0.1);
         }
+
 
         @keyframes fall {
           0% {
-            transform: translateY(-100vh) rotate(0deg);
+            transform: translateY(-10vh) rotate(0deg);
             opacity: 1;
           }
           100% {
-            transform: translateY(100vh) rotate(360deg);
+            transform: translateY(110vh) rotate(720deg);
             opacity: 0;
           }
         }
 
-        @keyframes twinkle {
-          0%, 100% {
-            opacity: 0.5;
-            transform: scale(0.9);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.1);
-          }
+        @keyframes twinkle-pop {
+          0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+          25% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+          50% { opacity: 0.7; transform: scale(1) rotate(-10deg); }
+          75% { opacity: 1; transform: scale(1.1) rotate(5deg); }
         }
       `}</style>
     </div>
