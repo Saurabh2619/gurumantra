@@ -23,7 +23,6 @@ interface College {
   rating: number
 }
 
-// Custom arrow components with responsive design
 const PrevArrow = (props: any) => {
   const { onClick } = props
   return (
@@ -128,9 +127,7 @@ const PartnerSlider = () => {
           {colleges.map((college) => (
             <div key={college.id} className="p-3 outline-none focus:outline-none">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl border border-gray-100 hover:border-gray-200 group">
-                {/* Card layout matching the image design */}
                 <div className="flex flex-col">
-                  {/* Image section with gradient overlay */}
                   <div className="relative w-full h-[200px] sm:h-[220px] md:h-[240px] overflow-hidden">
                     <Image
                       src={college.college_image || "/placeholder.svg"}
@@ -138,14 +135,11 @@ const PartnerSlider = () => {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    {/* Subtle gradient overlay at the bottom */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60"></div>
                   </div>
 
-                  {/* Content section */}
                   <div className="p-4 sm:p-5">
                     <div className="flex items-start gap-3">
-                      {/* Logo with enhanced styling */}
                       <div className="w-[45px] h-[45px] relative flex-shrink-0 mt-1 rounded-md overflow-hidden border border-gray-100 bg-white p-1 shadow-sm">
                         <Image
                           src={college.college_logo || "/placeholder.svg"}
@@ -155,7 +149,6 @@ const PartnerSlider = () => {
                         />
                       </div>
 
-                      {/* College details with improved typography */}
                       <div className="flex-1">
                         <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 line-clamp-2">
                           {college.name}
@@ -166,7 +159,6 @@ const PartnerSlider = () => {
                           <span className="text-sm line-clamp-1">{college.location}</span>
                         </div>
 
-                        {/* Rating with enhanced styling */}
                         <div className="flex items-center mb-3">
                           <div className="flex items-center bg-yellow-50 px-2 py-0.5 rounded-md">
                             <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
@@ -175,29 +167,27 @@ const PartnerSlider = () => {
                           </div>
                         </div>
 
-                        {/* Courses with improved styling */}
                         <div className="flex flex-wrap gap-1.5 mb-4 max-h-[60px] overflow-y-auto scrollbar-thin">
                           {college.courses.split(",").map((course, i) => (
                             <span
                               key={i}
-                              className="bg-indigo-50 text-indigo-700 text-xs px-3 py-1 rounded-full border border-indigo-100 whitespace-nowrap"
+                              className="bg-[#e3f2fd] text-[#1565c0] text-xs px-3 py-1 rounded-full border border-[#bbdefb] whitespace-nowrap"
                             >
                               {course.trim()}
                             </span>
                           ))}
                         </div>
 
-                        {/* Action buttons with improved styling */}
                         <div className="flex gap-3 mt-3">
                           <a
                             href={college.apply_url}
-                            className="flex-1 bg-indigo-600 text-white py-2.5 text-center rounded-lg text-sm font-medium transition-all duration-300 hover:bg-indigo-700 hover:shadow-md shadow-sm"
+                            className="flex-1 bg-[#1565c0] text-white py-2.5 text-center rounded-lg text-sm font-medium transition-all duration-300 hover:bg-[#0d47a1] hover:shadow-md shadow-sm"
                           >
                             Apply Now
                           </a>
                           <a
                             href={college.details_url}
-                            className="flex-1 bg-white border border-indigo-200 text-indigo-600 py-2.5 text-center rounded-lg text-sm font-medium transition-all duration-300 hover:bg-indigo-50 hover:border-indigo-300"
+                            className="flex-1 bg-white border border-[#bbdefb] text-[#1565c0] py-2.5 text-center rounded-lg text-sm font-medium transition-all duration-300 hover:bg-[#e3f2fd] hover:border-[#90caf9]"
                           >
                             View Details
                           </a>

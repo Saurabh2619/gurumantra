@@ -1,6 +1,6 @@
 "use client";
 import DefaultLayout from "./defaultlayout";
-import {ArrowRight, Search, MapPin, BookOpen } from 'lucide-react';
+import {ArrowRight, Search, MapPin, BookOpen, FileText, Users } from 'lucide-react';
 import PartnerSlider from "./components/partener-slider"
 export default function Home() {
   return (
@@ -128,12 +128,85 @@ export default function Home() {
       </div>
     </div>
 
-    <div className = "py-12">
-      <div className = "container">
-        <h2 className="text-3xl font-bold text-center mb-12">How Guru Mantra Works</h2>
-        <div className = "grid md:grid-cols-3 gap-8"></div>
-        </div> 
+     <div className="py-16 bg-gray-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center space-y-6">
+      <h2 className="text-3xl md:text-3xl font-bold text-gray-900 leading-tight tracking-tight">
+        How Guru Mantra Works
+      </h2>
+      <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        Discover a simple 3-step journey to find the right college for you—powered by technology and guided by expert insights. 
+        Whether you're aiming for top-tier institutions or hidden gems, Guru Mantra helps you make informed decisions with confidence and ease.
+      </p>
     </div>
+
+    <div className="mt-12 grid md:grid-cols-3 gap-8">
+      {/* Step 1 */}
+      <div className="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg border border-gray-100 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 transition-all duration-500 group-hover:bg-blue-100"></div>
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0d47a1] to-[#1976d2] flex items-center justify-center mb-6 text-white">
+            <FileText size={28} />
+          </div>
+          <h3 className="text-xl font-semibold mb-3">Share Your Profile</h3>
+          <p className="text-gray-600 mb-4">
+            Enter your academic details, interests, and preferences. Our smart algorithm uses this information
+            to find the best college matches for you.
+          </p>
+          <div className="flex items-center text-[#1565c0] font-medium">
+            <span className="mr-2">Step 1</span>
+            <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+              <span className="font-bold">1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Step 2 */}
+      <div className="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg border border-gray-100 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 transition-all duration-500 group-hover:bg-blue-100"></div>
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0d47a1] to-[#1976d2] flex items-center justify-center mb-6 text-white">
+            <Search size={28} />
+          </div>
+          <h3 className="text-xl font-semibold mb-3">Get Personalized Matches</h3>
+          <p className="text-gray-600 mb-4">
+            Receive a curated list of colleges that match your profile, with detailed information about courses,
+            fees, placements, and admission requirements.
+          </p>
+          <div className="flex items-center text-[#1565c0] font-medium">
+            <span className="mr-2">Step 2</span>
+            <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+              <span className="font-bold">2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Step 3 */}
+      <div className="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg border border-gray-100 relative overflow-hidden group">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 transition-all duration-500 group-hover:bg-blue-100"></div>
+        <div className="relative z-10">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#0d47a1] to-[#1976d2] flex items-center justify-center mb-6 text-white">
+            <Users size={28} />
+          </div>
+          <h3 className="text-xl font-semibold mb-3">Connect & Apply</h3>
+          <p className="text-gray-600 mb-4">
+            Connect directly with college representatives, get application guidance, and receive exclusive
+            benefits when you apply through Guru Mantra.
+          </p>
+          <div className="flex items-center text-[#1565c0] font-medium">
+            <span className="mr-2">Step 3</span>
+            <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+              <span className="font-bold">3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
       </DefaultLayout>
     </>
   );
