@@ -32,45 +32,63 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 w-full shadow-sm transition-all duration-300 ${
         isScrolled
-          ? "bg-background/100 bg-gray-100/97 supports-[backdrop-filter]:bg-background/90 shadow-xl"
-          : "bg-background/95 bg-white supports-[backdrop-filter]:bg-background/60"
+          ? "bg-white shadow-xl"
+          : "bg-white/90 backdrop-blur-sm"
       }`}
     >
       <div className="container flex h-16 items-center justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
-          <GraduationCap className="h-8 w-8 text-indigo-800" />
-          <h1 className="text-3xl font-bold text-indigo-900">GuruMantra</h1>
+          <GraduationCap className="h-8 w-8 text-blue-700" />
+          <h1 className="text-3xl font-bold text-blue-900">GuruMantra</h1>
         </div>
 
         <nav className="hidden md:flex items-center gap-6 text-lg">
-          <Link href="/" className="font-medium transition-colors hover:text-indigo-800">
+          <Link
+            href="/"
+            className="font-medium text-blue-900 hover:text-blue-600 transition-colors"
+          >
             Home
           </Link>
-          <Link href="/mba" className="font-medium text-muted-foreground transition-colors hover:text-indigo-800">
+          <Link
+            href="/mba"
+            className="font-medium text-gray-600 hover:text-blue-600 transition-colors"
+          >
             MBA
           </Link>
-          <Link href="#" className="font-medium text-muted-foreground transition-colors hover:text-indigo-800">
+          <Link
+            href="#"
+            className="font-medium text-gray-600 hover:text-blue-600 transition-colors"
+          >
             Programs
           </Link>
-          <Link href="/about" className="font-medium text-muted-foreground transition-colors hover:text-indigo-800">
+          <Link
+            href="/about"
+            className="font-medium text-gray-600 hover:text-blue-600 transition-colors"
+          >
             About Us
           </Link>
-          <Link href="#" className="font-medium text-muted-foreground transition-colors hover:text-indigo-800">
+          <Link
+            href="#"
+            className="font-medium text-gray-600 hover:text-blue-600 transition-colors"
+          >
             Contact
           </Link>
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button variant="outline" className="hidden md:flex">
+          <Button variant="outline" className="hidden md:flex border-blue-700 text-blue-700 hover:bg-blue-50">
             Log in
           </Button>
-          <Button className="bg-indigo-800 hover:bg-indigo-800/90 hidden md:flex">Get Started</Button>
+          <Button className="hidden md:flex bg-blue-700 hover:bg-blue-600">
+            Get Started
+          </Button>
 
           <motion.button
-            className="md:hidden z-50"
+            className="md:hidden z-50 text-blue-700"
             onClick={() => setIsOpen(!isOpen)}
             animate={{ rotate: isOpen ? 180 : 0, scale: isOpen ? 1.2 : 1 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
+            aria-label="Toggle menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
@@ -94,13 +112,13 @@ export default function Navbar() {
               animate={{ x: "0%", borderRadius: "0" }}
               exit={{ x: "-100%", borderRadius: "50% 0 0 50%" }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="fixed top-0 left-0 w-4/5 h-screen bg-indigo-800 backdrop-blur-md shadow-lg flex flex-col items-center justify-center text-lg z-50"
+              className="fixed top-0 left-0 w-4/5 h-screen bg-[#0d47a1]  backdrop-blur-md shadow-lg flex flex-col items-center justify-center text-lg z-50"
             >
               <motion.div>
                 <Link href="/" className="text-3xl font-bold text-white mb-6" onClick={() => setIsOpen(false)}>
                   <div className="flex items-center gap-2">
-                    <GraduationCap className="h-8 w-8" />
-                    <span>EduMatch</span>
+                    <GraduationCap className="h-8 w-8 text-white" />
+                    <span>GuruMantra</span>
                   </div>
                 </Link>
               </motion.div>
@@ -126,7 +144,7 @@ export default function Navbar() {
                     <div className="flex items-center space-x-2">
                       <Link
                         href={item.path}
-                        className="text-white hover:text-[#EAB308] text-xl font-semibold"
+                        className="text-white hover:text-yellow-400 text-xl font-semibold"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.name}
@@ -148,7 +166,7 @@ export default function Navbar() {
                         <li>
                           <Link
                             href="/programs/undergraduate"
-                            className="block px-4 py-2 hover:bg-indigo-800/80 rounded-md"
+                            className="block px-4 py-2 hover:bg-blue-700/80 rounded-md"
                             onClick={() => setIsOpen(false)}
                           >
                             Undergraduate
@@ -157,7 +175,7 @@ export default function Navbar() {
                         <li>
                           <Link
                             href="/programs/graduate"
-                            className="block px-4 py-2 hover:bg-indigo-800/80 rounded-md"
+                            className="block px-4 py-2 hover:bg-blue-700/80 rounded-md"
                             onClick={() => setIsOpen(false)}
                           >
                             Graduate
@@ -166,7 +184,7 @@ export default function Navbar() {
                         <li>
                           <Link
                             href="/programs/certificate"
-                            className="block px-4 py-2 hover:bg-indigo-800/80 rounded-md"
+                            className="block px-4 py-2 hover:bg-blue-700/80 rounded-md"
                             onClick={() => setIsOpen(false)}
                           >
                             Certificate
@@ -181,12 +199,15 @@ export default function Navbar() {
               <div className="mt-8 flex flex-col gap-4">
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-indigo-800"
+                  className="border-white text-white hover:bg-white hover:text-blue-800"
                   onClick={() => setIsOpen(false)}
                 >
                   Log in
                 </Button>
-                <Button className="bg-[#EAB308] text-[#111827] hover:bg-[#EAB308]/90" onClick={() => setIsOpen(false)}>
+                <Button
+                  className="bg-yellow-400 text-gray-900 hover:bg-yellow-400/90"
+                  onClick={() => setIsOpen(false)}
+                >
                   Get Started
                 </Button>
               </div>

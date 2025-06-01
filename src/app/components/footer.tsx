@@ -15,6 +15,7 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-12 relative overflow-hidden mt-auto">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-y-4 md:gap-y-0 py-6 relative z-10">
+        
         {/* Logo and Description */}
         <div className="text-center md:text-left mb-6 md:mb-0 max-w-sm">
           <h2 className="text-3xl font-extrabold text-[#2196f3]">GuruMantra</h2>
@@ -25,26 +26,21 @@ export default function Footer() {
 
         {/* Navigation Links */}
         <ul className="flex flex-wrap justify-center md:justify-start space-x-6 text-gray-300 text-md font-medium">
-          <li>
-            <Link href="/" className="hover:text-blue-400 transition-all duration-300">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link href="/mba" className="hover:text-blue-400 transition-all duration-300">
-              MBA
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="hover:text-blue-400 transition-all duration-300">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="hover:text-blue-400 transition-all duration-300">
-              Contact
-            </Link>
-          </li>
+          {[
+            { href: "/", label: "Home" },
+            { href: "/mba", label: "MBA" },
+            { href: "/about", label: "About" },
+            { href: "/contact", label: "Contact" },
+          ].map(({ href, label }) => (
+            <li key={label}>
+              <Link
+                href={href}
+                className="hover:text-blue-400 transition-all duration-300"
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* Social Icons */}
@@ -62,6 +58,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, rotate: 5 }}
               className="text-gray-400 hover:text-blue-400 transition-all duration-300"
+              aria-label={label}
             >
               {icon}
             </motion.a>

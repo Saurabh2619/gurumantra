@@ -1,6 +1,6 @@
 "use client";
 import DefaultLayout from "./defaultlayout";
-import {ArrowRight, Search, MapPin, BookOpen, FileText, Users } from 'lucide-react';
+import {ArrowRight, Search, MapPin, BookOpen, FileText, Users, Star, Award, CheckCircle, MessageSquare, Phone } from 'lucide-react';
 import PartnerSlider from "./components/partener-slider"
 export default function Home() {
   return (
@@ -128,7 +128,7 @@ export default function Home() {
       </div>
     </div>
 
-     <div className="py-16 bg-gray-50">
+<div className="py-16 bg-gray-50">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="text-center space-y-6">
       <h2 className="text-3xl md:text-3xl font-bold text-gray-900 leading-tight tracking-tight">
@@ -207,6 +207,176 @@ export default function Home() {
   </div>
 </div>
 
+{/*Sucess Stories*/}
+ <div className="py-16">
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Success Stories</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                Hear from students who found their dream colleges through Guru Mantra and are now thriving in their
+                academic journeys.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Testimonial 1 */}
+              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0d47a1] to-[#1976d2] flex items-center justify-center text-white font-bold text-xl">
+                    A
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="font-semibold">Test Student 1</h4>
+                    <p className="text-sm text-gray-500">B.Tech, Computer Science</p>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <div className="flex text-yellow-400 mb-2">
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                  </div>
+                  <p className="text-gray-600">
+                    "Guru Mantra helped me find the perfect engineering college that matched my profile. Their
+                    personalized recommendations saved me so much time and stress!"
+                  </p>
+                </div>
+                <div className="flex items-center text-sm text-gray-500">
+                  <Award size={16} className="mr-1 text-[#1976d2]" />
+                  <span>Placed at xyz with @ package</span>
+                </div>
+              </div>
+
+              {/* Testimonial 2 */}
+              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0d47a1] to-[#1976d2] flex items-center justify-center text-white font-bold text-xl">
+                    R
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="font-semibold">Test Student 2</h4>
+                    <p className="text-sm text-gray-500">MBA, Finance</p>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <div className="flex text-yellow-400 mb-2">
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                  </div>
+                  <p className="text-gray-600">
+                    "The counselors at Guru Mantra guided me through the entire admission process. I got into my dream
+                    business school with a scholarship!"
+                  </p>
+                </div>
+                <div className="flex items-center text-sm text-gray-500">
+                  <Award size={16} className="mr-1 text-[#1976d2]" />
+                  <span>Got placed</span>
+                </div>
+              </div>
+
+              {/* Testimonial 3 */}
+              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0d47a1] to-[#1976d2] flex items-center justify-center text-white font-bold text-xl">
+                    P
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="font-semibold">Test Student 3</h4>
+                    <p className="text-sm text-gray-500">MBBS</p>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <div className="flex text-yellow-400 mb-2">
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                    <Star size={18} fill="currentColor" />
+                  </div>
+                  <p className="text-gray-600">
+                    "Finding a good medical college seemed impossible until I used Guru Mantra. Their expert guidance
+                    helped me navigate the complex admission process."
+                  </p>
+                </div>
+                <div className="flex items-center text-sm text-gray-500">
+                  <Award size={16} className="mr-1 text-[#1976d2]" />
+                  <span>Top medical College</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-center mt-10">
+              <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#0d47a1] to-[#1976d2] text-white rounded-lg shadow-md hover:shadow-lg transition-all">
+                <span>Read More Success Stories</span>
+                <ArrowRight size={18} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="py-16 bg-gradient-to-br from-[#0d47a1] via-[#1565c0] to-[#1976d2] relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden pointer-events-none">
+            <div className="absolute -top-10 -right-10 w-40 h-40 md:w-80 md:h-80 bg-cyan-500 rounded-full opacity-10 blur-3xl"></div>
+            <div className="absolute bottom-10 -left-20 w-60 h-60 bg-purple-500 rounded-full opacity-10 blur-3xl"></div>
+            <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+          </div>
+
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="bg-white/10 backdrop-blur-lg rounded-xl shadow-xl p-8 md:p-12 border border-white/20">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Get Free Expert Counseling to Find the Right College & Course.
+                  </h2>
+                  <p className="text-indigo-100 text-lg mb-6">
+                    Personalized guidance for admissions in India & abroad — based on your marks, goals, and budget.
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    <button className="flex items-center gap-2 px-6 py-3 bg-white text-[#0d47a1] rounded-lg shadow-md hover:shadow-lg transition-all font-medium">
+                      <CheckCircle size={18} />
+                      <span>Get Started Now</span>
+                    </button>
+                    <button className="flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white/10 transition-all">
+                      <MessageSquare size={18} />
+                      <span>Chat with Counselor</span>
+                    </button>
+                  </div>
+                </div>
+                <div className="bg-white/5 backdrop-blur rounded-lg p-6 border border-white/20">
+                  <h3 className="text-xl font-semibold text-white mb-6 text-center">Schedule a Free Consultation</h3>
+                  <div className="space-y-4">
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      className="w-full p-3 bg-white/20 backdrop-blur border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Your Email"
+                      className="w-full p-3 bg-white/20 backdrop-blur border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all"
+                    />
+                    <input
+                      type="tel"
+                      placeholder="Your Phone"
+                      className="w-full p-3 bg-white/20 backdrop-blur border border-white/30 rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all"
+                    />
+                    <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-white text-[#0d47a1] rounded-lg shadow-md hover:shadow-lg transition-all font-medium">
+                      <Phone size={18} />
+                      <span>Schedule Call</span>
+                    </button>
+                  </div>
+                  <div className="mt-4 text-center text-white/70 text-sm">We'll call you back within 24 hours</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </DefaultLayout>
     </>
   );
