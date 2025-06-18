@@ -8,25 +8,30 @@ dotenv.config();
 
 const app = express();
 
-// ✅ CORS setup updated here to allow both local and live frontend
+// ✅ Allowed origins (local + production frontend)
 const allowedOrigins = [
-  "http://localhost:3000",            // Local development frontend
-  "https://www.gurumantra.info"       // Live production frontend
+  "http://localhost:3000",
+  "https://www.gurumantra.info"
 ];
 
-app.use(cors({
+// ✅ CORS middleware
+const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like Postman or curl), or from allowed origins
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true                  // Allow sending cookies (if any)
-}));
+  credentials: true
+};
 
-// Middleware to parse JSON body
+app.use(cors(corsOptions));
+
+// ✅ Preflight (OPTIONS) handler for CORS (Vercel requires this)
+app.options("*", cors(corsOptions));
+
+// Middleware to parse JSON
 app.use(express.json());
 
 // Routes
