@@ -10,7 +10,8 @@ export default function RegisterPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
+      // ✅ Use your Vercel backend API URL here instead of localhost
+      const res = await fetch("https://gurumantra-backend.vercel.app/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,13 +23,13 @@ export default function RegisterPage() {
 
       if (res.ok) {
         alert("Registration successful");
-        console.log("Registered User:", data);
+        console.log("✅ Registered User:", data);
       } else {
         alert(data.error || "Registration failed");
       }
     } catch (error) {
-      alert("Error during registration");
-      console.error(error);
+      alert("❌ Error during registration");
+      console.error("Registration error:", error);
     }
   };
 
