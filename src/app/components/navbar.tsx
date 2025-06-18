@@ -76,7 +76,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button variant="outline" className="hidden md:flex border-blue-700 text-blue-700 hover:bg-blue-50">
+          <Button variant="outline" className="hidden md:flex border-blue-700 text-blue-700 hover:bg-blue-700">
             Log in
           </Button>
           <Button className="hidden md:flex bg-blue-700 hover:bg-blue-600">
