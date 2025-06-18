@@ -8,12 +8,26 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
+// ✅ CORS setup updated here to allow both local and live frontend
+const allowedOrigins = [
+  "http://localhost:3000",            // Local development frontend
+  "https://www.gurumantra.info"       // Live production frontend
+];
+
 app.use(cors({
-  origin: "http://localhost:3000",  // allow requests from your Next.js frontend
-  credentials: true
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like Postman or curl), or from allowed origins
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true                  // Allow sending cookies (if any)
 }));
-app.use(express.json());  // parse incoming JSON
+
+// Middleware to parse JSON body
+app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
