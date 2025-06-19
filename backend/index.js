@@ -6,12 +6,18 @@ const authRoutes = require("./routes/authRoutes");
 dotenv.config();
 const app = express();
 
-// ✅ TEMP CORS fix: Allow all origins
-app.use(cors({
-  origin: "*",                      // <-- Allow from all origins
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"], 
-}));
+// ✅ Manually set headers for all responses
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // or put your domain here for more security
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
+// ✅ Handle preflight requests globally
+app.options("*", (req, res) => {
+  res.sendStatus(200);
+});
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);
