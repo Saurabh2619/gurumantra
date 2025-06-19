@@ -6,7 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 dotenv.config();
 const app = express();
 
-// ✅ Global CORS Setup — Reflects allowed origin properly
+// ✅ Global CORS Setup
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
@@ -26,8 +26,8 @@ app.use(cors({
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 
-// ✅ Use Render-required port binding
+// ✅ Required for Render: bind to 0.0.0.0
 const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => {
-  console.log(`🚀 Backend running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Backend running on port ${PORT}`);
 });
