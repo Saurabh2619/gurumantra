@@ -10,7 +10,6 @@ export default function RegisterPage() {
     e.preventDefault();
 
     try {
-      // ✅ Uses .env.local → NEXT_PUBLIC_API_URL
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, {
         method: "POST",
         headers: {
@@ -22,8 +21,11 @@ export default function RegisterPage() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("Registration successful");
-        console.log("✅ Registered User:", data);
+        alert("✅ Registration successful");
+        console.log("Registered user:", data);
+        setName("");
+        setEmail("");
+        setPassword("");
       } else {
         alert(data.error || "Registration failed");
       }
@@ -34,13 +36,16 @@ export default function RegisterPage() {
   };
 
   return (
-    <form onSubmit={handleRegister} className="space-y-4">
+    <form
+      onSubmit={handleRegister}
+      className="space-y-4 max-w-md mx-auto mt-10 p-4 border rounded-md"
+    >
       <input
         type="text"
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
         required
       />
       <input
@@ -48,7 +53,7 @@ export default function RegisterPage() {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
         required
       />
       <input
@@ -56,10 +61,13 @@ export default function RegisterPage() {
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
         required
       />
-      <button type="submit" className="bg-green-500 text-white p-2 w-full">
+      <button
+        type="submit"
+        className="bg-green-600 hover:bg-green-700 text-white p-2 w-full rounded"
+      >
         Register
       </button>
     </form>
