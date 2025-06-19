@@ -6,18 +6,17 @@ const authRoutes = require("./routes/authRoutes");
 dotenv.config();
 const app = express();
 
-// ✅ TEMP FIX — Allow all origins for testing
+// ✅ Reflect origin automatically + allow credentials
 app.use(cors({
-  origin: true,
+  origin: (origin, callback) => {
+    callback(null, true); // Reflects request origin in Access-Control-Allow-Origin
+  },
   credentials: true,
 }));
 
 app.use(express.json());
-
-// ✅ Routes
 app.use("/api/auth", authRoutes);
 
-// ✅ Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Backend running on http://localhost:${PORT}`);
