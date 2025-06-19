@@ -6,18 +6,28 @@ const authRoutes = require("./routes/authRoutes");
 dotenv.config();
 const app = express();
 
-// ✅ Reflect origin automatically + allow credentials
+// ✅ Global CORS Setup — Reflects allowed origin properly
 app.use(cors({
-  origin: (origin, callback) => {
-    callback(null, true); // Reflects request origin in Access-Control-Allow-Origin
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      "http://localhost:3000",
+      "https://www.gurumantra.info",
+      "https://gurumantra.vercel.app"
+    ];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
   },
-  credentials: true,
+  credentials: true
 }));
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 
-const PORT = process.env.PORT || 5000;
+// ✅ Use Render-required port binding
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`🚀 Backend running on http://localhost:${PORT}`);
 });
