@@ -19,6 +19,8 @@ export default function IPMCareersLanding() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [notification, setNotification] = useState("")
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentMobileSlide, setCurrentMobileSlide] = useState(0)
+  const [currentTestimonial, setCurrentTestimonial] = useState(0)
 
   const features = [
     "Best & Promising IPMAT Results",
@@ -26,8 +28,6 @@ export default function IPMCareersLanding() {
     "Awarded #1 by ZEE News",
     "Gained Media Exposure for Excellent Academic Performance",
   ]
-
-  const years = ["2024", "2025", "2026", "2027"]
 
   const mentors = [
     {
@@ -166,6 +166,7 @@ export default function IPMCareersLanding() {
     },
   ]
 
+  // Desktop/Large Screen Results
   const resultSlides = [
     {
       title: "Our Outstanding Results",
@@ -210,6 +211,68 @@ export default function IPMCareersLanding() {
     },
   ]
 
+  // Mobile/Small Screen Results
+  const mobileResultSlides = [
+    {
+      title: "Outstanding Results",
+      subtitle: "Academic Excellence",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751015341/a_zrjadn.jpg",
+      stats: [
+        { label: "Students Selected", value: "500+" },
+        { label: "Success Rate", value: "95%" },
+      ],
+    },
+    {
+      title: "Our Toppers",
+      subtitle: "Success Stories",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751015353/b_mq3edw.jpg",
+      stats: [
+        { label: "AIR 1-10", value: "15+" },
+        { label: "IIM Selections", value: "200+" },
+      ],
+    },
+  ]
+
+  // Student Testimonials for Slider
+  const studentTestimonials = [
+    {
+      name: "Aarav Sharma",
+      college: "IIM Indore",
+      rank: "AIR 15",
+      review:
+        "IPM Careers transformed my preparation strategy. The personalized attention and expert guidance helped me achieve my dream rank.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+    {
+      name: "Sneha Patel",
+      college: "IIM Rohtak",
+      rank: "AIR 28",
+      review:
+        "The mock tests and study material were exceptional. Faculty members were always available for doubt clearing sessions.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+    {
+      name: "Karthik Reddy",
+      college: "IIM Indore",
+      rank: "AIR 42",
+      review:
+        "Best decision of my life! The structured approach and regular assessments kept me on track throughout my preparation.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+    {
+      name: "Ananya Singh",
+      college: "IIM Jammu",
+      rank: "AIR 67",
+      review:
+        "The AI-based test series helped identify my weak areas. The one-on-one mentorship was incredibly valuable.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+  ]
+
   useEffect(() => {
     const interval = setInterval(() => {
       setStudentsEnrolled((prev) => prev + 1)
@@ -230,10 +293,27 @@ export default function IPMCareersLanding() {
     }, 5000)
   }, [])
 
+  // Desktop slider
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % resultSlides.length)
     }, 4000)
+    return () => clearInterval(interval)
+  }, [])
+
+  // Mobile slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMobileSlide((prev) => (prev + 1) % mobileResultSlides.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
+
+  // Student testimonials slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % studentTestimonials.length)
+    }, 5000)
     return () => clearInterval(interval)
   }, [])
 
@@ -261,10 +341,6 @@ export default function IPMCareersLanding() {
     const phoneRegex = /^[0-9]{10}$/
     if (!phoneRegex.test(formData.phone)) {
       setNotification("Phone number is not valid")
-      return
-    }
-    if (!formData.year || formData.year.trim() === "") {
-      setNotification("Year field is empty")
       return
     }
     if (!formData.city || formData.city.trim() === "") {
@@ -296,6 +372,22 @@ export default function IPMCareersLanding() {
     setCurrentSlide((prev) => (prev - 1 + resultSlides.length) % resultSlides.length)
   }
 
+  const nextMobileSlide = () => {
+    setCurrentMobileSlide((prev) => (prev + 1) % mobileResultSlides.length)
+  }
+
+  const prevMobileSlide = () => {
+    setCurrentMobileSlide((prev) => (prev - 1 + mobileResultSlides.length) % mobileResultSlides.length)
+  }
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % studentTestimonials.length)
+  }
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + studentTestimonials.length) % studentTestimonials.length)
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Notification */}
@@ -316,7 +408,7 @@ export default function IPMCareersLanding() {
             <h3 className="text-lg font-semibold text-gray-700 mb-4">
               Choosing Us today is the best decision you could have made yet.
             </h3>
-            <p className="text-gray-600 mb-2">We've received your details</p>
+            <p className="text-gray-600 mb-2">{"We've received your details"}</p>
             <p className="text-gray-600 mb-4">Our Executive will get back to you shortly.</p>
             <p className="text-gray-600 mb-6">
               For Quick Assistance you can call us on:
@@ -423,547 +515,758 @@ export default function IPMCareersLanding() {
 
       {/* Hero Section with Gradient */}
       <section className="relative overflow-hidden py-8">
-  {/* Background Gradient */}
-  <div className="absolute inset-0">
-    <div className="absolute inset-0 bg-gradient-to-br from-[#7b2fa9] via-[#833589] to-[#471760]"></div>
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#ffffff1a] via-transparent to-transparent mix-blend-overlay"></div>
-  </div>
-
-  <div className="relative z-10 mx-auto px-4 py-10 max-w-6xl">
-    <div className="grid lg:grid-cols-2 gap-8 items-center">
-      {/* Left Column */}
-      <div className="space-y-6 max-w-xl text-white">
-        <span className="inline-block bg-[#E79800] text-black px-4 py-1.5 rounded-full text-xs font-semibold">
-          TRUSTED BY THOUSANDS OF STUDENTS
-        </span>
-
-        <h1 className="text-3xl md:text-5xl font-bold">
-          India's Premium IPMAT Coaching
-        </h1>
-        <p className="text-lg text-purple-100">
-          Join now to grab the opportunity to learn from our experts
-        </p>
-
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-          <h3 className="text-xl font-bold text-center">
-            <span className="text-[#E79800]">✨</span> {features[currentFeature]}
-          </h3>
+        {/* Background Gradient */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#7b2fa9] via-[#833589] to-[#471760]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#ffffff1a] via-transparent to-transparent mix-blend-overlay"></div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-            <div className="text-2xl font-bold text-[#E79800]">{studentsEnrolled.toLocaleString()}</div>
-            <div className="text-sm text-purple-200">Students Enrolled</div>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-            <div className="text-2xl font-bold text-[#E79800]">{(studentsEnrolled * 2).toLocaleString()}</div>
-            <div className="text-sm text-purple-200">Classes Completed</div>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-            <div className="text-2xl font-bold text-[#E79800]">{(studentsEnrolled * 33).toLocaleString()}</div>
-            <div className="text-sm text-purple-200">Hours Taught</div>
-          </div>
-        </div>
-      </div>
+        <div className="relative z-10 mx-auto px-4 py-10 max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            {/* Left Column */}
+            <div className="space-y-6 max-w-xl text-white">
+              <span className="inline-block bg-[#E79800] text-black px-4 py-1.5 rounded-full text-xs font-semibold">
+                TRUSTED BY THOUSANDS OF STUDENTS
+              </span>
 
-      {/* Right Column: Form */}
-      <div className="bg-white rounded-xl p-6 shadow-xl w-full max-w-sm mx-auto text-gray-800">
-        <h2 className="text-xl font-bold mb-4 text-center">
-          Schedule FREE 1‑1 Consultation with an Expert
-        </h2>
+              <h1 className="text-3xl md:text-5xl font-bold">{"India's Premium IPMAT Coaching"}</h1>
+              <p className="text-lg text-purple-100">Join now to grab the opportunity to learn from our experts</p>
 
-        {/* Progress Bar */}
-        <div className="mb-4">
-          <div className="bg-gray-200 rounded-full h-2 mb-1">
-            <div
-              className="bg-[#833589] h-2 rounded-full transition-all duration-300 flex items-center justify-end pr-1"
-              style={{ width: `${formProgress}%` }}
-            >
-              {formProgress > 0 && (
-                <span className="text-[10px] text-white font-semibold">
-                  {formProgress === 100 ? "Done" : `${formProgress}%`}
-                </span>
-              )}
-            </div>
-          </div>
-          <p className="text-xs text-gray-600 text-center">Form Progress: {formProgress}%</p>
-        </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <input
-            className="w-full h-10 px-3 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589]"
-            placeholder="Full Name"
-            value={formData.fullname}
-            onChange={(e) => setFormData({ ...formData, fullname: e.target.value })}
-          />
-          <input
-            type="email"
-            className={`w-full h-10 px-3 border rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589] ${
-              formData.email && !validateEmail(formData.email) ? "border-red-500" : "border-gray-300"
-            }`}
-            placeholder="Email "
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          />
-          <input
-            className={`w-full h-10 px-3 border rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589] ${
-              formData.phone && !validatePhone(formData.phone) ? "border-red-500" : "border-gray-300"
-            }`}
-            placeholder="Phone"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          />
-          <input
-            className="w-full h-10 px-3 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589]"
-            placeholder="City"
-            value={formData.city}
-            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-          />
-
-          {formProgress < 100 && (
-            <p className="text-xs text-red-500 text-center">Please fill all the fields</p>
-          )}
-
-          <button
-            type="submit"
-            className="w-full h-10 bg-[#833589] hover:bg-[#6b2a70] text-white font-semibold rounded-md text-sm transition-transform hover:scale-105"
-          >
-            SUBMIT
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-      {/* Enhanced Full-Width Results Slider */}
-      <section className="py-0 bg-gray-50">
-  <div className="text-center py-16">
-    <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Our Promising Results</h2>
-    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-      Celebrating exceptional achievements and success stories of our students across premier institutions
-    </p>
-  </div>
-
-  <div className="w-full">
-    <div className="relative bg-white shadow-2xl overflow-hidden">
-      {/* Main Slider */}
-      <div className="relative h-[400px] md:h-[500px] lg:h-[550px]">
-        {resultSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              currentSlide === index
-                ? "opacity-100 translate-x-0"
-                : index < currentSlide
-                ? "opacity-0 -translate-x-full"
-                : "opacity-0 translate-x-full"
-            }`}
-          >
-            <div className="w-full h-full relative">
-              <img
-                src={slide.image || "/placeholder.svg"}
-                alt={slide.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-
-              {/* Text Overlay */}
-              <div className="absolute bottom-6 left-4 right-4 text-center md:left-8 md:right-8">
-                <h3 className="text-2xl md:text-4xl font-bold text-white mb-2 drop-shadow-lg">{slide.title}</h3>
-                <p className="text-base md:text-xl text-white/90 drop-shadow-md">{slide.subtitle}</p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                <h3 className="text-xl font-bold text-center">
+                  <span className="text-[#E79800]">✨</span> {features[currentFeature]}
+                </h3>
               </div>
 
-              {/* Badge */}
-              <div className="absolute bottom-6 left-4 md:left-8 bg-[#833589]/90 backdrop-blur-sm rounded-xl p-3 md:p-4 text-white text-sm md:text-base">
-                <div className="font-bold text-lg md:text-2xl">{String(currentSlide + 1).padStart(2, "0")}</div>
-                <div className="text-xs opacity-80">of {String(resultSlides.length).padStart(2, "0")}</div>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        {/* Navigation Arrows */}
-        <div className="absolute inset-y-0 left-0 flex items-center z-10">
-          <button
-            onClick={prevSlide}
-            className="ml-4 md:ml-6 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 md:p-4 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
-          >
-            <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="absolute inset-y-0 right-0 flex items-center z-10">
-          <button
-            onClick={nextSlide}
-            className="mr-4 md:mr-6 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 md:p-4 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
-          >
-            <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Bottom Navigation */}
-      <div className="bg-white p-6 md:p-8 border-t">
-        <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
-          {/* Dots */}
-          <div className="flex space-x-3">
-            {resultSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3.5 h-3.5 md:w-4 md:h-4 rounded-full transition-all duration-300 ${
-                  currentSlide === index
-                    ? "bg-[#833589] scale-125 shadow-lg"
-                    : "bg-gray-300 hover:bg-[#E79800] hover:scale-110"
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Labels */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
-            {resultSlides.map((slide, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  currentSlide === index
-                    ? "bg-[#833589] text-white shadow-lg"
-                    : "bg-gray-100 text-gray-600 hover:bg-[#E79800] hover:text-white"
-                }`}
-              >
-                {slide.title.split(" ").slice(0, 2).join(" ")}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-      <div className = "container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-      {/* Student Testimonials Video */}
-      <section className="py-10 ">
-        <div className="w-full">
-    <img
-      src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751011010/IPMC_BANNER_12_ebilrk.jpg"
-      alt="IPMC Banner"
-      className="w-full h-auto object-cover rounded-b-2xl shadow-md"
-    />
-  </div>
-        <div className="container mx-auto py-10 px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">Words by: Our Students</h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Listen what our students have to say about us. Our students are thrilled with the classes that we offer.
-                They consistently express their satisfaction with the quality of the instruction, the engaging
-                curriculum, and the supportive learning environment. They appreciate the individualized attention that
-                they receive from our dedicated teachers, and they are making steady progress in their studies.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="bg-[#833589] rounded-2xl p-2 shadow-2xl">
-                <iframe
-                  className="w-full h-64 md:h-80 rounded-xl"
-                  src="https://www.youtube.com/embed/GguKjh6un0U?si=QpSuGjUyZNJrtbCb"
-                  title="Student Testimonials - IPM Careers"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mentors Section */}
-      <section id="mentors" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Know: Your Mentors</h2>
-            <p className="text-xl text-gray-600">Learn from the best IIM Alumni</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {mentors.map((mentor, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="relative h-48 bg-[#833589]">
-                  <div className="absolute inset-0 bg-[#833589]/20"></div>
-                  <img
-                    src={mentor.image || "/placeholder.svg"}
-                    alt={mentor.name}
-                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-white object-cover"
-                  />
+              <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-[#E79800]">{studentsEnrolled.toLocaleString()}</div>
+                  <div className="text-sm text-purple-200">Students Enrolled</div>
                 </div>
-                <div className="pt-20 pb-6 px-6 text-center">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">{mentor.name}</h3>
-                  <p className="text-[#833589] font-semibold mb-1">{mentor.role}</p>
-                  {mentor.role2 && <p className="text-gray-600 text-sm">{mentor.role2}</p>}
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-[#E79800]">{(studentsEnrolled * 2).toLocaleString()}</div>
+                  <div className="text-sm text-purple-200">Classes Completed</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-[#E79800]">{(studentsEnrolled * 33).toLocaleString()}</div>
+                  <div className="text-sm text-purple-200">Hours Taught</div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Why Choose IPM Careers */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Why choose: IPM Careers?</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover what makes us the preferred choice for thousands of IPMAT aspirants across India
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {testimonials.map((item, index) => (
-              <div
-                key={index}
-                className="group relative bg-white rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-[#E79800]/30 transform hover:-translate-y-3"
-              >
-                {/* Background Pattern */}
-                <div className="absolute inset-0 bg-[#833589]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Icon Container */}
-                  <div className="w-20 h-20 mx-auto mb-6 bg-[#833589]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#833589] transition-colors duration-500">
-                    <span className="text-4xl group-hover:scale-110 transition-transform duration-500">
-                      {item.icon}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-[#833589] transition-colors duration-300">
-                    {item.heading}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
-                    {item.description}
-                  </p>
-
-                  {/* Decorative Element */}
-                  <div className="absolute top-4 right-4 w-2 h-2 bg-[#E79800]/30 rounded-full group-hover:bg-[#E79800] transition-colors duration-500"></div>
-                </div>
-
-                {/* Hover Effect Border */}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#E79800]/30 transition-colors duration-500"></div>
-              </div>
-            ))}
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-16">
-            <div className="inline-flex items-center space-x-2 bg-[#833589]/10 px-6 py-3 rounded-full">
-              <span className="text-[#833589] font-semibold">Ready to start your journey?</span>
-              <svg className="w-5 h-5 text-[#E79800]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Student Reviews */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Testimonials</h2>
-          </div>
+            {/* Right Column: Form */}
+            <div className="bg-white rounded-xl p-6 shadow-xl w-full max-w-sm mx-auto text-gray-800">
+              <h2 className="text-xl font-bold mb-4 text-center">Schedule FREE 1‑1 Consultation with an Expert</h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reviews.map((review, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="flex items-center space-x-4 mb-4">
-                  <img
-                    src={review.image || "/placeholder.svg"}
-                    alt={review.name}
-                    className="w-16 h-16 rounded-full object-cover"
-                  />
-                  <div>
-                    <h4 className="font-bold text-gray-800">{review.name}</h4>
-                    <p className="text-[#833589] text-sm">{review.college}</p>
+              {/* Progress Bar */}
+              <div className="mb-4">
+                <div className="bg-gray-200 rounded-full h-2 mb-1">
+                  <div
+                    className="bg-[#833589] h-2 rounded-full transition-all duration-300 flex items-center justify-end pr-1"
+                    style={{ width: `${formProgress}%` }}
+                  >
+                    {formProgress > 0 && (
+                      <span className="text-[10px] text-white font-semibold">
+                        {formProgress === 100 ? "Done" : `${formProgress}%`}
+                      </span>
+                    )}
                   </div>
                 </div>
-                <div>
-                  <h5 className="font-semibold text-gray-800 mb-2">{review.title}</h5>
-                  <p className="text-gray-600 mb-4">{review.review}</p>
-                </div>
-                <div className="flex text-[#E79800]">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                  ))}
-                </div>
+                <p className="text-xs text-gray-600 text-center">Form Progress: {formProgress}%</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
-          </div>
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <input
+                  className="w-full h-10 px-3 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589]"
+                  placeholder="Full Name"
+                  value={formData.fullname}
+                  onChange={(e) => setFormData({ ...formData, fullname: e.target.value })}
+                />
+                <input
+                  type="email"
+                  className={`w-full h-10 px-3 border rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589] ${
+                    formData.email && !validateEmail(formData.email) ? "border-red-500" : "border-gray-300"
+                  }`}
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
+                <input
+                  className={`w-full h-10 px-3 border rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589] ${
+                    formData.phone && !validatePhone(formData.phone) ? "border-red-500" : "border-gray-300"
+                  }`}
+                  placeholder="Phone"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                />
+                <input
+                  className="w-full h-10 px-3 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589]"
+                  placeholder="City"
+                  value={formData.city}
+                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                />
 
-          <div className="max-w-3xl mx-auto space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="border border-gray-200 rounded-lg">
+                {formProgress < 100 && <p className="text-xs text-red-500 text-center">Please fill all the fields</p>}
+
                 <button
-                  className="w-full text-left p-6 font-semibold text-gray-800 hover:bg-gray-50 flex justify-between items-center"
-                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  type="submit"
+                  className="w-full h-10 bg-[#833589] hover:bg-[#6b2a70] text-white font-semibold rounded-md text-sm transition-transform hover:scale-105"
                 >
-                  {faq.question}
+                  SUBMIT
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Enhanced Responsive Results Slider */}
+      <section className="py-0 bg-gray-50">
+        <div className="text-center py-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Our Promising Results</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Celebrating exceptional achievements and success stories of our students across premier institutions
+          </p>
+        </div>
+
+        {/* Desktop/Large Screen Slider */}
+        <div className="hidden lg:block w-full">
+          <div className="relative bg-white shadow-2xl overflow-hidden max-w-6xl mx-auto rounded-2xl">
+            <div className="relative h-[500px]">
+              {resultSlides.map((slide, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                    currentSlide === index
+                      ? "opacity-100 translate-x-0"
+                      : index < currentSlide
+                        ? "opacity-0 -translate-x-full"
+                        : "opacity-0 translate-x-full"
+                  }`}
+                >
+                  <div className="w-full h-full relative">
+                    <img
+                      src={slide.image || "/placeholder.svg"}
+                      alt={slide.title}
+                      className="w-full h-full object-contain bg-gray-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+
+                    <div className="absolute bottom-6 left-8 right-8 text-center">
+                      <h3 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">{slide.title}</h3>
+                      <p className="text-xl text-white/90 drop-shadow-md">{slide.subtitle}</p>
+                    </div>
+
+                    <div className="absolute bottom-6 left-8 bg-[#833589]/90 backdrop-blur-sm rounded-xl p-4 text-white">
+                      <div className="font-bold text-2xl">{String(currentSlide + 1).padStart(2, "0")}</div>
+                      <div className="text-xs opacity-80">of {String(resultSlides.length).padStart(2, "0")}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <div className="absolute inset-y-0 left-0 flex items-center z-10">
+                <button
+                  onClick={prevSlide}
+                  className="ml-6 bg-white/95 hover:bg-white text-[#833589] rounded-full p-4 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
+                >
                   <svg
-                    className={`w-5 h-5 transform transition-transform text-[#833589] ${openFaq === index ? "rotate-180" : ""}`}
+                    className="w-6 h-6 group-hover:scale-110 transition-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
-                {openFaq === index && <div className="px-6 pb-6 text-gray-600">{faq.answer}</div>}
               </div>
-            ))}
+
+              <div className="absolute inset-y-0 right-0 flex items-center z-10">
+                <button
+                  onClick={nextSlide}
+                  className="mr-6 bg-white/95 hover:bg-white text-[#833589] rounded-full p-4 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
+                >
+                  <svg
+                    className="w-6 h-6 group-hover:scale-110 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-white p-8 border-t">
+              <div className="flex justify-center items-center space-x-8">
+                <div className="flex space-x-3">
+                  {resultSlides.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                        currentSlide === index
+                          ? "bg-[#833589] scale-125 shadow-lg"
+                          : "bg-gray-300 hover:bg-[#E79800] hover:scale-110"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <div className="flex gap-3">
+                  {resultSlides.map((slide, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                        currentSlide === index
+                          ? "bg-[#833589] text-white shadow-lg"
+                          : "bg-gray-100 text-gray-600 hover:bg-[#E79800] hover:text-white"
+                      }`}
+                    >
+                      {slide.title.split(" ").slice(0, 2).join(" ")}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* Why Join IPMAT Coaching */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Why you should join a dedicated IPMAT Coaching?</h2>
-          </div>
+        {/* Mobile/Tablet Slider */}
+        <div className="lg:hidden w-full px-4">
+          <div className="relative bg-white shadow-2xl overflow-hidden rounded-2xl">
+            <div className="relative h-[350px] sm:h-[400px]">
+              {mobileResultSlides.map((slide, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                    currentMobileSlide === index
+                      ? "opacity-100 translate-x-0"
+                      : index < currentMobileSlide
+                        ? "opacity-0 -translate-x-full"
+                        : "opacity-0 translate-x-full"
+                  }`}
+                >
+                  <div className="w-full h-full relative">
+                    <img
+                      src={slide.image || "/placeholder.svg"}
+                      alt={slide.title}
+                      className="w-full h-full object-contain bg-gray-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
 
-          <div className="max-w-4xl mx-auto">
-            <p className="text-lg text-gray-700 mb-8 text-center">
-              That's a great decision if you're an IPMAT aspirant. Joining a dedicated IPMAT coaching program can
-              provide you with structured preparation, expert guidance, and a competitive edge in your preparation for
-              the IPMAT (Integrated Program in Management Aptitude Test).
-            </p>
+                    <div className="absolute bottom-4 left-4 right-4 text-center">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 drop-shadow-lg">{slide.title}</h3>
+                      <p className="text-sm sm:text-base text-white/90 drop-shadow-md">{slide.subtitle}</p>
+                    </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-800 mb-2">Research Coaching Institutes</h4>
-                    <p className="text-gray-600">
-                      Look for coaching institutes that offer specialized courses for IPMAT with proven track records.
-                    </p>
+                    <div className="absolute bottom-4 left-4 bg-[#833589]/90 backdrop-blur-sm rounded-lg p-2 text-white text-sm">
+                      <div className="font-bold">{String(currentMobileSlide + 1).padStart(2, "0")}</div>
+                      <div className="text-xs opacity-80">of {String(mobileResultSlides.length).padStart(2, "0")}</div>
+                    </div>
                   </div>
                 </div>
+              ))}
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-800 mb-2">Expert Faculty</h4>
-                    <p className="text-gray-600">
-                      Ensure experienced and qualified faculty who can guide you through the IPMAT syllabus.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-800 mb-2">Comprehensive Study Material</h4>
-                    <p className="text-gray-600">Good study material is crucial for your preparation and success.</p>
-                  </div>
-                </div>
+              <div className="absolute inset-y-0 left-0 flex items-center z-10">
+                <button
+                  onClick={prevMobileSlide}
+                  className="ml-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
               </div>
 
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-800 mb-2">Regular Mock Tests</h4>
-                    <p className="text-gray-600">
-                      Frequent mock tests and practice papers are essential for IPMAT preparation.
-                    </p>
-                  </div>
-                </div>
+              <div className="absolute inset-y-0 right-0 flex items-center z-10">
+                <button
+                  onClick={nextMobileSlide}
+                  className="mr-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-800 mb-2">Personalized Attention</h4>
-                    <p className="text-gray-600">
-                      Smaller batch sizes often mean more personalized attention and better results.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-800 mb-2">Flexible Learning</h4>
-                    <p className="text-gray-600">
-                      Choose between online and offline classes based on your preferences.
-                    </p>
-                  </div>
+            <div className="bg-white p-4 border-t">
+              <div className="flex justify-center items-center space-x-4">
+                <div className="flex space-x-2">
+                  {mobileResultSlides.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentMobileSlide(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        currentMobileSlide === index ? "bg-[#833589] scale-125" : "bg-gray-300 hover:bg-[#E79800]"
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-    </div>
+
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Student Testimonials Video */}
+        <section className="py-10">
+          <div className="w-full">
+            <img
+              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751011010/IPMC_BANNER_12_ebilrk.jpg"
+              alt="IPMC Banner"
+              className="w-full h-auto object-cover rounded-b-2xl shadow-md"
+            />
+          </div>
+          <div className="container mx-auto py-10 px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-4xl font-bold text-gray-800 mb-6">Words by: Our Students</h2>
+                <p className="text-lg text-gray-600 mb-8">
+                  Listen what our students have to say about us. Our students are thrilled with the classes that we
+                  offer. They consistently express their satisfaction with the quality of the instruction, the engaging
+                  curriculum, and the supportive learning environment. They appreciate the individualized attention that
+                  they receive from our dedicated teachers, and they are making steady progress in their studies.
+                </p>
+              </div>
+              <div className="relative">
+                <div className="bg-[#833589] rounded-2xl p-2 shadow-2xl">
+                  <iframe
+                    className="w-full h-64 md:h-80 rounded-xl"
+                    src="https://www.youtube.com/embed/GguKjh6un0U?si=QpSuGjUyZNJrtbCb"
+                    title="Student Testimonials - IPM Careers"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Enhanced Student Testimonials Slider */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Success Stories</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Hear from our successful students who achieved their IIM dreams with IPM Careers
+              </p>
+            </div>
+
+            <div className="relative max-w-4xl mx-auto">
+              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                <div className="relative h-[400px] sm:h-[450px]">
+                  {studentTestimonials.map((testimonial, index) => (
+                    <div
+                      key={index}
+                      className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                        currentTestimonial === index
+                          ? "opacity-100 translate-x-0"
+                          : index < currentTestimonial
+                            ? "opacity-0 -translate-x-full"
+                            : "opacity-0 translate-x-full"
+                      }`}
+                    >
+                      <div className="h-full flex flex-col justify-center p-8 sm:p-12 text-center">
+                        {/* Student Image */}
+                        <div className="mb-6">
+                          <img
+                            src={testimonial.image || "/placeholder.svg"}
+                            alt={testimonial.name}
+                            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto object-cover border-4 border-[#833589]/20"
+                          />
+                        </div>
+
+                        {/* Student Info */}
+                        <div className="mb-6">
+                          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">{testimonial.name}</h3>
+                          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-[#833589] font-semibold">
+                            <span className="bg-[#833589]/10 px-3 py-1 rounded-full text-sm">
+                              {testimonial.college}
+                            </span>
+                            <span className="bg-[#E79800]/10 px-3 py-1 rounded-full text-sm text-[#E79800]">
+                              {testimonial.rank}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Review */}
+                        <div className="mb-6">
+                          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed italic max-w-2xl mx-auto">
+                            {`"${testimonial.review}"`}
+                          </p>
+                        </div>
+
+                        {/* Rating */}
+                        <div className="flex justify-center space-x-1">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <svg key={i} className="w-6 h-6 text-[#E79800] fill-current" viewBox="0 0 24 24">
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                          ))}
+                        </div>
+
+                        {/* Slide Counter */}
+                        <div className="absolute top-6 right-6 bg-[#833589]/10 backdrop-blur-sm rounded-xl p-3 text-[#833589]">
+                          <div className="font-bold text-lg">{String(currentTestimonial + 1).padStart(2, "0")}</div>
+                          <div className="text-xs opacity-70">
+                            of {String(studentTestimonials.length).padStart(2, "0")}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* Navigation Arrows */}
+                  <div className="absolute inset-y-0 left-0 flex items-center z-10">
+                    <button
+                      onClick={prevTestimonial}
+                      className="ml-4 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
+                    >
+                      <svg
+                        className="w-5 h-5 group-hover:scale-110 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div className="absolute inset-y-0 right-0 flex items-center z-10">
+                    <button
+                      onClick={nextTestimonial}
+                      className="mr-4 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
+                    >
+                      <svg
+                        className="w-5 h-5 group-hover:scale-110 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Bottom Navigation */}
+                <div className="bg-gray-50 p-6 border-t">
+                  <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8">
+                    {/* Dots */}
+                    <div className="flex space-x-2">
+                      {studentTestimonials.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentTestimonial(index)}
+                          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            currentTestimonial === index
+                              ? "bg-[#833589] scale-125 shadow-lg"
+                              : "bg-gray-300 hover:bg-[#E79800] hover:scale-110"
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="w-32 bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-[#833589] h-2 rounded-full transition-all duration-1000"
+                        style={{ width: `${((currentTestimonial + 1) / studentTestimonials.length) * 100}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mentors Section */}
+        <section id="mentors" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">Know: Your Mentors</h2>
+              <p className="text-xl text-gray-600">Learn from the best IIM Alumni</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {mentors.map((mentor, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="relative h-48 bg-[#833589]">
+                    <div className="absolute inset-0 bg-[#833589]/20"></div>
+                    <img
+                      src={mentor.image || "/placeholder.svg"}
+                      alt={mentor.name}
+                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-white object-cover"
+                    />
+                  </div>
+                  <div className="pt-20 pb-6 px-6 text-center">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">{mentor.name}</h3>
+                    <p className="text-[#833589] font-semibold mb-1">{mentor.role}</p>
+                    {mentor.role2 && <p className="text-gray-600 text-sm">{mentor.role2}</p>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Enhanced Why Choose IPM Careers */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Why choose: IPM Careers?</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Discover what makes us the preferred choice for thousands of IPMAT aspirants across India
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+              {testimonials.map((item, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-white rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-500 border-2 border-gray-100 hover:border-[#E79800]/30 transform hover:-translate-y-3"
+                >
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 bg-[#833589]/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Icon Container */}
+                    <div className="w-20 h-20 mx-auto mb-6 bg-[#833589]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#833589] transition-colors duration-500">
+                      <span className="text-4xl group-hover:scale-110 transition-transform duration-500">
+                        {item.icon}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-[#833589] transition-colors duration-300">
+                      {item.heading}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                      {item.description}
+                    </p>
+
+                    {/* Decorative Element */}
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-[#E79800]/30 rounded-full group-hover:bg-[#E79800] transition-colors duration-500"></div>
+                  </div>
+
+                  {/* Hover Effect Border */}
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#E79800]/30 transition-colors duration-500"></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Call to Action */}
+            <div className="text-center mt-16">
+              <div className="inline-flex items-center space-x-2 bg-[#833589]/10 px-6 py-3 rounded-full">
+                <span className="text-[#833589] font-semibold">Ready to start your journey?</span>
+                <svg className="w-5 h-5 text-[#E79800]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Student Reviews */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">Testimonials</h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {reviews.map((review, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="flex items-center space-x-4 mb-4">
+                    <img
+                      src={review.image || "/placeholder.svg"}
+                      alt={review.name}
+                      className="w-16 h-16 rounded-full object-cover"
+                    />
+                    <div>
+                      <h4 className="font-bold text-gray-800">{review.name}</h4>
+                      <p className="text-[#833589] text-sm">{review.college}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <h5 className="font-semibold text-gray-800 mb-2">{review.title}</h5>
+                    <p className="text-gray-600 mb-4">{review.review}</p>
+                  </div>
+                  <div className="flex text-[#E79800]">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+            </div>
+
+            <div className="max-w-3xl mx-auto space-y-4">
+              {faqs.map((faq, index) => (
+                <div key={index} className="border border-gray-200 rounded-lg">
+                  <button
+                    className="w-full text-left p-6 font-semibold text-gray-800 hover:bg-gray-50 flex justify-between items-center"
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  >
+                    {faq.question}
+                    <svg
+                      className={`w-5 h-5 transform transition-transform text-[#833589] ${openFaq === index ? "rotate-180" : ""}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {openFaq === index && <div className="px-6 pb-6 text-gray-600">{faq.answer}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Join IPMAT Coaching */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4">Why you should join a dedicated IPMAT Coaching?</h2>
+            </div>
+
+            <div className="max-w-4xl mx-auto">
+              <p className="text-lg text-gray-700 mb-8 text-center">
+                {
+                  "That's a great decision if you're an IPMAT aspirant. Joining a dedicated IPMAT coaching program can provide you with structured preparation, expert guidance, and a competitive edge in your preparation for the IPMAT (Integrated Program in Management Aptitude Test)."
+                }
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Research Coaching Institutes</h4>
+                      <p className="text-gray-600">
+                        Look for coaching institutes that offer specialized courses for IPMAT with proven track records.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Expert Faculty</h4>
+                      <p className="text-gray-600">
+                        Ensure experienced and qualified faculty who can guide you through the IPMAT syllabus.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Comprehensive Study Material</h4>
+                      <p className="text-gray-600">Good study material is crucial for your preparation and success.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Regular Mock Tests</h4>
+                      <p className="text-gray-600">
+                        Frequent mock tests and practice papers are essential for IPMAT preparation.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Personalized Attention</h4>
+                      <p className="text-gray-600">
+                        Smaller batch sizes often mean more personalized attention and better results.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-8 h-8 bg-[#E79800] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">Flexible Learning</h4>
+                      <p className="text-gray-600">
+                        Choose between online and offline classes based on your preferences.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
       {/* Footer */}
       <footer className="bg-[#833589] text-white py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
-              India's Premium IPMAT Coaching <br />
+              {"India's Premium IPMAT Coaching"} <br />
               for True IPMAT Aspirants
             </h2>
             <a
