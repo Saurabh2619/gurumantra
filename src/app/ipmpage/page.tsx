@@ -651,10 +651,17 @@ export default function IPMCareersLanding() {
 </section>
 
 
-
+      <div className = "container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       {/* Student Testimonials Video */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-10 ">
+        <div className="w-full">
+    <img
+      src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751011010/IPMC_BANNER_12_ebilrk.jpg"
+      alt="IPMC Banner"
+      className="w-full h-auto object-cover rounded-b-2xl shadow-md"
+    />
+  </div>
+        <div className="container mx-auto py-10 px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Words by: Our Students</h2>
@@ -950,7 +957,7 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       </section>
-
+    </div>
       {/* Footer */}
       <footer className="bg-[#833589] text-white py-16">
         <div className="container mx-auto px-4">
