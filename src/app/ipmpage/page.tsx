@@ -1344,19 +1344,19 @@ export default function EnhancedIIMRoadmap() {
   }, [animationComplete])
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
+    <main className="min-h-screen bg-white p-6">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="text-sm font-bold text-slate-600 tracking-wider mb-2">IPM CAREERS</div>
+        <div className="text-sm font-bold text-gray-600 tracking-wider mb-2">IPM CAREERS</div>
         <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-          <span className="text-slate-800">Your Journey from </span>
-          <span className="text-blue-600">Class 12 to IIMs</span>
+          <span className="text-gray-800">Your Journey from </span>
+          <span className="text-[#833589]">Class 12 to IIMs</span>
           <br />
-          <span className="text-slate-800">Starts Here!</span>
+          <span className="text-gray-800">Starts Here!</span>
         </h1>
 
         {/* Banner */}
-        <div className="inline-block bg-red-500 text-white px-6 py-3 rounded-lg font-semibold shadow-lg mb-8">
+        <div className="inline-block bg-[#E79800] text-white px-6 py-3 rounded-lg font-semibold shadow-lg mb-8">
           Board the IPM Careers Express to IIM Indore, Rohtak & Ranchi
         </div>
       </div>
@@ -1367,18 +1367,14 @@ export default function EnhancedIIMRoadmap() {
         <div className="relative h-32">
           {/* Cross-ties (sleepers) */}
           <div className="absolute top-1/2 left-0 w-full flex justify-between items-center">
-            {Array.from({ length: 25 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-1 h-8 bg-amber-800 rounded-sm transform -translate-y-1/2"
-                style={{ opacity: 0.7 }}
-              />
+            {Array.from({ length: 30 }).map((_, i) => (
+              <div key={i} className="w-1.5 h-10 bg-amber-900 rounded-sm transform -translate-y-1/2" />
             ))}
           </div>
 
           {/* Rails */}
-          <div className="absolute top-1/2 left-0 w-full h-2 bg-gradient-to-r from-slate-400 via-slate-500 to-slate-400 rounded-full transform -translate-y-3" />
-          <div className="absolute top-1/2 left-0 w-full h-2 bg-gradient-to-r from-slate-400 via-slate-500 to-slate-400 rounded-full transform translate-y-1" />
+          <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-600 rounded-full transform -translate-y-4 shadow-sm" />
+          <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-600 rounded-full transform translate-y-0 shadow-sm" />
         </div>
 
         {/* Stations */}
@@ -1387,38 +1383,37 @@ export default function EnhancedIIMRoadmap() {
             {stations.map((station, index) => (
               <div key={index} className="flex flex-col items-center w-48">
                 {/* Connection pole */}
-                <div className="w-0.5 h-16 bg-slate-400 mb-2" />
+                <div className="w-1 h-16 bg-gray-500 mb-2 rounded-full" />
 
                 {/* Station marker */}
                 <motion.div
-                  className="w-4 h-4 rounded-full mb-3 border-2 border-white shadow-md"
+                  className="w-5 h-5 rounded-full mb-3 border-3 border-white shadow-lg"
                   style={{
-                    backgroundColor: index <= currentStation ? "#3b82f6" : "#e2e8f0",
+                    backgroundColor: index <= currentStation ? "#833589" : "#e5e7eb",
                   }}
                   animate={{
-                    scale: index === currentStation ? 1.3 : 1,
+                    scale: index === currentStation ? 1.4 : 1,
                   }}
                   transition={{ duration: 0.3 }}
                 />
 
                 {/* Station info box */}
                 <motion.div
-                  className="bg-white p-4 rounded-xl shadow-lg border border-slate-200 text-sm max-w-44"
+                  className="bg-white p-4 rounded-xl shadow-lg border-2 text-sm max-w-44"
+                  style={{
+                    borderColor: index === currentStation ? "#833589" : "#e5e7eb",
+                  }}
                   animate={{
                     scale: index === currentStation ? 1.05 : 1,
-                    boxShadow:
-                      index === currentStation
-                        ? "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                        : "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="font-bold text-slate-800 whitespace-pre-line text-center mb-2">{station.title}</div>
+                  <div className="font-bold text-gray-800 whitespace-pre-line text-center mb-2">{station.title}</div>
                   {station.points.length > 0 && (
-                    <ul className="text-left text-slate-600 space-y-1">
+                    <ul className="text-left text-gray-600 space-y-1">
                       {station.points.map((point, i) => (
                         <li key={i} className="flex items-start">
-                          <span className="text-blue-500 mr-2">•</span>
+                          <span className="text-[#E79800] mr-2 font-bold">•</span>
                           <span className="text-xs">{point}</span>
                         </li>
                       ))}
@@ -1430,60 +1425,230 @@ export default function EnhancedIIMRoadmap() {
           </div>
         </div>
 
-        {/* Enhanced Train */}
+        {/* Professional Train */}
         <motion.div
-          className="absolute top-20 w-32 h-16"
+          className="absolute top-16 w-40 h-20"
           animate={{
-            left: `${(currentStation / (stations.length - 1)) * (100 - 8)}%`,
+            left: `${(currentStation / (stations.length - 1)) * (100 - 10)}%`,
+            y: [0, -2, 0, -1, 0], // Subtle bouncing motion
           }}
-          transition={{ duration: 2, ease: "easeInOut" }}
+          transition={{
+            left: {
+              duration: 2.5,
+              ease: [0.25, 0.46, 0.45, 0.94], // Custom cubic-bezier for realistic acceleration
+            },
+            y: {
+              duration: 0.8,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            },
+          }}
         >
-          {/* Train Engine */}
-          <div className="relative">
-            {/* Main engine body */}
-            <div className="w-20 h-12 bg-gradient-to-r from-slate-700 to-slate-800 rounded-lg relative shadow-lg">
-              {/* Engine front */}
-              <div className="absolute -left-2 top-1 w-4 h-10 bg-slate-600 rounded-l-lg" />
+          <motion.div
+            className="relative"
+            animate={{
+              rotate: currentStation < stations.length - 1 ? [0, 0.5, 0, -0.5, 0] : 0,
+            }}
+            transition={{
+              duration: 1.2,
+              repeat: currentStation < stations.length - 1 ? Number.POSITIVE_INFINITY : 0,
+              ease: "easeInOut",
+            }}
+          >
+            {/* Train Engine */}
+            <div className="relative w-24 h-16">
+              {/* Engine Base */}
+              <div className="absolute bottom-0 left-0 w-24 h-12 bg-[#833589] rounded-lg shadow-lg">
+                {/* Engine Front Nose */}
+                <div className="absolute -left-3 top-2 w-6 h-8 bg-[#833589] rounded-l-full border-r-2 border-[#E79800]" />
+
+                {/* Cab Windows */}
+                <div className="absolute top-1 left-2 w-4 h-4 bg-blue-100 rounded border-2 border-[#E79800]" />
+                <div className="absolute top-1 left-8 w-4 h-4 bg-blue-100 rounded border-2 border-[#E79800]" />
+
+                {/* Engine Details */}
+                <div className="absolute top-6 left-14 w-6 h-4 bg-[#E79800] rounded" />
+                <div className="absolute top-8 left-16 w-2 h-2 bg-white rounded-full" />
+              </div>
 
               {/* Chimney */}
-              <div className="absolute left-3 -top-3 w-3 h-4 bg-slate-800 rounded-t" />
+              <div className="absolute top-0 left-4 w-4 h-6 bg-[#833589] rounded-t-lg border-2 border-[#E79800]" />
 
-              {/* Windows */}
-              <div className="absolute top-2 left-6 w-3 h-3 bg-blue-200 rounded border border-slate-500" />
-              <div className="absolute top-2 left-11 w-3 h-3 bg-blue-200 rounded border border-slate-500" />
-
-              {/* Wheels */}
-              <div className="absolute -bottom-2 left-2 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
-              <div className="absolute -bottom-2 left-8 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
-              <div className="absolute -bottom-2 left-14 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
+              {/* Engine Wheels with Rotation */}
+              <motion.div
+                className="absolute -bottom-3 left-1 w-6 h-6 bg-gray-800 rounded-full border-3 border-[#E79800]"
+                animate={{
+                  rotate: currentStation < stations.length - 1 ? [0, 360] : 0,
+                }}
+                transition={{
+                  duration: 0.6,
+                  repeat: currentStation < stations.length - 1 ? Number.POSITIVE_INFINITY : 0,
+                  ease: "linear",
+                }}
+              >
+                <div className="absolute inset-1 bg-gray-600 rounded-full" />
+                <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-[#E79800] rounded-full transform -translate-x-1/2 -translate-y-1/2" />
+              </motion.div>
+              <motion.div
+                className="absolute -bottom-3 left-8 w-6 h-6 bg-gray-800 rounded-full border-3 border-[#E79800]"
+                animate={{
+                  rotate: currentStation < stations.length - 1 ? [0, 360] : 0,
+                }}
+                transition={{
+                  duration: 0.6,
+                  repeat: currentStation < stations.length - 1 ? Number.POSITIVE_INFINITY : 0,
+                  ease: "linear",
+                }}
+              >
+                <div className="absolute inset-1 bg-gray-600 rounded-full" />
+                <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-[#E79800] rounded-full transform -translate-x-1/2 -translate-y-1/2" />
+              </motion.div>
+              <motion.div
+                className="absolute -bottom-3 left-15 w-6 h-6 bg-gray-800 rounded-full border-3 border-[#E79800]"
+                animate={{
+                  rotate: currentStation < stations.length - 1 ? [0, 360] : 0,
+                }}
+                transition={{
+                  duration: 0.6,
+                  repeat: currentStation < stations.length - 1 ? Number.POSITIVE_INFINITY : 0,
+                  ease: "linear",
+                }}
+              >
+                <div className="absolute inset-1 bg-gray-600 rounded-full" />
+                <div className="absolute top-1/2 left-1/2 w-2 h-2 bg-[#E79800] rounded-full transform -translate-x-1/2 -translate-y-1/2" />
+              </motion.div>
             </div>
 
-            {/* Passenger Car */}
-            <div className="absolute left-20 top-0 w-24 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg shadow-lg">
-              {/* Car windows */}
-              <div className="absolute top-2 left-2 w-4 h-3 bg-blue-100 rounded border border-blue-800" />
-              <div className="absolute top-2 left-8 w-4 h-3 bg-blue-100 rounded border border-blue-800" />
-              <div className="absolute top-2 left-14 w-4 h-3 bg-blue-100 rounded border border-blue-800" />
+            {/* Passenger Cars */}
+            <div className="absolute left-24 top-2 w-32 h-14">
+              {/* First Car */}
+              <div className="absolute left-0 top-0 w-14 h-12 bg-blue-600 rounded-lg shadow-lg border-2 border-[#E79800]">
+                {/* Car Windows */}
+                <div className="absolute top-1 left-1 w-3 h-3 bg-blue-100 rounded border border-[#E79800]" />
+                <div className="absolute top-1 left-5 w-3 h-3 bg-blue-100 rounded border border-[#E79800]" />
+                <div className="absolute top-1 left-9 w-3 h-3 bg-blue-100 rounded border border-[#E79800]" />
 
-              {/* Car wheels */}
-              <div className="absolute -bottom-2 left-3 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
-              <div className="absolute -bottom-2 left-15 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
+                {/* Door */}
+                <div className="absolute top-5 left-6 w-2 h-6 bg-[#E79800] rounded-sm" />
+              </div>
+
+              {/* Second Car */}
+              <div className="absolute left-16 top-0 w-14 h-12 bg-blue-700 rounded-lg shadow-lg border-2 border-[#E79800]">
+                {/* Car Windows */}
+                <div className="absolute top-1 left-1 w-3 h-3 bg-blue-100 rounded border border-[#E79800]" />
+                <div className="absolute top-1 left-5 w-3 h-3 bg-blue-100 rounded border border-[#E79800]" />
+                <div className="absolute top-1 left-9 w-3 h-3 bg-blue-100 rounded border border-[#E79800]" />
+
+                {/* Door */}
+                <div className="absolute top-5 left-6 w-2 h-6 bg-[#E79800] rounded-sm" />
+              </div>
+
+              {/* Car Wheels with Rotation */}
+              <motion.div
+                className="absolute -bottom-3 left-2 w-5 h-5 bg-gray-800 rounded-full border-2 border-[#E79800]"
+                animate={{
+                  rotate: currentStation < stations.length - 1 ? [0, 360] : 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  repeat: currentStation < stations.length - 1 ? Number.POSITIVE_INFINITY : 0,
+                  ease: "linear",
+                }}
+              >
+                <div className="absolute inset-0.5 bg-gray-600 rounded-full" />
+              </motion.div>
+              <motion.div
+                className="absolute -bottom-3 left-9 w-5 h-5 bg-gray-800 rounded-full border-2 border-[#E79800]"
+                animate={{
+                  rotate: currentStation < stations.length - 1 ? [0, 360] : 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  repeat: currentStation < stations.length - 1 ? Number.POSITIVE_INFINITY : 0,
+                  ease: "linear",
+                }}
+              >
+                <div className="absolute inset-0.5 bg-gray-600 rounded-full" />
+              </motion.div>
+              <motion.div
+                className="absolute -bottom-3 left-18 w-5 h-5 bg-gray-800 rounded-full border-2 border-[#E79800]"
+                animate={{
+                  rotate: currentStation < stations.length - 1 ? [0, 360] : 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  repeat: currentStation < stations.length - 1 ? Number.POSITIVE_INFINITY : 0,
+                  ease: "linear",
+                }}
+              >
+                <div className="absolute inset-0.5 bg-gray-600 rounded-full" />
+              </motion.div>
+              <motion.div
+                className="absolute -bottom-3 left-25 w-5 h-5 bg-gray-800 rounded-full border-2 border-[#E79800]"
+                animate={{
+                  rotate: currentStation < stations.length - 1 ? [0, 360] : 0,
+                }}
+                transition={{
+                  duration: 0.5,
+                  repeat: currentStation < stations.length - 1 ? Number.POSITIVE_INFINITY : 0,
+                  ease: "linear",
+                }}
+              >
+                <div className="absolute inset-0.5 bg-gray-600 rounded-full" />
+              </motion.div>
             </div>
 
-            {/* Steam effect */}
+            {/* Enhanced Steam Animation */}
             <motion.div
-              className="absolute -top-6 left-3 w-2 h-4 bg-white rounded-full opacity-60"
+              className="absolute -top-8 left-4 flex flex-col items-center"
               animate={{
-                scaleY: [1, 1.5, 1],
-                opacity: [0.6, 0.3, 0.6],
+                opacity: currentStation < stations.length - 1 ? [0.8, 0.4, 0.8] : [0.8, 0.2, 0.8],
+                scale: currentStation < stations.length - 1 ? [1, 1.2, 1] : [1, 0.8, 1],
+                x: [0, 2, -1, 0],
               }}
               transition={{
-                duration: 1.5,
+                duration: currentStation < stations.length - 1 ? 1.5 : 3,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
-            />
-          </div>
+            >
+              <motion.div
+                className="w-3 h-6 bg-gray-300 rounded-full opacity-60"
+                animate={{
+                  scaleY: [1, 1.5, 1],
+                }}
+                transition={{
+                  duration: 1,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+              />
+              <motion.div
+                className="w-4 h-4 bg-gray-200 rounded-full opacity-40 -mt-2"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  x: [0, 3, -2, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+              />
+              <motion.div
+                className="w-5 h-3 bg-gray-100 rounded-full opacity-20 -mt-1"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  x: [0, 5, -3, 0],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -1492,12 +1657,12 @@ export default function EnhancedIIMRoadmap() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+          className="bg-[#833589] text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
         >
           Start Your Journey Today
         </motion.button>
 
-        <div className="mt-4 text-slate-600 font-medium">Join thousands of students on their path to IIM success</div>
+        <div className="mt-4 text-gray-600 font-medium">Join thousands of students on their path to IIM success</div>
       </div>
     </main>
   )
