@@ -1298,259 +1298,207 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Train, Star, Trophy, BookOpen, Users, Target } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-const steps = [
+const stations = [
   {
-    label: "Start Your Journey",
-    xPercent: 5,
-    yPercent: 5,
-    icon: Target,
-    description: "Begin your IIM preparation journey",
-    href: "/start-journey",
+    title: "Class 12\nBoard Exams",
+    points: ["Focus on academics", "Build your foundation", "Start early prep"],
   },
   {
-    label: "Master Fundamentals",
-    xPercent: 80,
-    yPercent: 20,
-    icon: BookOpen,
-    description: "Build strong foundation in QA, VA, DI & LR",
-    href: "/fundamentals",
+    title: "Take the Exams",
+    points: ["IPMAT Indore", "IPMAT Rohtak", "JIPMAT (IIM Ranchi)"],
   },
   {
-    label: "Practice Mock Tests",
-    xPercent: 10,
-    yPercent: 45,
-    icon: Trophy,
-    description: "Regular practice with CAT mock tests",
-    href: "/mock-tests",
+    title: "IIM Rohtak",
+    points: [],
   },
   {
-    label: "GD / PI Preparation",
-    xPercent: 80,
-    yPercent: 70,
-    icon: Users,
-    description: "Group Discussion & Personal Interview skills",
-    href: "/gd-pi-prep",
+    title: "IIM Ranchi",
+    points: [],
   },
   {
-    label: "IIM Success!",
-    xPercent: 5,
-    yPercent: 90,
-    icon: Star,
-    description: "Achieve your dream of getting into IIM",
-    href: "/success",
+    title: "IIM Indore",
+    points: ["5-Year Integrated Programme", "Top B-Schools", "Career Head Start!"],
   },
 ]
 
-export default function IIMRoadmapPage() {
-  const [hoveredStep, setHoveredStep] = useState<number | null>(null)
+export default function EnhancedIIMRoadmap() {
+  const [currentStation, setCurrentStation] = useState(0)
+  const [animationComplete, setAnimationComplete] = useState(false)
 
-  const leftKeyframes = steps.map((s) => `${s.xPercent}%`)
-  const topKeyframes = steps.map((s) => `${s.yPercent}%`)
+  useEffect(() => {
+    if (animationComplete) return
+
+    const interval = setInterval(() => {
+      setCurrentStation((prev) => {
+        if (prev >= stations.length - 1) {
+          setAnimationComplete(true)
+          return prev
+        }
+        return prev + 1
+      })
+    }, 2500)
+
+    return () => clearInterval(interval)
+  }, [animationComplete])
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center 
-      bg-gradient-to-br from-white via-[#fdf6ec] to-[#fff1db] dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950 p-4">
-      {/* ⬆️ Changed background gradient to beige-white for realistic tone */}
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
+      {/* Header */}
+      <div className="text-center mb-8">
+        <div className="text-sm font-bold text-slate-600 tracking-wider mb-2">IPM CAREERS</div>
+        <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+          <span className="text-slate-800">Your Journey from </span>
+          <span className="text-blue-600">Class 12 to IIMs</span>
+          <br />
+          <span className="text-slate-800">Starts Here!</span>
+        </h1>
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-[#833589]/20 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-20, 20],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 2,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
+        {/* Banner */}
+        <div className="inline-block bg-red-500 text-white px-6 py-3 rounded-lg font-semibold shadow-lg mb-8">
+          Board the IPM Careers Express to IIM Indore, Rohtak & Ranchi
+        </div>
       </div>
 
-      {/* Header with color split */}
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-16"
-      >
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          <span className="text-[#833589]">Your Journey</span>{" "}
-          <span className="text-[#E79800]">to IIM</span>
-        </h1>
-        {/* ⬆️ Dual-color header for visual balance */}
-        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
-          Follow this comprehensive roadmap to achieve your dream of getting into India's premier management institutes
-        </p>
-      </motion.div>
-
-      {/* Roadmap Card */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative max-w-[420px] w-full h-[520px] sm:max-w-[480px] md:max-w-[600px] md:h-[600px] bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-[#833589]/10"
-      >
-        {/* SVG Path */}
-        <svg
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          className="absolute inset-8 w-[calc(100%-4rem)] h-[calc(100%-4rem)]"
-        >
-          <motion.path
-            d="M5 5 L95 20 L10 45 L95 70 L5 95"
-            fill="none"
-            stroke="#833589"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeDasharray="8 4"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 2, delay: 0.5 }}
-            opacity="0.6"
-          />
-        </svg>
-
-        {/* Steps */}
-        {steps.map((step, index) => {
-          const IconComponent = step.icon
-          return (
-            <motion.div
-              key={step.label}
-              className="absolute -translate-x-1/2 -translate-y-1/2 group cursor-pointer"
-              style={{ left: `${step.xPercent}%`, top: `${step.yPercent}%` }}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 + index * 0.2 }}
-              onHoverStart={() => setHoveredStep(index)}
-              onHoverEnd={() => setHoveredStep(null)}
-              whileHover={{ scale: 1.15 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {/* Refined button with orange border and white base */}
-              <motion.div
-                className="bg-white hover:bg-[#f9f2e3] text-[#833589] px-4 py-2 rounded-full shadow-md flex items-center gap-2 text-sm font-semibold border border-[#E79800]/40 hover:shadow-lg"
-                whileHover={{
-                  boxShadow: "0 10px 25px rgba(131, 53, 137, 0.2)",
-                }}
-              >
-                <IconComponent size={16} />
-                {step.label}
-              </motion.div>
-
-              {/* Tooltip */}
-              {hoveredStep === index && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  className="absolute top-full mt-3 left-1/2 -translate-x-1/2 bg-[#833589] text-white text-xs px-4 py-3 rounded-xl shadow-xl whitespace-nowrap z-10 border border-[#E79800]/20"
-                >
-                  {step.description}
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#833589] rotate-45 border-l border-t border-[#E79800]/20" />
-                </motion.div>
-              )}
-
-              {/* Pulse effect on hover */}
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-[#E79800] opacity-0"
-                animate={{
-                  opacity: hoveredStep === index ? [0, 0.6, 0] : 0,
-                  scale: hoveredStep === index ? [1, 1.3, 1.5] : 1,
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: hoveredStep === index ? Number.POSITIVE_INFINITY : 0,
-                }}
+      {/* Railway Section */}
+      <div className="relative mt-16 w-full max-w-6xl mx-auto">
+        {/* Railway Track with Cross-ties */}
+        <div className="relative h-32">
+          {/* Cross-ties (sleepers) */}
+          <div className="absolute top-1/2 left-0 w-full flex justify-between items-center">
+            {Array.from({ length: 25 }).map((_, i) => (
+              <div
+                key={i}
+                className="w-1 h-8 bg-amber-800 rounded-sm transform -translate-y-1/2"
+                style={{ opacity: 0.7 }}
               />
-            </motion.div>
-          )
-        })}
+            ))}
+          </div>
 
-        {/* 🚆 Train with faster speed and window highlight */}
-        <motion.div
-          className="absolute w-16 h-12 -translate-x-1/2 -translate-y-1/2 z-20"
-          animate={{ left: leftKeyframes, top: topKeyframes }}
-          transition={{
-            duration: 8, // ⬅️ Previously 15; increased speed
-            ease: "easeInOut",
-          }}
-        >
-          <motion.div
-            animate={{ rotate: [0, 2, -2, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-full h-full bg-[#833589] rounded-lg flex items-center justify-center shadow-lg relative overflow-hidden border-2 border-[#E79800]"
-          >
-            <div className="absolute inset-1 bg-white/10 rounded-md" />
-            <Train className="w-8 h-8 text-white relative z-10" />
-            {/* Glassy orange windows */}
-            <div className="absolute top-1 left-2 w-2 h-2 bg-[#E79800]/90 rounded-sm backdrop-blur-sm shadow-inner" />
-            <div className="absolute top-1 right-2 w-2 h-2 bg-[#E79800]/90 rounded-sm backdrop-blur-sm shadow-inner" />
-          </motion.div>
-
-          {/* Steam Puff */}
-          <motion.div
-            className="absolute -top-3 left-1/2 w-8 h-6 -translate-x-1/2"
-            animate={{
-              opacity: [0.4, 0.1, 0.4],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <div className="w-full h-full bg-[#833589]/20 rounded-full blur-sm" />
-          </motion.div>
-        </motion.div>
-
-        {/* Step indicators */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-          {steps.map((_, index) => (
-            <motion.div
-              key={index}
-              className="w-2 h-2 rounded-full bg-[#833589]/30"
-              animate={{
-                backgroundColor: hoveredStep === index ? "#E79800" : "#833589",
-                scale: hoveredStep === index ? 1.3 : 1,
-              }}
-              transition={{ duration: 0.3 }}
-            />
-          ))}
+          {/* Rails */}
+          <div className="absolute top-1/2 left-0 w-full h-2 bg-gradient-to-r from-slate-400 via-slate-500 to-slate-400 rounded-full transform -translate-y-3" />
+          <div className="absolute top-1/2 left-0 w-full h-2 bg-gradient-to-r from-slate-400 via-slate-500 to-slate-400 rounded-full transform translate-y-1" />
         </div>
-      </motion.div>
 
-      {/* Footer CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1 }}
-        className="mt-12 max-w-2xl text-center"
-      >
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-          Follow this comprehensive roadmap – from mastering fundamentals to acing GD/PI – and get your ticket to{" "}
-          <span className="font-bold text-[#833589]">IIM Success</span>!
-        </p>
+        {/* Stations */}
+        <div className="absolute -top-8 left-0 w-full">
+          <div className="flex justify-between items-start relative">
+            {stations.map((station, index) => (
+              <div key={index} className="flex flex-col items-center w-48">
+                {/* Connection pole */}
+                <div className="w-0.5 h-16 bg-slate-400 mb-2" />
+
+                {/* Station marker */}
+                <motion.div
+                  className="w-4 h-4 rounded-full mb-3 border-2 border-white shadow-md"
+                  style={{
+                    backgroundColor: index <= currentStation ? "#3b82f6" : "#e2e8f0",
+                  }}
+                  animate={{
+                    scale: index === currentStation ? 1.3 : 1,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+
+                {/* Station info box */}
+                <motion.div
+                  className="bg-white p-4 rounded-xl shadow-lg border border-slate-200 text-sm max-w-44"
+                  animate={{
+                    scale: index === currentStation ? 1.05 : 1,
+                    boxShadow:
+                      index === currentStation
+                        ? "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                        : "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="font-bold text-slate-800 whitespace-pre-line text-center mb-2">{station.title}</div>
+                  {station.points.length > 0 && (
+                    <ul className="text-left text-slate-600 space-y-1">
+                      {station.points.map((point, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="text-blue-500 mr-2">•</span>
+                          <span className="text-xs">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Enhanced Train */}
+        <motion.div
+          className="absolute top-20 w-32 h-16"
+          animate={{
+            left: `${(currentStation / (stations.length - 1)) * (100 - 8)}%`,
+          }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+        >
+          {/* Train Engine */}
+          <div className="relative">
+            {/* Main engine body */}
+            <div className="w-20 h-12 bg-gradient-to-r from-slate-700 to-slate-800 rounded-lg relative shadow-lg">
+              {/* Engine front */}
+              <div className="absolute -left-2 top-1 w-4 h-10 bg-slate-600 rounded-l-lg" />
+
+              {/* Chimney */}
+              <div className="absolute left-3 -top-3 w-3 h-4 bg-slate-800 rounded-t" />
+
+              {/* Windows */}
+              <div className="absolute top-2 left-6 w-3 h-3 bg-blue-200 rounded border border-slate-500" />
+              <div className="absolute top-2 left-11 w-3 h-3 bg-blue-200 rounded border border-slate-500" />
+
+              {/* Wheels */}
+              <div className="absolute -bottom-2 left-2 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
+              <div className="absolute -bottom-2 left-8 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
+              <div className="absolute -bottom-2 left-14 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
+            </div>
+
+            {/* Passenger Car */}
+            <div className="absolute left-20 top-0 w-24 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg shadow-lg">
+              {/* Car windows */}
+              <div className="absolute top-2 left-2 w-4 h-3 bg-blue-100 rounded border border-blue-800" />
+              <div className="absolute top-2 left-8 w-4 h-3 bg-blue-100 rounded border border-blue-800" />
+              <div className="absolute top-2 left-14 w-4 h-3 bg-blue-100 rounded border border-blue-800" />
+
+              {/* Car wheels */}
+              <div className="absolute -bottom-2 left-3 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
+              <div className="absolute -bottom-2 left-15 w-4 h-4 bg-slate-900 rounded-full border-2 border-slate-600" />
+            </div>
+
+            {/* Steam effect */}
+            <motion.div
+              className="absolute -top-6 left-3 w-2 h-4 bg-white rounded-full opacity-60"
+              animate={{
+                scaleY: [1, 1.5, 1],
+                opacity: [0.6, 0.3, 0.6],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="mt-24 text-center">
         <motion.button
-          whileHover={{ scale: 1.05, backgroundColor: "#6b2a70" }}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[#833589] hover:shadow-lg text-white px-8 py-3 rounded-full font-semibold shadow-md transition-all duration-300 border-2 border-transparent hover:border-[#E79800]/30"
+          className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
         >
           Start Your Journey Today
         </motion.button>
-      </motion.div>
+
+        <div className="mt-4 text-slate-600 font-medium">Join thousands of students on their path to IIM success</div>
+      </div>
     </main>
   )
 }
