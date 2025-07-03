@@ -35,7 +35,6 @@ export default function IPMCareersLanding() {
     city: "",
     year: "",
   })
-
   const [studentsEnrolled, setStudentsEnrolled] = useState(5355)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentFeature, setCurrentFeature] = useState(0)
@@ -46,6 +45,7 @@ export default function IPMCareersLanding() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [currentMobileSlide, setCurrentMobileSlide] = useState(0)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [currentSuccessStory, setCurrentSuccessStory] = useState(0)
 
   // Roadmap animation states
   const [currentStation, setCurrentStation] = useState(0)
@@ -164,6 +164,116 @@ export default function IPMCareersLanding() {
     },
   ]
 
+  // New Success Stories Data - 6 cards with the provided image
+  const successStories = [
+    {
+      id: 1,
+      title: "Outstanding Achievement",
+      subtitle: "IIM Selection Success",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
+      description: "Exceptional performance in IPMAT 2024",
+    },
+    {
+      id: 2,
+      title: "Top Rank Achiever",
+      subtitle: "AIR 15 in IPMAT",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
+      description: "Secured top rank with dedicated preparation",
+    },
+    {
+      id: 3,
+      title: "Dream Fulfilled",
+      subtitle: "IIM Indore Selection",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
+      description: "From preparation to selection journey",
+    },
+    {
+      id: 4,
+      title: "Excellence Rewarded",
+      subtitle: "Multiple IIM Calls",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
+      description: "Received calls from top IIMs",
+    },
+    {
+      id: 5,
+      title: "Success Story",
+      subtitle: "IIM Rohtak Graduate",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
+      description: "Journey from aspirant to IIM student",
+    },
+    {
+      id: 6,
+      title: "Inspiring Journey",
+      subtitle: "Top Percentile Score",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
+      description: "Achieved 99+ percentile in IPMAT",
+    },
+  ]
+
+  // New Student Testimonials Data - 6 testimonials
+  const studentTestimonials = [
+    {
+      name: "Aarav Sharma",
+      college: "IIM Indore",
+      rank: "AIR 15",
+      review:
+        "IPM Careers transformed my preparation strategy. The personalized attention and expert guidance helped me achieve my dream rank.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+    {
+      name: "Sneha Patel",
+      college: "IIM Rohtak",
+      rank: "AIR 28",
+      review:
+        "The mock tests and study material were exceptional. Faculty members were always available for doubt clearing sessions.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+    {
+      name: "Karthik Reddy",
+      college: "IIM Indore",
+      rank: "AIR 42",
+      review:
+        "Best decision of my life! The structured approach and regular assessments kept me on track throughout my preparation.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+    {
+      name: "Ananya Singh",
+      college: "IIM Jammu",
+      rank: "AIR 67",
+      review:
+        "The AI-based test series helped identify my weak areas. The one-on-one mentorship was incredibly valuable.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+    {
+      name: "Rohit Kumar",
+      college: "IIM Ranchi",
+      rank: "AIR 89",
+      review:
+        "The faculty's dedication and comprehensive study material made all the difference in my IPMAT preparation journey.",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+    {
+      name: "Priya Gupta",
+      college: "IIM Indore",
+      rank: "AIR 95",
+      review:
+        "IPM Careers provided the perfect blend of theoretical knowledge and practical application. Highly recommended!",
+      image: "/placeholder.svg?height=80&width=80",
+      rating: 5,
+    },
+  ]
+
   const faqs = [
     {
       question: "How will this IPMAT preparation help me?",
@@ -197,6 +307,16 @@ export default function IPMCareersLanding() {
 
   // Desktop/Large Screen Results
   const resultSlides = [
+    {
+      title: "Our Top Performers",
+      subtitle: "Celebrating Academic Excellence",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751540467/78908_nw4fcf.jpg",
+      stats: [
+        { label: "Students Selected", value: "500+" },
+        { label: "Success Rate", value: "95%" },
+        { label: "Top Ranks", value: "50+" },
+      ],
+    },
     {
       title: "Our Outstanding Results",
       subtitle: "Celebrating Academic Excellence",
@@ -261,46 +381,6 @@ export default function IPMCareersLanding() {
     },
   ]
 
-  // Student Testimonials for Slider
-  const studentTestimonials = [
-    {
-      name: "Aarav Sharma",
-      college: "IIM Indore",
-      rank: "AIR 15",
-      review:
-        "IPM Careers transformed my preparation strategy. The personalized attention and expert guidance helped me achieve my dream rank.",
-      image: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-    },
-    {
-      name: "Sneha Patel",
-      college: "IIM Rohtak",
-      rank: "AIR 28",
-      review:
-        "The mock tests and study material were exceptional. Faculty members were always available for doubt clearing sessions.",
-      image: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-    },
-    {
-      name: "Karthik Reddy",
-      college: "IIM Indore",
-      rank: "AIR 42",
-      review:
-        "Best decision of my life! The structured approach and regular assessments kept me on track throughout my preparation.",
-      image: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-    },
-    {
-      name: "Ananya Singh",
-      college: "IIM Jammu",
-      rank: "AIR 67",
-      review:
-        "The AI-based test series helped identify my weak areas. The one-on-one mentorship was incredibly valuable.",
-      image: "/placeholder.svg?height=80&width=80",
-      rating: 5,
-    },
-  ]
-
   useEffect(() => {
     const interval = setInterval(() => {
       setStudentsEnrolled((prev) => prev + 1)
@@ -321,20 +401,20 @@ export default function IPMCareersLanding() {
     }, 5000)
   }, [])
 
-  // Roadmap animation effect
+  // Enhanced Roadmap animation effect - Faster speed and looping
   useEffect(() => {
-    if (animationComplete) return
     const interval = setInterval(() => {
       setCurrentStation((prev) => {
         if (prev >= stations.length - 1) {
-          setAnimationComplete(true)
-          return prev
+          // Reset to start for looping
+          return 0
         }
         return prev + 1
       })
-    }, 2500)
+    }, 1500) // Reduced from 2500 to 1500 for faster speed
+
     return () => clearInterval(interval)
-  }, [animationComplete])
+  }, [])
 
   // Desktop slider
   useEffect(() => {
@@ -352,10 +432,18 @@ export default function IPMCareersLanding() {
     return () => clearInterval(interval)
   }, [])
 
-  // Student testimonials slider
+  // Success Stories slider - 3 at a time, looping
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % studentTestimonials.length)
+      setCurrentSuccessStory((prev) => (prev + 3) % successStories.length)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
+
+  // Student testimonials slider - 3 at a time, looping
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 3) % studentTestimonials.length)
     }, 5000)
     return () => clearInterval(interval)
   }, [])
@@ -421,12 +509,20 @@ export default function IPMCareersLanding() {
     setCurrentMobileSlide((prev) => (prev - 1 + mobileResultSlides.length) % mobileResultSlides.length)
   }
 
+  const nextSuccessStory = () => {
+    setCurrentSuccessStory((prev) => (prev + 3) % successStories.length)
+  }
+
+  const prevSuccessStory = () => {
+    setCurrentSuccessStory((prev) => (prev - 3 + successStories.length) % successStories.length)
+  }
+
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % studentTestimonials.length)
+    setCurrentTestimonial((prev) => (prev + 3) % studentTestimonials.length)
   }
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + studentTestimonials.length) % studentTestimonials.length)
+    setCurrentTestimonial((prev) => (prev - 3 + studentTestimonials.length) % studentTestimonials.length)
   }
 
   return (
@@ -759,8 +855,210 @@ export default function IPMCareersLanding() {
         </div>
       </section>
 
-      {/* 3. Words by: Our Students Section */}
+      {/* 3. Enhanced IIM Roadmap Section */}
+      <section className="min-h-screen bg-white p-6">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="text-sm font-bold text-gray-600 tracking-wider mb-2">IPM CAREERS</div>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
+            <span className="text-gray-800">Your Journey from </span>
+            <span className="text-[#833589]">Class 12 to IIMs</span>
+            <br />
+            <span className="text-gray-800">Starts Here!</span>
+          </h1>
+          {/* Banner */}
+          <div className="inline-block bg-[#E79800] text-white px-6 py-3 rounded-lg font-semibold shadow-lg mb-16">
+            Board the IPM Careers Express to IIM Indore, Rohtak & Ranchi
+          </div>
+        </div>
+
+        {/* Railway Section */}
+        <div className="relative mt-32 w-full max-w-6xl mx-auto">
+          {/* Railway Track with Cross-ties */}
+          <div className="relative h-40">
+            {/* Cross-ties (sleepers) */}
+            <div className="absolute top-1/2 left-0 w-full flex justify-between items-center">
+              {Array.from({ length: 30 }).map((_, i) => (
+                <div key={i} className="w-1.5 h-10 bg-amber-900 rounded-sm transform -translate-y-1/2" />
+              ))}
+            </div>
+            {/* Rails */}
+            <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-600 rounded-full transform -translate-y-4 shadow-sm" />
+            <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-600 rounded-full transform translate-y-0 shadow-sm" />
+          </div>
+
+          {/* Stations - positioned well above the train */}
+          <div className="absolute -top-48 left-0 w-full">
+            <div className="flex justify-between items-end relative">
+              {stations.map((station, index) => (
+                <div key={index} className="flex flex-col items-center w-48">
+                  {/* Station info box */}
+                  <motion.div
+                    className="bg-white p-4 rounded-xl shadow-lg border-2 text-sm max-w-44 mb-3"
+                    style={{
+                      borderColor: index === currentStation ? "#833589" : "#e5e7eb",
+                    }}
+                    animate={{
+                      scale: index === currentStation ? 1.05 : 1,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="font-bold text-gray-800 whitespace-pre-line text-center mb-2">{station.title}</div>
+                    {station.points.length > 0 && (
+                      <ul className="text-left text-gray-600 space-y-1">
+                        {station.points.map((point, i) => (
+                          <li key={i} className="flex items-start">
+                            <span className="text-[#E79800] mr-2 font-bold">•</span>
+                            <span className="text-xs">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </motion.div>
+                  {/* Station marker */}
+                  <motion.div
+                    className="w-5 h-5 rounded-full mb-2 border-3 border-white shadow-lg"
+                    style={{
+                      backgroundColor: index <= currentStation ? "#833589" : "#e5e7eb",
+                    }}
+                    animate={{
+                      scale: index === currentStation ? 1.4 : 1,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Train Engine Only */}
+          <motion.div
+            className="absolute top-12 w-24 h-12"
+            animate={{
+              left: `${(currentStation / (stations.length - 1)) * (100 - 6)}%`,
+              y: [0, -1, 0, -0.5, 0],
+            }}
+            transition={{
+              left: {
+                duration: 1.5, // Reduced from 2.5 for faster movement
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+              y: {
+                duration: 0.6, // Slightly faster bouncing
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              },
+            }}
+          >
+            <motion.div
+              className="relative"
+              style={{ transform: "scaleX(1)" }}
+              animate={{
+                rotate: [0, 0.3, 0, -0.3, 0],
+              }}
+              transition={{
+                duration: 1,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            >
+              {/* Train Engine */}
+              <div className="relative w-24 h-10" style={{ transform: "scaleX(-1)" }}>
+                {/* Engine Base */}
+                <div className="absolute bottom-2 left-0 w-24 h-8 bg-[#833589] rounded-lg shadow-lg">
+                  {/* Engine Front Nose */}
+                  <div className="absolute -left-2 top-1 w-4 h-6 bg-[#833589] rounded-l-full border-r-2 border-[#E79800]" />
+                  {/* Cab Windows */}
+                  <div className="absolute top-0.5 left-2 w-3 h-3 bg-blue-100 rounded border-2 border-[#E79800]" />
+                  <div className="absolute top-0.5 left-7 w-3 h-3 bg-blue-100 rounded border-2 border-[#E79800]" />
+                  {/* Engine Details */}
+                  <div className="absolute top-4 left-14 w-6 h-3 bg-[#E79800] rounded" />
+                  <div className="absolute top-5 left-17 w-1.5 h-1.5 bg-white rounded-full" />
+                </div>
+                {/* Chimney */}
+                <div className="absolute top-2 left-4 w-3 h-4 bg-[#833589] rounded-t-lg border-2 border-[#E79800]" />
+              </div>
+
+              {/* Enhanced Steam Animation - Properly positioned above chimney */}
+              <motion.div
+                className="absolute -top-6 left-4 flex flex-col items-center"
+                animate={{
+                  opacity: [0.8, 0.4, 0.8],
+                  scale: [1, 1.2, 1],
+                  x: [0, 1, -0.5, 0],
+                }}
+                transition={{
+                  duration: 1.2, // Faster steam animation
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+              >
+                <motion.div
+                  className="w-2 h-4 bg-gray-300 rounded-full opacity-60"
+                  animate={{
+                    scaleY: [1, 1.5, 1],
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                />
+                <motion.div
+                  className="w-3 h-3 bg-gray-200 rounded-full opacity-40 -mt-1"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    x: [0, 2, -1, 0],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                />
+                <motion.div
+                  className="w-4 h-2 bg-gray-100 rounded-full opacity-20 -mt-0.5"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    x: [0, 3, -2, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#833589] text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
+          >
+            Start Your Journey Today
+          </motion.button>
+          <div className="mt-4 text-gray-600 font-medium">Join thousands of students on their path to IIM success</div>
+        </div>
+      </section>
+
+      {/* 4. Words by: Our Students Section */}
       <div className="container max-w-7xl mx-auto px-4">
+        {/* 5. Banner Image */}
+        <section className="py-8 bg-gray-50">
+          <div className="w-full">
+            <img
+              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751011010/IPMC_BANNER_12_ebilrk.jpg"
+              alt="IPMC Banner"
+              className="w-full h-auto object-cover shadow-md"
+            />
+          </div>
+        </section>
+
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -789,214 +1087,8 @@ export default function IPMCareersLanding() {
           </div>
         </section>
 
-        {/* 4. Banner Image */}
-        <section className="py-8 bg-gray-50">
-          <div className="w-full">
-            <img
-              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751011010/IPMC_BANNER_12_ebilrk.jpg"
-              alt="IPMC Banner"
-              className="w-full h-auto object-cover shadow-md"
-            />
-          </div>
-        </section>
-
-        {/* Enhanced IIM Roadmap Section */}
-        <section className="min-h-screen bg-white p-6">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="text-sm font-bold text-gray-600 tracking-wider mb-2">IPM CAREERS</div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
-              <span className="text-gray-800">Your Journey from </span>
-              <span className="text-[#833589]">Class 12 to IIMs</span>
-              <br />
-              <span className="text-gray-800">Starts Here!</span>
-            </h1>
-            {/* Banner */}
-            <div className="inline-block bg-[#E79800] text-white px-6 py-3 rounded-lg font-semibold shadow-lg mb-16">
-              Board the IPM Careers Express to IIM Indore, Rohtak & Ranchi
-            </div>
-          </div>
-
-          {/* Railway Section */}
-          <div className="relative mt-32 w-full max-w-6xl mx-auto">
-            {/* Railway Track with Cross-ties */}
-            <div className="relative h-40">
-              {/* Cross-ties (sleepers) */}
-              <div className="absolute top-1/2 left-0 w-full flex justify-between items-center">
-                {Array.from({ length: 30 }).map((_, i) => (
-                  <div key={i} className="w-1.5 h-10 bg-amber-900 rounded-sm transform -translate-y-1/2" />
-                ))}
-              </div>
-              {/* Rails */}
-              <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-600 rounded-full transform -translate-y-4 shadow-sm" />
-              <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-600 rounded-full transform translate-y-0 shadow-sm" />
-            </div>
-
-            {/* Stations - positioned well above the train */}
-            <div className="absolute -top-48 left-0 w-full">
-              <div className="flex justify-between items-end relative">
-                {stations.map((station, index) => (
-                  <div key={index} className="flex flex-col items-center w-48">
-                    {/* Station info box */}
-                    <motion.div
-                      className="bg-white p-4 rounded-xl shadow-lg border-2 text-sm max-w-44 mb-3"
-                      style={{
-                        borderColor: index === currentStation ? "#833589" : "#e5e7eb",
-                      }}
-                      animate={{
-                        scale: index === currentStation ? 1.05 : 1,
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="font-bold text-gray-800 whitespace-pre-line text-center mb-2">
-                        {station.title}
-                      </div>
-                      {station.points.length > 0 && (
-                        <ul className="text-left text-gray-600 space-y-1">
-                          {station.points.map((point, i) => (
-                            <li key={i} className="flex items-start">
-                              <span className="text-[#E79800] mr-2 font-bold">•</span>
-                              <span className="text-xs">{point}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </motion.div>
-                    {/* Station marker */}
-                    <motion.div
-                      className="w-5 h-5 rounded-full mb-2 border-3 border-white shadow-lg"
-                      style={{
-                        backgroundColor: index <= currentStation ? "#833589" : "#e5e7eb",
-                      }}
-                      animate={{
-                        scale: index === currentStation ? 1.4 : 1,
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Train Engine Only */}
-            <motion.div
-              className="absolute top-12 w-24 h-12"
-              animate={{
-                left: `${(currentStation / (stations.length - 1)) * (100 - 6)}%`,
-                y: [0, -1, 0, -0.5, 0],
-              }}
-              transition={{
-                left: {
-                  duration: 2.5,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                },
-                y: {
-                  duration: 0.8,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
-                },
-              }}
-            >
-              <motion.div
-                className="relative"
-                style={{ transform: "scaleX(1)" }}
-                animate={{
-                  rotate: currentStation < stations.length - 1 ? [0, 0.3, 0, -0.3, 0] : 0,
-                }}
-                transition={{
-                  duration: 1.2,
-                  repeat: currentStation < stations.length - 1 ? Number.POSITIVE_INFINITY : 0,
-                  ease: "easeInOut",
-                }}
-              >
-                {/* Train Engine */}
-                <div className="relative w-24 h-10" style={{ transform: "scaleX(-1)" }}>
-                  {/* Engine Base */}
-                  <div className="absolute bottom-2 left-0 w-24 h-8 bg-[#833589] rounded-lg shadow-lg">
-                    {/* Engine Front Nose */}
-                    <div className="absolute -left-2 top-1 w-4 h-6 bg-[#833589] rounded-l-full border-r-2 border-[#E79800]" />
-                    {/* Cab Windows */}
-                    <div className="absolute top-0.5 left-2 w-3 h-3 bg-blue-100 rounded border-2 border-[#E79800]" />
-                    <div className="absolute top-0.5 left-7 w-3 h-3 bg-blue-100 rounded border-2 border-[#E79800]" />
-                    {/* Engine Details */}
-                    <div className="absolute top-4 left-14 w-6 h-3 bg-[#E79800] rounded" />
-                    <div className="absolute top-5 left-17 w-1.5 h-1.5 bg-white rounded-full" />
-                  </div>
-                  {/* Chimney */}
-                  <div className="absolute top-2 left-4 w-3 h-4 bg-[#833589] rounded-t-lg border-2 border-[#E79800]" />
-                </div>
-
-                {/* Enhanced Steam Animation - Properly positioned above chimney */}
-                <motion.div
-                  className="absolute -top-6 left-4 flex flex-col items-center"
-                  animate={{
-                    opacity: currentStation < stations.length - 1 ? [0.8, 0.4, 0.8] : [0.8, 0.2, 0.8],
-                    scale: currentStation < stations.length - 1 ? [1, 1.2, 1] : [1, 0.8, 1],
-                    x: [0, 1, -0.5, 0],
-                  }}
-                  transition={{
-                    duration: currentStation < stations.length - 1 ? 1.5 : 3,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <motion.div
-                    className="w-2 h-4 bg-gray-300 rounded-full opacity-60"
-                    animate={{
-                      scaleY: [1, 1.5, 1],
-                    }}
-                    transition={{
-                      duration: 1,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    }}
-                  />
-                  <motion.div
-                    className="w-3 h-3 bg-gray-200 rounded-full opacity-40 -mt-1"
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      x: [0, 2, -1, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    }}
-                  />
-                  <motion.div
-                    className="w-4 h-2 bg-gray-100 rounded-full opacity-20 -mt-0.5"
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      x: [0, 3, -2, 0],
-                    }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    }}
-                  />
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="mt-24 text-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#833589] text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
-            >
-              Start Your Journey Today
-            </motion.button>
-            <div className="mt-4 text-gray-600 font-medium">
-              Join thousands of students on their path to IIM success
-            </div>
-          </div>
-        </section>
-
         {/* 5. Mentors Section */}
-        <section id="mentors" className="py-20 bg-white">
+        <section id="mentors" className="bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-800 mb-4">Know: Your Mentors</h2>
@@ -1081,138 +1173,191 @@ export default function IPMCareersLanding() {
           </div>
         </section>
 
-        {/* 7. Success Stories - Enhanced Student Testimonials Slider */}
+        {/* 7. Success Stories - New Design with 6 cards, 3 at a time */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Success Stories</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Hear from our successful students who achieved their IIM dreams with IPM Careers
+                Celebrating our students' achievements and their journey to success
               </p>
             </div>
-            <div className="relative max-w-4xl mx-auto">
-              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-                <div className="relative h-[400px] sm:h-[450px]">
-                  {studentTestimonials.map((testimonial, index) => (
-                    <div
-                      key={index}
-                      className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                        currentTestimonial === index
-                          ? "opacity-100 translate-x-0"
-                          : index < currentTestimonial
-                            ? "opacity-0 -translate-x-full"
-                            : "opacity-0 translate-x-full"
-                      }`}
+
+            <div className="relative max-w-7xl mx-auto">
+              <div className="overflow-hidden">
+                <div className="grid md:grid-cols-3 gap-8">
+                  {successStories.slice(currentSuccessStory, currentSuccessStory + 3).map((story, index) => (
+                    <motion.div
+                      key={story.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
                     >
-                      <div className="h-full flex flex-col justify-center p-8 sm:p-12 text-center">
-                        {/* Student Image */}
-                        <div className="mb-6">
-                          <img
-                            src={testimonial.image || "/placeholder.svg"}
-                            alt={testimonial.name}
-                            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto object-cover border-4 border-[#833589]/20"
-                          />
-                        </div>
-                        {/* Student Info */}
-                        <div className="mb-6">
-                          <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">{testimonial.name}</h3>
-                          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-[#833589] font-semibold">
-                            <span className="bg-[#833589]/10 px-3 py-1 rounded-full text-sm">
-                              {testimonial.college}
-                            </span>
-                            <span className="bg-[#E79800]/10 px-3 py-1 rounded-full text-sm text-[#E79800]">
-                              {testimonial.rank}
-                            </span>
-                          </div>
-                        </div>
-                        {/* Review */}
-                        <div className="mb-6">
-                          <p className="text-lg sm:text-xl text-gray-600 leading-relaxed italic max-w-2xl mx-auto">
-                            {`"${testimonial.review}"`}
-                          </p>
-                        </div>
-                        {/* Rating */}
-                        <div className="flex justify-center space-x-1">
-                          {[...Array(testimonial.rating)].map((_, i) => (
-                            <svg key={i} className="w-6 h-6 text-[#E79800] fill-current" viewBox="0 0 24 24">
-                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                            </svg>
-                          ))}
-                        </div>
-                        {/* Slide Counter */}
-                        <div className="absolute top-6 right-6 bg-[#833589]/10 backdrop-blur-sm rounded-xl p-3 text-[#833589]">
-                          <div className="font-bold text-lg">{String(currentTestimonial + 1).padStart(2, "0")}</div>
-                          <div className="text-xs opacity-70">
-                            of {String(studentTestimonials.length).padStart(2, "0")}
-                          </div>
+                      <div className="relative h-64">
+                        <img
+                          src={story.image || "/placeholder.svg"}
+                          alt={story.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <h3 className="text-xl font-bold text-white mb-1">{story.title}</h3>
+                          <p className="text-sm text-white/90">{story.subtitle}</p>
                         </div>
                       </div>
-                    </div>
+                      <div className="p-6">
+                        <p className="text-gray-600 text-sm leading-relaxed">{story.description}</p>
+                        <div className="mt-4 flex items-center justify-between">
+                          <span className="text-[#833589] font-semibold text-sm">Read More</span>
+                          <svg className="w-4 h-4 text-[#E79800]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </motion.div>
                   ))}
-                  {/* Navigation Arrows */}
-                  <div className="absolute inset-y-0 left-0 flex items-center z-10">
-                    <button
-                      onClick={prevTestimonial}
-                      className="ml-4 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
-                    >
-                      <svg
-                        className="w-5 h-5 group-hover:scale-110 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="absolute inset-y-0 right-0 flex items-center z-10">
-                    <button
-                      onClick={nextTestimonial}
-                      className="mr-4 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
-                    >
-                      <svg
-                        className="w-5 h-5 group-hover:scale-110 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </div>
                 </div>
-                {/* Bottom Navigation */}
-                <div className="bg-gray-50 p-6 border-t">
-                  <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-8">
-                    {/* Dots */}
-                    <div className="flex space-x-2">
-                      {studentTestimonials.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentTestimonial(index)}
-                          className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                            currentTestimonial === index
-                              ? "bg-[#833589] scale-125 shadow-lg"
-                              : "bg-gray-300 hover:bg-[#E79800] hover:scale-110"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    {/* Progress Bar */}
-                    <div className="w-32 bg-gray-200 rounded-full h-2">
-                      <div
-                        className="bg-[#833589] h-2 rounded-full transition-all duration-1000"
-                        style={{ width: `${((currentTestimonial + 1) / studentTestimonials.length) * 100}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <div className="absolute inset-y-0 left-0 flex items-center z-10 -ml-12">
+                <button
+                  onClick={prevSuccessStory}
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              </div>
+              <div className="absolute inset-y-0 right-0 flex items-center z-10 -mr-12">
+                <button
+                  onClick={nextSuccessStory}
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center mt-8 space-x-2">
+                {Array.from({ length: Math.ceil(successStories.length / 3) }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSuccessStory(index * 3)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      Math.floor(currentSuccessStory / 3) === index
+                        ? "bg-[#833589] scale-125"
+                        : "bg-gray-300 hover:bg-[#E79800]"
+                    }`}
+                  />
+                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* 8. FAQ Section */}
+        {/* 8. Student Testimonials - New Design with 6 testimonials, 3 at a time */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Student Testimonials</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Hear from our successful students who achieved their IIM dreams with IPM Careers
+              </p>
+            </div>
+
+            <div className="relative max-w-7xl mx-auto">
+              <div className="overflow-hidden">
+                <div className="grid md:grid-cols-3 gap-8">
+                  {studentTestimonials.slice(currentTestimonial, currentTestimonial + 3).map((testimonial, index) => (
+                    <motion.div
+                      key={testimonial.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                    >
+                      {/* Student Image */}
+                      <div className="flex items-center mb-4">
+                        <img
+                          src={testimonial.image || "/placeholder.svg"}
+                          alt={testimonial.name}
+                          className="w-16 h-16 rounded-full object-cover border-2 border-[#833589]/20"
+                        />
+                        <div className="ml-4">
+                          <h3 className="text-lg font-bold text-gray-800">{testimonial.name}</h3>
+                          <div className="flex items-center gap-2 text-sm">
+                            <span className="bg-[#833589]/10 px-2 py-1 rounded-full text-[#833589] font-semibold">
+                              {testimonial.college}
+                            </span>
+                            <span className="bg-[#E79800]/10 px-2 py-1 rounded-full text-[#E79800] font-semibold">
+                              {testimonial.rank}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Review */}
+                      <p className="text-gray-600 leading-relaxed mb-4 italic">{`"${testimonial.review}"`}</p>
+
+                      {/* Rating */}
+                      <div className="flex justify-center space-x-1">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <svg key={i} className="w-5 h-5 text-[#E79800] fill-current" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                          </svg>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <div className="absolute inset-y-0 left-0 flex items-center z-10 -ml-12">
+                <button
+                  onClick={prevTestimonial}
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              </div>
+              <div className="absolute inset-y-0 right-0 flex items-center z-10 -mr-12">
+                <button
+                  onClick={nextTestimonial}
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center mt-8 space-x-2">
+                {Array.from({ length: Math.ceil(studentTestimonials.length / 3) }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index * 3)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      Math.floor(currentTestimonial / 3) === index
+                        ? "bg-[#833589] scale-125"
+                        : "bg-gray-300 hover:bg-[#E79800]"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 9. FAQ Section */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
