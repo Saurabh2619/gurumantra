@@ -1,8 +1,7 @@
 "use client"
-
 import type React from "react"
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const stations = [
   {
@@ -47,6 +46,16 @@ export default function IPMCareersLanding() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [currentSuccessStory, setCurrentSuccessStory] = useState(0)
 
+  // Enhanced carousel states for smoother transitions
+  const [isSuccessStoryTransitioning, setIsSuccessStoryTransitioning] = useState(false)
+  const [isTestimonialTransitioning, setIsTestimonialTransitioning] = useState(false)
+  const [successStoryPaused, setSuccessStoryPaused] = useState(false)
+  const [testimonialPaused, setTestimonialPaused] = useState(false)
+
+  // Refs for intervals
+  const successStoryIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const testimonialIntervalRef = useRef<NodeJS.Timeout | null>(null)
+
   // Roadmap animation states
   const [currentStation, setCurrentStation] = useState(0)
   const [animationComplete, setAnimationComplete] = useState(false)
@@ -63,44 +72,52 @@ export default function IPMCareersLanding() {
       name: "Ashutosh Mishra",
       role: "Master IIM Ahmedabad",
       role2: "Bachelors Thapar University",
-      image: "/placeholder.svg?height=200&width=200",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-03_at_17.59.01_lose52.jpg",
     },
     {
       name: "Deepak Kushwaha",
       role: "Master IIM Lucknow",
       role2: "Bachelors NIT Srinagar",
-      image: "/placeholder.svg?height=200&width=200",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-03_at_18.00.28_giroum.jpg",
     },
     {
       name: "Taruna Khanna",
       role: "GCC UCLA Extension",
-      image: "/placeholder.svg?height=200&width=200",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-04_at_13.54.17_kppbpd.jpg",
     },
     {
       name: "Dr. Swati A. Mishra",
       role: "Director Operations Lucknow Centre",
       role2: "Former Professor IIM Lucknow",
-      image: "/placeholder.svg?height=200&width=200",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-04_at_13.54.03_qc5oxh.jpg",
     },
     {
       name: "Manish Dixit",
       role: "IIT BHU Alumnus",
-      image: "/placeholder.svg?height=200&width=200",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-04_at_13.54.30_so3yws.jpg",
     },
     {
       name: "Rishabh Singh",
       role: "IIFM Bhopal Alumnus",
-      image: "/placeholder.svg?height=200&width=200",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618115/WhatsApp_Image_2025-07-03_at_18.01.22_ypumkp.jpg",
     },
     {
       name: "Divyansh Mishra",
       role: "IIM Raipur",
-      image: "/placeholder.svg?height=200&width=200",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618115/WhatsApp_Image_2025-07-04_at_13.56.19_o0yikq.jpg",
     },
     {
-      name: "Rishita Gupta",
-      role: "Multiple IIMs Call Getter",
-      image: "/placeholder.svg?height=200&width=200",
+      name: "Raghav Shukla",
+      role: "IIM Kozhikode",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618115/WhatsApp_Image_2025-07-04_at_13.55.26_du5hkp.jpg",
     },
   ]
 
@@ -411,8 +428,7 @@ export default function IPMCareersLanding() {
         }
         return prev + 1
       })
-    }, 1500) // Reduced from 2500 to 1500 for faster speed
-
+    }, 1200) // Reduced from 1500 to 1200 for even faster, smoother speed
     return () => clearInterval(interval)
   }, [])
 
@@ -432,21 +448,59 @@ export default function IPMCareersLanding() {
     return () => clearInterval(interval)
   }, [])
 
-  // Success Stories slider - 3 at a time, looping
+  // Enhanced Success Stories slider with smooth transitions and pause functionality
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSuccessStory((prev) => (prev + 3) % successStories.length)
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [])
+    const startSuccessStoryInterval = () => {
+      if (successStoryIntervalRef.current) {
+        clearInterval(successStoryIntervalRef.current)
+      }
+      successStoryIntervalRef.current = setInterval(() => {
+        if (!successStoryPaused) {
+          setIsSuccessStoryTransitioning(true)
+          setTimeout(() => {
+            setCurrentSuccessStory((prev) => {
+              const nextIndex = prev + 3
+              return nextIndex >= successStories.length ? 0 : nextIndex
+            })
+            setIsSuccessStoryTransitioning(false)
+          }, 150) // Brief transition delay for smoother effect
+        }
+      }, 3500) // Reduced from 4000 to 3500 for better pacing
+    }
+    startSuccessStoryInterval()
+    return () => {
+      if (successStoryIntervalRef.current) {
+        clearInterval(successStoryIntervalRef.current)
+      }
+    }
+  }, [successStoryPaused])
 
-  // Student testimonials slider - 3 at a time, looping
+  // Enhanced Student testimonials slider with smooth transitions and pause functionality
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 3) % studentTestimonials.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+    const startTestimonialInterval = () => {
+      if (testimonialIntervalRef.current) {
+        clearInterval(testimonialIntervalRef.current)
+      }
+      testimonialIntervalRef.current = setInterval(() => {
+        if (!testimonialPaused) {
+          setIsTestimonialTransitioning(true)
+          setTimeout(() => {
+            setCurrentTestimonial((prev) => {
+              const nextIndex = prev + 3
+              return nextIndex >= studentTestimonials.length ? 0 : nextIndex
+            })
+            setIsTestimonialTransitioning(false)
+          }, 150) // Brief transition delay for smoother effect
+        }
+      }, 4000) // Slightly faster than before
+    }
+    startTestimonialInterval()
+    return () => {
+      if (testimonialIntervalRef.current) {
+        clearInterval(testimonialIntervalRef.current)
+      }
+    }
+  }, [testimonialPaused])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -509,20 +563,49 @@ export default function IPMCareersLanding() {
     setCurrentMobileSlide((prev) => (prev - 1 + mobileResultSlides.length) % mobileResultSlides.length)
   }
 
+  // Enhanced navigation functions with smooth transitions
   const nextSuccessStory = () => {
-    setCurrentSuccessStory((prev) => (prev + 3) % successStories.length)
+    setIsSuccessStoryTransitioning(true)
+    setTimeout(() => {
+      setCurrentSuccessStory((prev) => {
+        const nextIndex = prev + 3
+        return nextIndex >= successStories.length ? 0 : nextIndex
+      })
+      setIsSuccessStoryTransitioning(false)
+    }, 150)
   }
 
   const prevSuccessStory = () => {
-    setCurrentSuccessStory((prev) => (prev - 3 + successStories.length) % successStories.length)
+    setIsSuccessStoryTransitioning(true)
+    setTimeout(() => {
+      setCurrentSuccessStory((prev) => {
+        const prevIndex = prev - 3
+        return prevIndex < 0 ? successStories.length - 3 : prevIndex
+      })
+      setIsSuccessStoryTransitioning(false)
+    }, 150)
   }
 
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 3) % studentTestimonials.length)
+    setIsTestimonialTransitioning(true)
+    setTimeout(() => {
+      setCurrentTestimonial((prev) => {
+        const nextIndex = prev + 3
+        return nextIndex >= studentTestimonials.length ? 0 : nextIndex
+      })
+      setIsTestimonialTransitioning(false)
+    }, 150)
   }
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 3 + studentTestimonials.length) % studentTestimonials.length)
+    setIsTestimonialTransitioning(true)
+    setTimeout(() => {
+      setCurrentTestimonial((prev) => {
+        const prevIndex = prev - 3
+        return prevIndex < 0 ? studentTestimonials.length - 3 : prevIndex
+      })
+      setIsTestimonialTransitioning(false)
+    }, 150)
   }
 
   return (
@@ -683,7 +766,6 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </div>
-
         {/* Mobile/Tablet Slider */}
         <div className="lg:hidden w-full px-4">
           <div className="relative bg-white shadow-2xl overflow-hidden rounded-2xl">
@@ -791,7 +873,6 @@ export default function IPMCareersLanding() {
                 </div>
               </div>
             </div>
-
             {/* Right Column: Form */}
             <div className="bg-white rounded-xl p-6 shadow-xl w-full max-w-sm mx-auto text-gray-800">
               <h2 className="text-xl font-bold mb-4 text-center">Schedule FREE 1‑1 Consultation with an Expert</h2>
@@ -855,8 +936,8 @@ export default function IPMCareersLanding() {
         </div>
       </section>
 
-      {/* 3. Enhanced IIM Roadmap Section */}
-      <section className="min-h-screen bg-white p-6">
+      {/* 3. Enhanced IIM Roadmap Section - HIDDEN ON MOBILE */}
+      <section className="hidden md:block min-h-screen bg-white p-6">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="text-sm font-bold text-gray-600 tracking-wider mb-2">IPM CAREERS</div>
@@ -871,7 +952,6 @@ export default function IPMCareersLanding() {
             Board the IPM Careers Express to IIM Indore, Rohtak & Ranchi
           </div>
         </div>
-
         {/* Railway Section */}
         <div className="relative mt-32 w-full max-w-6xl mx-auto">
           {/* Railway Track with Cross-ties */}
@@ -886,7 +966,6 @@ export default function IPMCareersLanding() {
             <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-600 rounded-full transform -translate-y-4 shadow-sm" />
             <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-600 rounded-full transform translate-y-0 shadow-sm" />
           </div>
-
           {/* Stations - positioned well above the train */}
           <div className="absolute -top-48 left-0 w-full">
             <div className="flex justify-between items-end relative">
@@ -930,7 +1009,6 @@ export default function IPMCareersLanding() {
               ))}
             </div>
           </div>
-
           {/* Train Engine Only */}
           <motion.div
             className="absolute top-12 w-24 h-12"
@@ -940,11 +1018,11 @@ export default function IPMCareersLanding() {
             }}
             transition={{
               left: {
-                duration: 1.5, // Reduced from 2.5 for faster movement
+                duration: 1.2, // Reduced from 1.5 for faster, smoother movement
                 ease: [0.25, 0.46, 0.45, 0.94],
               },
               y: {
-                duration: 0.6, // Slightly faster bouncing
+                duration: 0.5, // Faster bouncing for more dynamic feel
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               },
@@ -957,7 +1035,7 @@ export default function IPMCareersLanding() {
                 rotate: [0, 0.3, 0, -0.3, 0],
               }}
               transition={{
-                duration: 1,
+                duration: 0.8, // Faster rotation for more dynamic movement
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
@@ -978,7 +1056,6 @@ export default function IPMCareersLanding() {
                 {/* Chimney */}
                 <div className="absolute top-2 left-4 w-3 h-4 bg-[#833589] rounded-t-lg border-2 border-[#E79800]" />
               </div>
-
               {/* Enhanced Steam Animation - Properly positioned above chimney */}
               <motion.div
                 className="absolute -top-6 left-4 flex flex-col items-center"
@@ -988,7 +1065,7 @@ export default function IPMCareersLanding() {
                   x: [0, 1, -0.5, 0],
                 }}
                 transition={{
-                  duration: 1.2, // Faster steam animation
+                  duration: 1.0, // Faster steam animation for more dynamic effect
                   repeat: Number.POSITIVE_INFINITY,
                   ease: "easeInOut",
                 }}
@@ -999,7 +1076,7 @@ export default function IPMCareersLanding() {
                     scaleY: [1, 1.5, 1],
                   }}
                   transition={{
-                    duration: 0.8,
+                    duration: 0.6, // Faster steam puffs
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
                   }}
@@ -1011,7 +1088,7 @@ export default function IPMCareersLanding() {
                     x: [0, 2, -1, 0],
                   }}
                   transition={{
-                    duration: 1.5,
+                    duration: 1.2, // Faster dispersal
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
                   }}
@@ -1023,7 +1100,7 @@ export default function IPMCareersLanding() {
                     x: [0, 3, -2, 0],
                   }}
                   transition={{
-                    duration: 2,
+                    duration: 1.5, // Faster final dispersal
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
                   }}
@@ -1032,7 +1109,6 @@ export default function IPMCareersLanding() {
             </motion.div>
           </motion.div>
         </div>
-
         {/* CTA Section */}
         <div className="text-center">
           <motion.button
@@ -1063,8 +1139,8 @@ export default function IPMCareersLanding() {
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-gray-800 mb-6">Words by: Our Students</h2>
-                <p className="text-lg text-gray-600 mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Words by: Our Students</h2>
+                <p className="text-base md:text-lg text-gray-600 mb-8">
                   Listen what our students have to say about us. Our students are thrilled with the classes that we
                   offer. They consistently express their satisfaction with the quality of the instruction, the engaging
                   curriculum, and the supportive learning environment. They appreciate the individualized attention that
@@ -1087,31 +1163,34 @@ export default function IPMCareersLanding() {
           </div>
         </section>
 
-        {/* 5. Mentors Section */}
-        <section id="mentors" className="bg-white">
+        {/* 5. Enhanced Mentors Section with Larger Images */}
+        <section id="mentors" className="bg-white py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-800 mb-4">Know: Your Mentors</h2>
-              <p className="text-xl text-gray-600">Learn from the best IIM Alumni</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Know: Your Mentors</h2>
+              <p className="text-lg md:text-xl text-gray-600">Learn from the best IIM Alumni</p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {mentors.map((mentor, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+                  className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-2"
                 >
-                  <div className="relative h-48 bg-[#833589]">
-                    <div className="absolute inset-0 bg-[#833589]/20"></div>
-                    <img
-                      src={mentor.image || "/placeholder.svg"}
-                      alt={mentor.name}
-                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full border-4 border-white object-cover"
-                    />
+                  <div className="relative h-64 md:h-72 bg-gradient-to-br from-[#833589] to-[#6b2a70] flex items-center justify-center">
+                    <div className="absolute inset-0 bg-[#833589]/10"></div>
+                    <div className="relative">
+                      <img
+                        src={mentor.image || "/placeholder.svg"}
+                        alt={mentor.name}
+                        className="w-40 h-40 md:w-48 md:h-48 rounded-full border-6 border-white object-cover shadow-2xl"
+                      />
+                      <div className="absolute inset-0 rounded-full ring-4 ring-[#E79800]/30"></div>
+                    </div>
                   </div>
-                  <div className="pt-20 pb-6 px-6 text-center">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">{mentor.name}</h3>
-                    <p className="text-[#833589] font-semibold mb-1">{mentor.role}</p>
-                    {mentor.role2 && <p className="text-gray-600 text-sm">{mentor.role2}</p>}
+                  <div className="pt-8 pb-6 px-6 text-center">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-3">{mentor.name}</h3>
+                    <p className="text-[#833589] font-semibold mb-2 text-sm md:text-base">{mentor.role}</p>
+                    {mentor.role2 && <p className="text-gray-600 text-xs md:text-sm">{mentor.role2}</p>}
                   </div>
                 </div>
               ))}
@@ -1124,35 +1203,35 @@ export default function IPMCareersLanding() {
           <div className="container mx-auto px-4">
             {/* Heading */}
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#1F2937] mb-4">
+              <h2 className="text-3xl md:text-5xl font-extrabold text-[#1F2937] mb-4">
                 Why choose: <span className="text-[#833589]">IPM Careers?</span>
               </h2>
-              <p className="text-lg md:text-xl text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
+              <p className="text-base md:text-xl text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
                 Discover what makes us the preferred choice for thousands of IPMAT aspirants across India
               </p>
             </div>
             {/* Grid Cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 max-w-7xl mx-auto">
               {testimonials.map((item, index) => (
                 <div
                   key={index}
-                  className="group relative bg-white rounded-3xl p-8 text-center shadow-md hover:shadow-xl transition-all duration-500 border border-[#E5E7EB] hover:border-[#E79800]/40 transform hover:-translate-y-2"
+                  className="group relative bg-white rounded-3xl p-6 md:p-8 text-center shadow-md hover:shadow-xl transition-all duration-500 border border-[#E5E7EB] hover:border-[#E79800]/40 transform hover:-translate-y-2"
                 >
                   {/* Background hover layer */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#833589]/5 to-white rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative z-10">
                     {/* Icon Container */}
-                    <div className="w-20 h-20 mx-auto mb-6 bg-[#833589]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#833589] transition-colors duration-500">
-                      <span className="text-4xl group-hover:text-white group-hover:scale-110 transition-all duration-500">
+                    <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-[#833589]/10 rounded-2xl flex items-center justify-center group-hover:bg-[#833589] transition-colors duration-500">
+                      <span className="text-3xl md:text-4xl group-hover:text-white group-hover:scale-110 transition-all duration-500">
                         {item.icon}
                       </span>
                     </div>
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-[#111827] mb-3 group-hover:text-[#833589] transition-colors duration-300">
+                    <h3 className="text-lg md:text-xl font-bold text-[#111827] mb-3 group-hover:text-[#833589] transition-colors duration-300">
                       {item.heading}
                     </h3>
                     {/* Description */}
-                    <p className="text-[#4B5563] text-base leading-relaxed group-hover:text-[#374151] transition-colors duration-300">
+                    <p className="text-[#4B5563] text-sm md:text-base leading-relaxed group-hover:text-[#374151] transition-colors duration-300">
                       {item.description}
                     </p>
                     {/* Decorative dot */}
@@ -1164,7 +1243,7 @@ export default function IPMCareersLanding() {
             {/* CTA */}
             <div className="text-center mt-20">
               <div className="inline-flex items-center gap-3 bg-[#F3E8F9] px-6 py-3 rounded-full shadow-sm hover:shadow-md transition-shadow duration-300">
-                <span className="text-[#833589] font-semibold text-base sm:text-lg">Ready to start your journey?</span>
+                <span className="text-[#833589] font-semibold text-sm sm:text-lg">Ready to start your journey?</span>
                 <svg className="w-5 h-5 text-[#E79800]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -1173,85 +1252,136 @@ export default function IPMCareersLanding() {
           </div>
         </section>
 
-        {/* 7. Success Stories - New Design with 6 cards, 3 at a time */}
+        {/* 7. Enhanced Success Stories - Responsive Design */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Success Stories</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">Success Stories</h2>
+              <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
                 Celebrating our students' achievements and their journey to success
               </p>
             </div>
-
-            <div className="relative max-w-7xl mx-auto">
+            <div
+              className="relative max-w-7xl mx-auto"
+              onMouseEnter={() => setSuccessStoryPaused(true)}
+              onMouseLeave={() => setSuccessStoryPaused(false)}
+            >
               <div className="overflow-hidden">
-                <div className="grid md:grid-cols-3 gap-8">
-                  {successStories.slice(currentSuccessStory, currentSuccessStory + 3).map((story, index) => (
-                    <motion.div
-                      key={story.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                    >
-                      <div className="relative h-64">
-                        <img
-                          src={story.image || "/placeholder.svg"}
-                          alt={story.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <h3 className="text-xl font-bold text-white mb-1">{story.title}</h3>
-                          <p className="text-sm text-white/90">{story.subtitle}</p>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSuccessStory}
+                    className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{
+                      opacity: isSuccessStoryTransitioning ? 0.7 : 1,
+                      x: 0,
+                      scale: isSuccessStoryTransitioning ? 0.98 : 1,
+                    }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{
+                      duration: 0.4,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
+                  >
+                    {successStories.slice(currentSuccessStory, currentSuccessStory + 3).map((story, index) => (
+                      <motion.div
+                        key={story.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: index * 0.1,
+                          ease: [0.25, 0.46, 0.45, 0.94],
+                        }}
+                        className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                      >
+                        <div className="relative h-48 md:h-64">
+                          <img
+                            src={story.image || "/placeholder.svg"}
+                            alt={story.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <h3 className="text-lg md:text-xl font-bold text-white mb-1">{story.title}</h3>
+                            <p className="text-xs md:text-sm text-white/90">{story.subtitle}</p>
+                          </div>
                         </div>
-                      </div>
-                      <div className="p-6">
-                        <p className="text-gray-600 text-sm leading-relaxed">{story.description}</p>
-                        <div className="mt-4 flex items-center justify-between">
-                          <span className="text-[#833589] font-semibold text-sm">Read More</span>
-                          <svg className="w-4 h-4 text-[#E79800]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
+                        <div className="p-4 md:p-6">
+                          <p className="text-gray-600 text-xs md:text-sm leading-relaxed">{story.description}</p>
+                          <div className="mt-4 flex items-center justify-between">
+                            <span className="text-[#833589] font-semibold text-xs md:text-sm">Read More</span>
+                            <svg
+                              className="w-4 h-4 text-[#E79800]"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
               </div>
-
-              {/* Navigation Arrows */}
-              <div className="absolute inset-y-0 left-0 flex items-center z-10 -ml-12">
+              {/* Navigation Arrows - Hidden on mobile */}
+              <div className="hidden lg:block absolute inset-y-0 left-0 flex items-center z-10 -ml-12">
                 <button
                   onClick={prevSuccessStory}
-                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center z-10 -mr-12">
+              <div className="hidden lg:block absolute inset-y-0 right-0 flex items-center z-10 -mr-12">
                 <button
                   onClick={nextSuccessStory}
-                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
               </div>
-
-              {/* Dots Indicator */}
+              {/* Mobile Navigation Buttons */}
+              <div className="lg:hidden flex justify-center mt-6 space-x-4">
+                <button
+                  onClick={prevSuccessStory}
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextSuccessStory}
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+              {/* Enhanced Dots Indicator */}
               <div className="flex justify-center mt-8 space-x-2">
                 {Array.from({ length: Math.ceil(successStories.length / 3) }).map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentSuccessStory(index * 3)}
+                    onClick={() => {
+                      setIsSuccessStoryTransitioning(true)
+                      setTimeout(() => {
+                        setCurrentSuccessStory(index * 3)
+                        setIsSuccessStoryTransitioning(false)
+                      }, 150)
+                    }}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
                       Math.floor(currentSuccessStory / 3) === index
-                        ? "bg-[#833589] scale-125"
-                        : "bg-gray-300 hover:bg-[#E79800]"
+                        ? "bg-[#833589] scale-125 shadow-md"
+                        : "bg-gray-300 hover:bg-[#E79800] hover:scale-110"
                     }`}
                   />
                 ))}
@@ -1260,95 +1390,143 @@ export default function IPMCareersLanding() {
           </div>
         </section>
 
-        {/* 8. Student Testimonials - New Design with 6 testimonials, 3 at a time */}
+        {/* 8. Enhanced Student Testimonials - Responsive Design */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Student Testimonials</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">Student Testimonials</h2>
+              <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto">
                 Hear from our successful students who achieved their IIM dreams with IPM Careers
               </p>
             </div>
-
-            <div className="relative max-w-7xl mx-auto">
+            <div
+              className="relative max-w-7xl mx-auto"
+              onMouseEnter={() => setTestimonialPaused(true)}
+              onMouseLeave={() => setTestimonialPaused(false)}
+            >
               <div className="overflow-hidden">
-                <div className="grid md:grid-cols-3 gap-8">
-                  {studentTestimonials.slice(currentTestimonial, currentTestimonial + 3).map((testimonial, index) => (
-                    <motion.div
-                      key={testimonial.name}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-                    >
-                      {/* Student Image */}
-                      <div className="flex items-center mb-4">
-                        <img
-                          src={testimonial.image || "/placeholder.svg"}
-                          alt={testimonial.name}
-                          className="w-16 h-16 rounded-full object-cover border-2 border-[#833589]/20"
-                        />
-                        <div className="ml-4">
-                          <h3 className="text-lg font-bold text-gray-800">{testimonial.name}</h3>
-                          <div className="flex items-center gap-2 text-sm">
-                            <span className="bg-[#833589]/10 px-2 py-1 rounded-full text-[#833589] font-semibold">
-                              {testimonial.college}
-                            </span>
-                            <span className="bg-[#E79800]/10 px-2 py-1 rounded-full text-[#E79800] font-semibold">
-                              {testimonial.rank}
-                            </span>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentTestimonial}
+                    className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{
+                      opacity: isTestimonialTransitioning ? 0.7 : 1,
+                      x: 0,
+                      scale: isTestimonialTransitioning ? 0.98 : 1,
+                    }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{
+                      duration: 0.4,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
+                  >
+                    {studentTestimonials.slice(currentTestimonial, currentTestimonial + 3).map((testimonial, index) => (
+                      <motion.div
+                        key={testimonial.name}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: index * 0.1,
+                          ease: [0.25, 0.46, 0.45, 0.94],
+                        }}
+                        className="bg-white rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                      >
+                        {/* Student Image */}
+                        <div className="flex items-center mb-4">
+                          <img
+                            src={testimonial.image || "/placeholder.svg"}
+                            alt={testimonial.name}
+                            className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border-2 border-[#833589]/20"
+                          />
+                          <div className="ml-3 md:ml-4">
+                            <h3 className="text-base md:text-lg font-bold text-gray-800">{testimonial.name}</h3>
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs md:text-sm">
+                              <span className="bg-[#833589]/10 px-2 py-1 rounded-full text-[#833589] font-semibold">
+                                {testimonial.college}
+                              </span>
+                              <span className="bg-[#E79800]/10 px-2 py-1 rounded-full text-[#E79800] font-semibold">
+                                {testimonial.rank}
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Review */}
-                      <p className="text-gray-600 leading-relaxed mb-4 italic">{`"${testimonial.review}"`}</p>
-
-                      {/* Rating */}
-                      <div className="flex justify-center space-x-1">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <svg key={i} className="w-5 h-5 text-[#E79800] fill-current" viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                          </svg>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+                        {/* Review */}
+                        <p className="text-gray-600 leading-relaxed mb-4 italic text-sm md:text-base">{`"${testimonial.review}"`}</p>
+                        {/* Rating */}
+                        <div className="flex justify-center space-x-1">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <svg
+                              key={i}
+                              className="w-4 h-4 md:w-5 md:h-5 text-[#E79800] fill-current"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
               </div>
-
-              {/* Navigation Arrows */}
-              <div className="absolute inset-y-0 left-0 flex items-center z-10 -ml-12">
+              {/* Navigation Arrows - Hidden on mobile */}
+              <div className="hidden lg:block absolute inset-y-0 left-0 flex items-center z-10 -ml-12">
                 <button
                   onClick={prevTestimonial}
-                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center z-10 -mr-12">
+              <div className="hidden lg:block absolute inset-y-0 right-0 flex items-center z-10 -mr-12">
                 <button
                   onClick={nextTestimonial}
-                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
               </div>
-
-              {/* Dots Indicator */}
+              {/* Mobile Navigation Buttons */}
+              <div className="lg:hidden flex justify-center mt-6 space-x-4">
+                <button
+                  onClick={prevTestimonial}
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextTestimonial}
+                  className="bg-white hover:bg-gray-50 text-[#833589] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+              {/* Enhanced Dots Indicator */}
               <div className="flex justify-center mt-8 space-x-2">
                 {Array.from({ length: Math.ceil(studentTestimonials.length / 3) }).map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentTestimonial(index * 3)}
+                    onClick={() => {
+                      setIsTestimonialTransitioning(true)
+                      setTimeout(() => {
+                        setCurrentTestimonial(index * 3)
+                        setIsTestimonialTransitioning(false)
+                      }, 150)
+                    }}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
                       Math.floor(currentTestimonial / 3) === index
-                        ? "bg-[#833589] scale-125"
-                        : "bg-gray-300 hover:bg-[#E79800]"
+                        ? "bg-[#833589] scale-125 shadow-md"
+                        : "bg-gray-300 hover:bg-[#E79800] hover:scale-110"
                     }`}
                   />
                 ))}
@@ -1361,16 +1539,16 @@ export default function IPMCareersLanding() {
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
             </div>
             <div className="max-w-3xl mx-auto space-y-4">
               {faqs.map((faq, index) => (
                 <div key={index} className="border border-gray-200 rounded-lg bg-white">
                   <button
-                    className="w-full text-left p-6 font-semibold text-gray-800 hover:bg-gray-50 flex justify-between items-center"
+                    className="w-full text-left p-4 md:p-6 font-semibold text-gray-800 hover:bg-gray-50 flex justify-between items-center"
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                   >
-                    {faq.question}
+                    <span className="text-sm md:text-base">{faq.question}</span>
                     <svg
                       className={`w-5 h-5 transform transition-transform text-[#833589] ${openFaq === index ? "rotate-180" : ""}`}
                       fill="none"
@@ -1380,7 +1558,9 @@ export default function IPMCareersLanding() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-                  {openFaq === index && <div className="px-6 pb-6 text-gray-600">{faq.answer}</div>}
+                  {openFaq === index && (
+                    <div className="px-4 md:px-6 pb-4 md:pb-6 text-gray-600 text-sm md:text-base">{faq.answer}</div>
+                  )}
                 </div>
               ))}
             </div>
@@ -1392,7 +1572,7 @@ export default function IPMCareersLanding() {
       <footer className="bg-[#833589] text-white py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">
+            <h2 className="text-2xl md:text-4xl font-bold mb-8 leading-tight">
               {"India's Premium IPMAT Coaching"} <br />
               for True IPMAT Aspirants
             </h2>
