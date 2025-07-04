@@ -236,30 +236,30 @@ export default function IPMCareersLanding() {
   // New Student Testimonials Data - 6 testimonials
   const studentTestimonials = [
     {
-      name: "Aarav Sharma",
+      name: "Anurag Pratap Singh",
       college: "IIM Indore",
-      rank: "AIR 15",
+      // rank: "AIR 15",
       review:
         "IPM Careers transformed my preparation strategy. The personalized attention and expert guidance helped me achieve my dream rank.",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623862/WhatsApp_Image_2025-07-04_at_14.59.53_tvlxgb.jpg",
       rating: 5,
     },
     {
-      name: "Sneha Patel",
-      college: "IIM Rohtak",
-      rank: "AIR 28",
+      name: "Manas Gaikwad",
+      college: "IIM Indore",
+      // rank: "AIR 28",
       review:
         "The mock tests and study material were exceptional. Faculty members were always available for doubt clearing sessions.",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623861/WhatsApp_Image_2025-07-04_at_15.01.10_dclsze.jpg",
       rating: 5,
     },
     {
-      name: "Karthik Reddy",
-      college: "IIM Indore",
-      rank: "AIR 42",
+      name: "Jiya Gandhi ",
+      college: "IIM Rohtak",
+      // rank: "AIR 42",
       review:
         "Best decision of my life! The structured approach and regular assessments kept me on track throughout my preparation.",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623862/WhatsApp_Image_2025-07-04_at_14.59.53_tvlxgb.jpg",
       rating: 5,
     },
     {
