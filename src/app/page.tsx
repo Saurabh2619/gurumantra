@@ -3,6 +3,7 @@ import DefaultLayout from "./defaultlayout";
 import {ArrowRight, Search, MapPin, BookOpen, FileText, Users, Star, Award, CheckCircle, MessageSquare, Phone,}
 from "lucide-react";
 import { useState, useEffect } from "react";
+import Link from 'next/link';
 import PartnerSlider from "./components/partener-slider";
 
 export default function Home() {
@@ -144,7 +145,7 @@ export default function Home() {
     </div>
     <div className="flex justify-center mb-3">
       <div className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-200/90 cursor-pointer">
-        <span>View All Partner Colleges</span>
+       <Link href="/colleges"><span>View All Partner Colleges</span></Link>
       </div>
     </div>
 
