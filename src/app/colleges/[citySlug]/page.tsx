@@ -1,47 +1,51 @@
-import { createClient } from "@supabase/supabase-js"
-import { notFound } from "next/navigation"
-import DefaultLayout from "../../defaultlayout"
-import { MapPin, Building2, GraduationCap, Star, Users, Award, ExternalLink, Phone, Mail, Globe } from "lucide-react"
+import { createClient } from "@supabase/supabase-js";
+import { notFound } from "next/navigation";
+import DefaultLayout from "../../defaultlayout";
+import {
+  MapPin,
+  Building2,
+  GraduationCap,
+  Star,
+  Users,
+  Award,
+  ExternalLink,
+  Phone,
+  Mail,
+  Globe,
+} from "lucide-react";
 
-// 1️⃣  Supabase client
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+// ✅ Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
-// 2️⃣  ⛔ Disable caching while debugging
-export const dynamic = "force-dynamic" // SSR on every request
-// (या) export const revalidate = 0;
+// ✅ Disable caching while debugging (or for SSR)
+export const dynamic = "force-dynamic";
 
-type Props = { params: { citySlug: string } }
+// ✅ FIXED: Let Next.js infer and type `params`
+export default async function CityCollegesPage({
+  params,
+}: {
+  params: { citySlug: string };
+}) {
+  const citySlug = params.citySlug.toLowerCase();
 
-export default async function CityCollegesPage({ params }: Props) {
-  // 3️⃣  Case‑insensitive slug
-  const citySlug = params.citySlug.toLowerCase()
-
-  /* ---------- Fetch CITY ---------- */
   const { data: city, error: cityError } = await supabase
     .from("cities")
     .select("id, name")
-    .ilike("slug", citySlug) // 👈 case‑insensitive
-    .single()
+    .ilike("slug", citySlug)
+    .single();
 
-  /* Debug‑prints */
-  console.log("citySlug", citySlug)
-  console.log("city", city)
-  console.log("cityError", cityError)
+  if (!city || cityError) return notFound();
 
-  if (!city || cityError) return notFound()
-
-  /* ---------- Fetch COLLEGES ---------- */
   const { data: colleges, error: collegeError } = await supabase
     .from("colleges")
-    .select("id,name,logo_url,image_url") // सिर्फ ज़रूरी कॉलम
-    .eq("city_id", city.id)
+    .select("id, name, logo_url, image_url")
+    .eq("city_id", city.id);
 
-  console.log("colleges", colleges)
-  console.log("collegeError", collegeError)
-
-  /* ---------- UI ---------- */
   return (
-    <DefaultLayout>
+   <DefaultLayout>
       {/* Enhanced Hero Section */}
       <div className="relative py-20 bg-gradient-to-br from-[#0d47a1] via-[#1565c0] to-[#1976d2] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
@@ -235,5 +239,5 @@ export default async function CityCollegesPage({ params }: Props) {
         </div>
       </div>
     </DefaultLayout>
-  )
+  );
 }
