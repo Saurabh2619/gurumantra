@@ -193,10 +193,10 @@ export default function IPMCareersLanding() {
     },
     {
       id: 2,
-      title: "Top Rank Achiever",
-      subtitle: "AIR 15 in IPMAT",
+      title: "Our Proud Journey",
+      // subtitle: "",
       image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751796160/CRAUSEL_1_ykreu2.png",
       description: "Secured top rank with dedicated preparation",
     },
     {
@@ -241,7 +241,7 @@ export default function IPMCareersLanding() {
       // rank: "AIR 15",
       review:
         "IPM Careers transformed my preparation strategy. The personalized attention and expert guidance helped me achieve my dream rank.",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623862/WhatsApp_Image_2025-07-04_at_14.59.53_tvlxgb.jpg",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623861/WhatsApp_Image_2025-07-04_at_15.00.46_xdve4y.jpg",
       rating: 5,
     },
     {
@@ -250,7 +250,7 @@ export default function IPMCareersLanding() {
       // rank: "AIR 28",
       review:
         "The mock tests and study material were exceptional. Faculty members were always available for doubt clearing sessions.",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623861/WhatsApp_Image_2025-07-04_at_15.01.10_dclsze.jpg",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623862/WhatsApp_Image_2025-07-04_at_14.59.53_tvlxgb.jpg",
       rating: 5,
     },
     {
@@ -259,7 +259,7 @@ export default function IPMCareersLanding() {
       // rank: "AIR 42",
       review:
         "Best decision of my life! The structured approach and regular assessments kept me on track throughout my preparation.",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623862/WhatsApp_Image_2025-07-04_at_14.59.53_tvlxgb.jpg",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623861/WhatsApp_Image_2025-07-04_at_15.01.10_dclsze.jpg",
       rating: 5,
     },
     {
@@ -325,9 +325,9 @@ export default function IPMCareersLanding() {
   // Desktop/Large Screen Results
   const resultSlides = [
     {
-      title: "Our Top Performers",
+      title: "Our Outstanding Results",
       subtitle: "Celebrating Academic Excellence",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751540467/78908_nw4fcf.jpg",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751973197/web-banner_3_mwrp16.jpg",
       stats: [
         { label: "Students Selected", value: "500+" },
         { label: "Success Rate", value: "95%" },
@@ -335,9 +335,9 @@ export default function IPMCareersLanding() {
       ],
     },
     {
-      title: "Our Outstanding Results",
+      title: "AIR 1",
       subtitle: "Celebrating Academic Excellence",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751017734/43543354_2_iuilwe.jpg",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751973197/web-banner_2_hnwlzj.jpg",
       stats: [
         { label: "Students Selected", value: "500+" },
         { label: "Success Rate", value: "95%" },
@@ -347,7 +347,7 @@ export default function IPMCareersLanding() {
     {
       title: "Meet Our Toppers",
       subtitle: "Success Stories That Inspire",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1747075179/42-indore-_ivhcmw.jpg",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751973197/INDORE-BANNER_oya1d3.jpg",
       stats: [
         { label: "AIR 1-10", value: "15+" },
         { label: "AIR 1-50", value: "45+" },
@@ -357,7 +357,7 @@ export default function IPMCareersLanding() {
     {
       title: "Excellence Continues",
       subtitle: "Building Future Leaders",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1747075179/42-indore-_ivhcmw.jpg",
       stats: [
         { label: "Years of Excellence", value: "10+" },
         { label: "Expert Faculty", value: "25+" },
@@ -365,9 +365,9 @@ export default function IPMCareersLanding() {
       ],
     },
     {
-      title: "National Recognition",
+      title: "Dropper To Topper",
       subtitle: "Award Winning Institute",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751973505/56757678_pehnub.jpg",
       stats: [
         { label: "Awards Won", value: "15+" },
         { label: "Media Features", value: "50+" },
@@ -877,7 +877,7 @@ export default function IPMCareersLanding() {
             <div className="bg-white rounded-xl p-6 shadow-xl w-full max-w-sm mx-auto text-gray-800">
               <h2 className="text-xl font-bold mb-4 text-center">Schedule FREE 1‑1 Consultation with an Expert</h2>
               {/* Progress Bar */}
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <div className="bg-gray-200 rounded-full h-2 mb-1">
                   <div
                     className="bg-[#833589] h-2 rounded-full transition-all duration-300 flex items-center justify-end pr-1"
@@ -891,7 +891,7 @@ export default function IPMCareersLanding() {
                   </div>
                 </div>
                 <p className="text-xs text-gray-600 text-center">Form Progress: {formProgress}%</p>
-              </div>
+              </div> */}
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-3">
                 <input

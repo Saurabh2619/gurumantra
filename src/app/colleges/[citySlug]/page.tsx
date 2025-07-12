@@ -62,7 +62,7 @@ export default async function CityCollegesPage({ params }: Props) {
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-7 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
             Colleges in {city.name}
-          </h1>
+          </h1> 
           <p className="text-lg md:text-xl text-white/90 mb-6 max-w-3xl leading-relaxed">
             Discover premier educational institutions in {city.name} with verified information and direct admission
             support.

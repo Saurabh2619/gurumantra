@@ -21,7 +21,7 @@ type CityGroup = {
   cities: string[]
   icon: any
   description: string
-  color: string
+  color: string 
 }
 
 const cityGroups: CityGroup[] = [
