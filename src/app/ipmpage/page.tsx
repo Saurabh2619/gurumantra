@@ -181,52 +181,38 @@ export default function IPMCareersLanding() {
     },
   ]
 
-  // New Success Stories Data - 6 cards with the provided image
+  // Enhanced Success Stories Data - 6 cards with the provided image
   const successStories = [
     {
       id: 1,
-      title: "Outstanding Achievement",
-      subtitle: "IIM Selection Success",
       image:
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
       description: "Exceptional performance in IPMAT 2024",
     },
     {
       id: 2,
-      title: "Our Proud Journey",
-      // subtitle: "",
-      image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751796160/CRAUSEL_1_ykreu2.png",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751796160/CRAUSEL_1_ykreu2.png",
       description: "Secured top rank with dedicated preparation",
     },
     {
       id: 3,
-      title: "Dream Fulfilled",
-      subtitle: "IIM Indore Selection",
-      image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752394387/CRAUSEL_2_ngkx5r.jpg",
       description: "From preparation to selection journey",
     },
     {
       id: 4,
-      title: "Excellence Rewarded",
-      subtitle: "Multiple IIM Calls",
       image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752394385/WhatsApp_Image_2025-07-12_at_17.47.27_xx3kgq.jpg",
       description: "Received calls from top IIMs",
     },
     {
       id: 5,
-      title: "Success Story",
-      subtitle: "IIM Rohtak Graduate",
       image:
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
       description: "Journey from aspirant to IIM student",
     },
     {
       id: 6,
-      title: "Inspiring Journey",
-      subtitle: "Top Percentile Score",
       image:
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751543724/WhatsApp_Image_2025-07-03_at_15.30.05_ehnjio.jpg",
       description: "Achieved 99+ percentile in IPMAT",
@@ -238,28 +224,28 @@ export default function IPMCareersLanding() {
     {
       name: "Anurag Pratap Singh",
       college: "IIM Indore",
-      // rank: "AIR 15",
       review:
         "IPM Careers transformed my preparation strategy. The personalized attention and expert guidance helped me achieve my dream rank.",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623861/WhatsApp_Image_2025-07-04_at_15.00.46_xdve4y.jpg",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623861/WhatsApp_Image_2025-07-04_at_15.00.46_xdve4y.jpg",
       rating: 5,
     },
     {
       name: "Manas Gaikwad",
       college: "IIM Indore",
-      // rank: "AIR 28",
       review:
         "The mock tests and study material were exceptional. Faculty members were always available for doubt clearing sessions.",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623862/WhatsApp_Image_2025-07-04_at_14.59.53_tvlxgb.jpg",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623862/WhatsApp_Image_2025-07-04_at_14.59.53_tvlxgb.jpg",
       rating: 5,
     },
     {
       name: "Jiya Gandhi ",
       college: "IIM Rohtak",
-      // rank: "AIR 42",
       review:
         "Best decision of my life! The structured approach and regular assessments kept me on track throughout my preparation.",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623861/WhatsApp_Image_2025-07-04_at_15.01.10_dclsze.jpg",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751623861/WhatsApp_Image_2025-07-04_at_15.01.10_dclsze.jpg",
       rating: 5,
     },
     {
@@ -448,7 +434,7 @@ export default function IPMCareersLanding() {
     return () => clearInterval(interval)
   }, [])
 
-  // Enhanced Success Stories slider with smooth transitions and pause functionality
+  // ENHANCED Success Stories - Continuous smooth movement, one card at a time
   useEffect(() => {
     const startSuccessStoryInterval = () => {
       if (successStoryIntervalRef.current) {
@@ -456,16 +442,12 @@ export default function IPMCareersLanding() {
       }
       successStoryIntervalRef.current = setInterval(() => {
         if (!successStoryPaused) {
-          setIsSuccessStoryTransitioning(true)
-          setTimeout(() => {
-            setCurrentSuccessStory((prev) => {
-              const nextIndex = prev + 3
-              return nextIndex >= successStories.length ? 0 : nextIndex
-            })
-            setIsSuccessStoryTransitioning(false)
-          }, 150) // Brief transition delay for smoother effect
+          setCurrentSuccessStory((prev) => {
+            const nextIndex = prev + 1
+            return nextIndex >= successStories.length ? 0 : nextIndex
+          })
         }
-      }, 3500) // Reduced from 4000 to 3500 for better pacing
+      }, 2500) // Faster continuous movement - 2.5 seconds
     }
     startSuccessStoryInterval()
     return () => {
@@ -563,27 +545,19 @@ export default function IPMCareersLanding() {
     setCurrentMobileSlide((prev) => (prev - 1 + mobileResultSlides.length) % mobileResultSlides.length)
   }
 
-  // Enhanced navigation functions with smooth transitions
+  // Enhanced navigation functions - ONE CARD AT A TIME for Success Stories
   const nextSuccessStory = () => {
-    setIsSuccessStoryTransitioning(true)
-    setTimeout(() => {
-      setCurrentSuccessStory((prev) => {
-        const nextIndex = prev + 3
-        return nextIndex >= successStories.length ? 0 : nextIndex
-      })
-      setIsSuccessStoryTransitioning(false)
-    }, 150)
+    setCurrentSuccessStory((prev) => {
+      const nextIndex = prev + 1
+      return nextIndex >= successStories.length ? 0 : nextIndex
+    })
   }
 
   const prevSuccessStory = () => {
-    setIsSuccessStoryTransitioning(true)
-    setTimeout(() => {
-      setCurrentSuccessStory((prev) => {
-        const prevIndex = prev - 3
-        return prevIndex < 0 ? successStories.length - 3 : prevIndex
-      })
-      setIsSuccessStoryTransitioning(false)
-    }, 150)
+    setCurrentSuccessStory((prev) => {
+      const prevIndex = prev - 1
+      return prevIndex < 0 ? successStories.length - 1 : prevIndex
+    })
   }
 
   const nextTestimonial = () => {
@@ -607,6 +581,29 @@ export default function IPMCareersLanding() {
       setIsTestimonialTransitioning(false)
     }, 150)
   }
+
+  // Helper function to get visible cards based on screen size
+  const getVisibleCards = () => {
+    // Mobile: 1 card, Tablet: 2 cards, Desktop: 3 cards
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 640) return 1 // Mobile
+      if (window.innerWidth < 1024) return 2 // Tablet
+      return 3 // Desktop
+    }
+    return 3 // Default
+  }
+
+  const [visibleCards, setVisibleCards] = useState(3)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleCards(getVisibleCards())
+    }
+
+    handleResize() // Set initial value
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   return (
     <div className="min-h-screen bg-white">
@@ -876,22 +873,6 @@ export default function IPMCareersLanding() {
             {/* Right Column: Form */}
             <div className="bg-white rounded-xl p-6 shadow-xl w-full max-w-sm mx-auto text-gray-800">
               <h2 className="text-xl font-bold mb-4 text-center">Schedule FREE 1‑1 Consultation with an Expert</h2>
-              {/* Progress Bar */}
-              {/* <div className="mb-4">
-                <div className="bg-gray-200 rounded-full h-2 mb-1">
-                  <div
-                    className="bg-[#833589] h-2 rounded-full transition-all duration-300 flex items-center justify-end pr-1"
-                    style={{ width: `${formProgress}%` }}
-                  >
-                    {formProgress > 0 && (
-                      <span className="text-[10px] text-white font-semibold">
-                        {formProgress === 100 ? "Done" : `${formProgress}%`}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <p className="text-xs text-gray-600 text-center">Form Progress: {formProgress}%</p>
-              </div> */}
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-3">
                 <input
@@ -1134,7 +1115,6 @@ export default function IPMCareersLanding() {
             />
           </div>
         </section>
-
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -1182,7 +1162,7 @@ export default function IPMCareersLanding() {
                       <img
                         src={mentor.image || "/placeholder.svg"}
                         alt={mentor.name}
-                        className="w-40 h-40 md:w-48 md:h-48 rounded-full border-6 border-white object-cover shadow-2xl"
+                        className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white object-cover shadow-2xl"
                       />
                       <div className="absolute inset-0 rounded-full ring-4 ring-[#E79800]/30"></div>
                     </div>
@@ -1252,7 +1232,7 @@ export default function IPMCareersLanding() {
           </div>
         </section>
 
-        {/* 7. Enhanced Success Stories - Responsive Design */}
+        {/* 7. ENHANCED Success Stories - Continuous Movement, One Card at a Time */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -1267,65 +1247,61 @@ export default function IPMCareersLanding() {
               onMouseLeave={() => setSuccessStoryPaused(false)}
             >
               <div className="overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentSuccessStory}
-                    className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{
-                      opacity: isSuccessStoryTransitioning ? 0.7 : 1,
-                      x: 0,
-                      scale: isSuccessStoryTransitioning ? 0.98 : 1,
-                    }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{
-                      duration: 0.4,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    }}
-                  >
-                    {successStories.slice(currentSuccessStory, currentSuccessStory + 3).map((story, index) => (
+                <motion.div
+                  className={`grid gap-4 md:gap-6 ${
+                    visibleCards === 1
+                      ? "grid-cols-1"
+                      : visibleCards === 2
+                        ? "grid-cols-2"
+                        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                  }`}
+                  key={currentSuccessStory}
+                  initial={{ x: 100, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 20,
+                  }}
+                >
+                  {/* Show cards based on screen size */}
+                  {Array.from({ length: visibleCards }).map((_, index) => {
+                    const storyIndex = (currentSuccessStory + index) % successStories.length
+                    const story = successStories[storyIndex]
+                    return (
                       <motion.div
-                        key={story.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        key={`${story.id}-${index}-${currentSuccessStory}`}
+                        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{
                           duration: 0.5,
                           delay: index * 0.1,
                           ease: [0.25, 0.46, 0.45, 0.94],
+                          type: "spring",
+                          stiffness: 140,
+                          damping: 18,
                         }}
                         className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
                       >
-                        <div className="relative h-48 md:h-64">
+                        <div className="relative h-64 md:h-72">
                           <img
                             src={story.image || "/placeholder.svg"}
-                            alt={story.title}
+                            alt="Success Story"
                             className="w-full h-full object-cover"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                          <div className="absolute bottom-4 left-4 right-4">
-                            <h3 className="text-lg md:text-xl font-bold text-white mb-1">{story.title}</h3>
-                            <p className="text-xs md:text-sm text-white/90">{story.subtitle}</p>
-                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                         </div>
-                        <div className="p-4 md:p-6">
+                        <div className="p-3 md:p-4">
                           <p className="text-gray-600 text-xs md:text-sm leading-relaxed">{story.description}</p>
-                          <div className="mt-4 flex items-center justify-between">
-                            <span className="text-[#833589] font-semibold text-xs md:text-sm">Read More</span>
-                            <svg
-                              className="w-4 h-4 text-[#E79800]"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </div>
                         </div>
                       </motion.div>
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
+                    )
+                  })}
+                </motion.div>
               </div>
+
               {/* Navigation Arrows - Hidden on mobile */}
               <div className="hidden lg:block absolute inset-y-0 left-0 flex items-center z-10 -ml-12">
                 <button
@@ -1347,6 +1323,7 @@ export default function IPMCareersLanding() {
                   </svg>
                 </button>
               </div>
+
               {/* Mobile Navigation Buttons */}
               <div className="lg:hidden flex justify-center mt-6 space-x-4">
                 <button
@@ -1366,31 +1343,28 @@ export default function IPMCareersLanding() {
                   </svg>
                 </button>
               </div>
-              {/* Enhanced Dots Indicator */}
-              <div className="flex justify-center mt-8 space-x-2">
-                {Array.from({ length: Math.ceil(successStories.length / 3) }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setIsSuccessStoryTransitioning(true)
-                      setTimeout(() => {
-                        setCurrentSuccessStory(index * 3)
-                        setIsSuccessStoryTransitioning(false)
-                      }, 150)
-                    }}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      Math.floor(currentSuccessStory / 3) === index
-                        ? "bg-[#833589] scale-125 shadow-md"
-                        : "bg-gray-300 hover:bg-[#E79800] hover:scale-110"
-                    }`}
-                  />
-                ))}
-              </div>
+            </div>
+
+            {/* Enhanced Pagination Dots - Positioned at bottom, aligned with cards */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {successStories.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setCurrentSuccessStory(index)
+                  }}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentSuccessStory === index
+                      ? "bg-[#833589] scale-125 shadow-md"
+                      : "bg-gray-300 hover:bg-[#E79800] hover:scale-110"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </section>
 
-        {/* 8. Enhanced Student Testimonials - Responsive Design */}
+        {/* 8. Enhanced Student Testimonials - Responsive Design (Keep 3 at a time as requested) */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -1446,9 +1420,11 @@ export default function IPMCareersLanding() {
                               <span className="bg-[#833589]/10 px-2 py-1 rounded-full text-[#833589] font-semibold">
                                 {testimonial.college}
                               </span>
-                              <span className="bg-[#E79800]/10 px-2 py-1 rounded-full text-[#E79800] font-semibold">
-                                {testimonial.rank}
-                              </span>
+                              {testimonial.rank && (
+                                <span className="bg-[#E79800]/10 px-2 py-1 rounded-full text-[#E79800] font-semibold">
+                                  {testimonial.rank}
+                                </span>
+                              )}
                             </div>
                           </div>
                         </div>
