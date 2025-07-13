@@ -2,17 +2,11 @@
 // import { notFound } from "next/navigation";
 // import DefaultLayout from "../../defaultlayout";
 // import {
-//   MapPin,
-//   Building2,
-//   GraduationCap,
-//   Star,
-//   Users,
-//   Award,
-//   ExternalLink,
-//   Phone,
-//   Mail,
-//   Globe,
+//   MapPin, Building2, GraduationCap, Star, Users,
+//   Award, ExternalLink, Phone, Mail, Globe,
 // } from "lucide-react";
+
+// export const dynamic = "force-dynamic";
 
 // // Supabase Client
 // const supabase = createClient(
@@ -20,35 +14,43 @@
 //   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 // );
 
-// // Disable ISR
-// export const dynamic = "force-dynamic";
-
-// // ✅ ✅ ✅ SAFE TYPING FIX
-// interface PageProps {
-//   params: {
-//     citySlug: string;
-//   };
-// }
-
-// // ✅ Final Fix Here
-// export default async function CityCollegesPage(props: PageProps) {
-//   const { params } = props;
-
-//   // ✅ No direct param usage in signature - avoids the error
-//   const citySlug = params.citySlug.toLowerCase();
-
+// // ✅ Helper function to fetch city & colleges
+// async function getCityAndColleges(citySlug: string) {
 //   const { data: city, error: cityError } = await supabase
 //     .from("cities")
 //     .select("id, name")
 //     .ilike("slug", citySlug)
 //     .single();
 
-//   if (!city || cityError) return notFound();
+//   if (!city || cityError) {
+//     return {
+//       city: null,
+//       cityError,
+//       colleges: [],
+//       collegeError: null,
+//     };
+//   }
 
 //   const { data: colleges, error: collegeError } = await supabase
 //     .from("colleges")
 //     .select("id, name, logo_url, image_url")
 //     .eq("city_id", city.id);
+
+//   return {
+//     city,
+//     cityError,
+//     colleges,
+//     collegeError,
+//   };
+// }
+
+// // ✅ Main Page Component
+// export default async function CityCollegesPage({ params }: { params: { citySlug: string } }) {
+//   const citySlug = params.citySlug.toLowerCase(); // ✅ Safe now
+
+//   const { city, cityError, colleges, collegeError } = await getCityAndColleges(citySlug);
+
+//   if (!city || cityError) return notFound();
 
 //   return (
 //    <DefaultLayout>

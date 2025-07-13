@@ -145,7 +145,7 @@ export default function Home() {
     </div>
     <div className="flex justify-center mb-3">
       <div className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg shadow-sm hover:bg-gray-200/90 cursor-pointer">
-       <Link href="/colleges"><span>View All Partner Colleges</span></Link>
+       {/* <Link href="/colleges"><span>View All Partner Colleges</span></Link> */}
       </div>
     </div>
 
