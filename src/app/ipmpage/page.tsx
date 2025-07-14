@@ -45,12 +45,13 @@ export default function IPMCareersLanding() {
   const [currentMobileSlide, setCurrentMobileSlide] = useState(0)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [currentSuccessStory, setCurrentSuccessStory] = useState(0)
-
   // Enhanced carousel states for smoother transitions
   const [isSuccessStoryTransitioning, setIsSuccessStoryTransitioning] = useState(false)
   const [isTestimonialTransitioning, setIsTestimonialTransitioning] = useState(false)
   const [successStoryPaused, setSuccessStoryPaused] = useState(false)
   const [testimonialPaused, setTestimonialPaused] = useState(false)
+  // New state for individual card hover
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
 
   // Refs for intervals
   const successStoryIntervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -79,8 +80,7 @@ export default function IPMCareersLanding() {
       name: "Deepak Kushwaha",
       role: "Master IIM Lucknow",
       role2: "Bachelors NIT Srinagar",
-      image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752493120/123_yrb1qi.jpg",
+      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752493120/123_yrb1qi.jpg",
     },
     {
       name: "Taruna Khanna",
@@ -599,7 +599,6 @@ export default function IPMCareersLanding() {
     const handleResize = () => {
       setVisibleCards(getVisibleCards())
     }
-
     handleResize() // Set initial value
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
@@ -1115,6 +1114,7 @@ export default function IPMCareersLanding() {
             />
           </div>
         </section>
+
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -1232,7 +1232,7 @@ export default function IPMCareersLanding() {
           </div>
         </section>
 
-        {/* 7. ENHANCED Success Stories - Continuous Movement, One Card at a Time */}
+        {/* 7. ENHANCED Success Stories - Continuous Movement with IMPROVED HOVER EFFECTS */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -1283,19 +1283,127 @@ export default function IPMCareersLanding() {
                           stiffness: 140,
                           damping: 18,
                         }}
-                        className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                        className="group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 transition-all duration-500 ease-out cursor-pointer"
+                        onMouseEnter={() => setHoveredCard(storyIndex)}
+                        onMouseLeave={() => setHoveredCard(null)}
+                        whileHover={{
+                          scale: 1.08,
+                          y: -12,
+                          rotateY: 2,
+                          rotateX: 2,
+                        }}
+                        style={{
+                          transformStyle: "preserve-3d",
+                          perspective: "1000px",
+                        }}
                       >
-                        <div className="relative h-64 md:h-72">
-                          <img
-                            src={story.image || "/placeholder.svg"}
-                            alt="Success Story"
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                        </div>
-                        <div className="p-3 md:p-4">
-                          <p className="text-gray-600 text-xs md:text-sm leading-relaxed">{story.description}</p>
-                        </div>
+                        {/* Enhanced Card Container with 3D effect */}
+                        <motion.div
+                          className="relative"
+                          animate={{
+                            boxShadow:
+                              hoveredCard === storyIndex
+                                ? "0 25px 50px -12px rgba(131, 53, 137, 0.25), 0 0 0 1px rgba(231, 152, 0, 0.1)"
+                                : "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+                          }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
+                        >
+                          {/* Image Container with Enhanced Hover Effects */}
+                          <div className="relative h-64 md:h-72 overflow-hidden">
+                            <motion.img
+                              src={story.image || "/placeholder.svg"}
+                              alt="Success Story"
+                              className="w-full h-full object-cover transition-all duration-700 ease-out"
+                              animate={{
+                                scale: hoveredCard === storyIndex ? 1.15 : 1,
+                                filter:
+                                  hoveredCard === storyIndex
+                                    ? "brightness(1.1) contrast(1.05) saturate(1.1)"
+                                    : "brightness(1) contrast(1) saturate(1)",
+                              }}
+                              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                            />
+
+                            {/* Enhanced Gradient Overlay */}
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+                              animate={{
+                                opacity: hoveredCard === storyIndex ? 0.8 : 0.3,
+                              }}
+                              transition={{ duration: 0.4 }}
+                            />
+
+                            {/* Animated Border Effect */}
+                            <motion.div
+                              className="absolute inset-0 border-2 border-transparent"
+                              animate={{
+                                borderColor: hoveredCard === storyIndex ? "rgba(231, 152, 0, 0.6)" : "transparent",
+                              }}
+                              transition={{ duration: 0.3 }}
+                            />
+
+                            {/* Floating Success Icon */}
+                            <motion.div
+                              className="absolute top-4 right-4 w-10 h-10 bg-[#E79800] rounded-full flex items-center justify-center text-white font-bold shadow-lg"
+                              animate={{
+                                scale: hoveredCard === storyIndex ? 1.2 : 1,
+                                rotate: hoveredCard === storyIndex ? 360 : 0,
+                                y: hoveredCard === storyIndex ? -5 : 0,
+                              }}
+                              transition={{
+                                duration: 0.5,
+                                ease: "easeOut",
+                                rotate: { duration: 0.8, ease: "easeInOut" },
+                              }}
+                            >
+                              ✨
+                            </motion.div>
+
+                            {/* Shimmer Effect on Hover */}
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                              animate={{
+                                x: hoveredCard === storyIndex ? "100%" : "-100%",
+                                opacity: hoveredCard === storyIndex ? 1 : 0,
+                              }}
+                              transition={{
+                                duration: 0.8,
+                                ease: "easeOut",
+                                delay: hoveredCard === storyIndex ? 0.1 : 0,
+                              }}
+                            />
+                          </div>
+
+                          {/* Enhanced Text Content */}
+                          <motion.div
+                            className="p-4 md:p-6 relative"
+                            animate={{
+                              backgroundColor:
+                                hoveredCard === storyIndex ? "rgba(131, 53, 137, 0.02)" : "rgba(255, 255, 255, 1)",
+                            }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <motion.p
+                              className="text-gray-600 text-sm md:text-base leading-relaxed font-medium"
+                              animate={{
+                                color: hoveredCard === storyIndex ? "#374151" : "#6B7280",
+                                y: hoveredCard === storyIndex ? -2 : 0,
+                              }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              {story.description}
+                            </motion.p>
+
+                            {/* Animated Underline */}
+                            <motion.div
+                              className="absolute bottom-0 left-4 h-0.5 bg-gradient-to-r from-[#833589] to-[#E79800]"
+                              animate={{
+                                width: hoveredCard === storyIndex ? "calc(100% - 2rem)" : "0%",
+                              }}
+                              transition={{ duration: 0.4, ease: "easeOut" }}
+                            />
+                          </motion.div>
+                        </motion.div>
                       </motion.div>
                     )
                   })}
@@ -1345,7 +1453,7 @@ export default function IPMCareersLanding() {
               </div>
             </div>
 
-            {/* Enhanced Pagination Dots - Positioned at bottom, aligned with cards */}
+            {/* Enhanced Pagination Dots */}
             <div className="flex justify-center mt-8 space-x-2">
               {successStories.map((_, index) => (
                 <button
