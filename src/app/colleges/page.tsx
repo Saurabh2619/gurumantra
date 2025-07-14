@@ -27,7 +27,7 @@ type CityGroup = {
 const cityGroups: CityGroup[] = [
   {
     title: "Delhi NCR Region",
-    cities: ["Delhi", "Gurugram", "Ghaziabad", "Greater Noida"],
+    cities: ["Delhi", "Ghaziabad", "Greater Noida", "Gurugram"],
     icon: Building2,
     description: "India's educational hub with premier institutions and diverse opportunities",
     color: "from-blue-500 to-blue-600",
@@ -41,7 +41,7 @@ const cityGroups: CityGroup[] = [
   },
   {
     title: "South India",
-    cities: ["Bangalore"],
+    cities: ["Bangalore", "Karnataka"],
     icon: Target,
     description: "Tech capital with cutting-edge institutions and innovation centers",
     color: "from-green-500 to-green-600",

@@ -80,7 +80,7 @@ export default function IPMCareersLanding() {
       role: "Master IIM Lucknow",
       role2: "Bachelors NIT Srinagar",
       image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-03_at_18.00.28_giroum.jpg",
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752493120/123_yrb1qi.jpg",
     },
     {
       name: "Taruna Khanna",
@@ -99,7 +99,7 @@ export default function IPMCareersLanding() {
       name: "Manish Dixit",
       role: "IIT BHU Alumnus",
       image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-04_at_13.54.30_so3yws.jpg",
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752492922/WhatsApp_Image_2025-07-06_at_20.17.12_k9vbh2.jpg",
     },
     {
       name: "Rishabh Singh",
