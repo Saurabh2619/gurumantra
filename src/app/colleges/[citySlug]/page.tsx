@@ -1,4 +1,4 @@
-import { supabase } from "@/utils/supabaseClient";
+import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import DefaultLayout from "../../defaultlayout";
 import {
@@ -13,6 +13,12 @@ import {
   Mail,
   Globe,
 } from "lucide-react";
+
+// Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export const dynamic = "force-dynamic"; // Ensures no static optimization
 
