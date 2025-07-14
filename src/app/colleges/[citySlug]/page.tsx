@@ -1,6 +1,6 @@
-import { createClient } from "@supabase/supabase-js"
-import { notFound } from "next/navigation"
-import DefaultLayout from "../../defaultlayout"
+import { supabase } from "@/utils/supabaseClient";
+import { notFound } from "next/navigation";
+import DefaultLayout from "../../defaultlayout";
 import {
   MapPin,
   Building2,
@@ -11,47 +11,35 @@ import {
   ExternalLink,
   Phone,
   Mail,
-  Globe
-} from "lucide-react"
+  Globe,
+} from "lucide-react";
 
-// 1️⃣ Supabase client
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+export const dynamic = "force-dynamic"; // Ensures no static optimization
 
-// 2️⃣ ⛔ Disable caching while debugging
-export const dynamic = "force-dynamic" // SSR on every request
-// export const revalidate = 0;
+export default async function CityCollegesPage({
+  params,
+}: {
+  params: Promise<{ citySlug?: string }>; // 👈 tell TS it’s a Promise
+}) {
+  const { citySlug } = await params;      // 👈 wait until params is ready
 
-type Props = { params: { citySlug: string } }
+  if (!citySlug) return notFound();
 
-export default async function CityCollegesPage({ params }: Props) {
-  // ✅ Await params to avoid warning
-  const { citySlug } = await Promise.resolve(params)
-  const slug = citySlug.toLowerCase()
+  const slug = citySlug.toLowerCase();
 
-  /* ---------- Fetch CITY ---------- */
   const { data: city, error: cityError } = await supabase
     .from("cities")
     .select("id, name")
-    .ilike("slug", slug) // 👈 case-insensitive
-    .single()
+    .ilike("slug", citySlug)
+    .single();
 
-  console.log("citySlug", slug)
-  console.log("city", city)
-  console.log("cityError", cityError)
+  if (!city || cityError) return notFound();
 
-  if (!city || cityError) return notFound()
-
-  /* ---------- Fetch COLLEGES ---------- */
   const { data: colleges, error: collegeError } = await supabase
     .from("colleges")
     .select("id,name,logo_url,image_url")
-    .eq("city_id", city.id)
+    .eq("city_id", city.id);
 
-  console.log("colleges", colleges)
-  console.log("collegeError", collegeError)
 
   return (
     <DefaultLayout>
