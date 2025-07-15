@@ -825,7 +825,7 @@ export default function IPMCareersLanding() {
           </div>
         </div>
         {/* Mobile/Tablet Slider */}
-        <div className="lg:hidden w-full px-4">
+        <div className="lg:hidden w-full px-4 mt-8">
           <div className="relative bg-white shadow-2xl overflow-hidden rounded-2xl">
             <div className="relative h-[350px] sm:h-[400px]">
               {mobileResultSlides.map((slide, index) => (
@@ -850,14 +850,14 @@ export default function IPMCareersLanding() {
                       {/* <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 drop-shadow-lg">{slide.title}</h3>
                       <p className="text-sm sm:text-base text-white/90 drop-shadow-md">{slide.subtitle}</p> */}
                     </div>
-                    <div className="absolute bottom-4 left-4 bg-[#833589]/90 backdrop-blur-sm rounded-lg p-2 text-white text-sm">
+                    {/* <div className="absolute bottom-4 left-4 bg-[#833589]/90 backdrop-blur-sm rounded-lg p-2 text-white text-sm">
                       <div className="font-bold">{String(currentMobileSlide + 1).padStart(2, "0")}</div>
                       <div className="text-xs opacity-80">of {String(mobileResultSlides.length).padStart(2, "0")}</div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))}
-              <div className="absolute inset-y-0 left-0 flex items-center z-10">
+              <div className="absolute inset-y-0 -left-2 flex items-center z-10 top-[80%]">
                 <button
                   onClick={prevMobileSlide}
                   className="ml-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
@@ -867,7 +867,7 @@ export default function IPMCareersLanding() {
                   </svg>
                 </button>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center z-10">
+              <div className="absolute inset-y-0 -right-2 flex items-center z-10 top-[80%]">
                 <button
                   onClick={nextMobileSlide}
                   className="mr-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
