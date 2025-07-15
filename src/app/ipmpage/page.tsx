@@ -50,8 +50,9 @@ export default function IPMCareersLanding() {
   const [isTestimonialTransitioning, setIsTestimonialTransitioning] = useState(false)
   const [successStoryPaused, setSuccessStoryPaused] = useState(false)
   const [testimonialPaused, setTestimonialPaused] = useState(false)
-  // New state for individual card hover
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  // New state for image modal
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [selectedImageDescription, setSelectedImageDescription] = useState<string>("")
 
   // Refs for intervals
   const successStoryIntervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -447,7 +448,7 @@ export default function IPMCareersLanding() {
             return nextIndex >= successStories.length ? 0 : nextIndex
           })
         }
-      }, 2500) // Faster continuous movement - 2.5 seconds
+      }, 3000) // Smooth continuous movement - 3 seconds
     }
     startSuccessStoryInterval()
     return () => {
@@ -604,8 +605,42 @@ export default function IPMCareersLanding() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  // Function to handle image click
+  const handleImageClick = (image: string, description: string) => {
+    setSelectedImage(image)
+    setSelectedImageDescription(description)
+  }
+
+  // Function to close modal
+  const closeModal = () => {
+    setSelectedImage(null)
+    setSelectedImageDescription("")
+  }
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Image Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+          <div className="relative max-w-4xl max-h-full">
+            <button
+              onClick={closeModal}
+              className="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl font-bold z-10"
+            >
+              ✕
+            </button>
+            <img
+              src={selectedImage || "/placeholder.svg"}
+              alt={selectedImageDescription}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white p-4 rounded-b-lg">
+              <p className="text-center text-sm md:text-base">{selectedImageDescription}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Notification */}
       {notification && (
         <div className="fixed top-20 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
@@ -1232,7 +1267,7 @@ export default function IPMCareersLanding() {
           </div>
         </section>
 
-        {/* 7. ENHANCED Success Stories - Continuous Movement with IMPROVED HOVER EFFECTS */}
+        {/* 7. ENHANCED Success Stories - Smooth Movement with Click to Open */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -1256,14 +1291,11 @@ export default function IPMCareersLanding() {
                         : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                   }`}
                   key={currentSuccessStory}
-                  initial={{ x: 100, opacity: 0 }}
+                  initial={{ x: 50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{
-                    duration: 0.6,
+                    duration: 0.8,
                     ease: [0.25, 0.46, 0.45, 0.94],
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 20,
                   }}
                 >
                   {/* Show cards based on screen size */}
@@ -1273,143 +1305,48 @@ export default function IPMCareersLanding() {
                     return (
                       <motion.div
                         key={`${story.id}-${index}-${currentSuccessStory}`}
-                        initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{
-                          duration: 0.5,
+                          duration: 0.6,
                           delay: index * 0.1,
                           ease: [0.25, 0.46, 0.45, 0.94],
-                          type: "spring",
-                          stiffness: 140,
-                          damping: 18,
                         }}
-                        className="group bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 transition-all duration-500 ease-out cursor-pointer"
-                        onMouseEnter={() => setHoveredCard(storyIndex)}
-                        onMouseLeave={() => setHoveredCard(null)}
-                        whileHover={{
-                          scale: 1.08,
-                          y: -12,
-                          rotateY: 2,
-                          rotateX: 2,
-                        }}
-                        style={{
-                          transformStyle: "preserve-3d",
-                          perspective: "1000px",
-                        }}
+                        className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 transition-all duration-300 cursor-pointer"
+                        onClick={() => handleImageClick(story.image, story.description)}
                       >
-                        {/* Enhanced Card Container with 3D effect */}
-                        <motion.div
-                          className="relative"
-                          animate={{
-                            boxShadow:
-                              hoveredCard === storyIndex
-                                ? "0 25px 50px -12px rgba(131, 53, 137, 0.25), 0 0 0 1px rgba(231, 152, 0, 0.1)"
-                                : "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-                          }}
-                          transition={{ duration: 0.3, ease: "easeOut" }}
-                        >
-                          {/* Image Container with Enhanced Hover Effects */}
-                          <div className="relative h-64 md:h-72 overflow-hidden">
-                            <motion.img
-                              src={story.image || "/placeholder.svg"}
-                              alt="Success Story"
-                              className="w-full h-full object-cover transition-all duration-700 ease-out"
-                              animate={{
-                                scale: hoveredCard === storyIndex ? 1.15 : 1,
-                                filter:
-                                  hoveredCard === storyIndex
-                                    ? "brightness(1.1) contrast(1.05) saturate(1.1)"
-                                    : "brightness(1) contrast(1) saturate(1)",
-                              }}
-                              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                            />
-
-                            {/* Enhanced Gradient Overlay */}
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
-                              animate={{
-                                opacity: hoveredCard === storyIndex ? 0.8 : 0.3,
-                              }}
-                              transition={{ duration: 0.4 }}
-                            />
-
-                            {/* Animated Border Effect */}
-                            <motion.div
-                              className="absolute inset-0 border-2 border-transparent"
-                              animate={{
-                                borderColor: hoveredCard === storyIndex ? "rgba(231, 152, 0, 0.6)" : "transparent",
-                              }}
-                              transition={{ duration: 0.3 }}
-                            />
-
-                            {/* Floating Success Icon */}
-                            <motion.div
-                              className="absolute top-4 right-4 w-10 h-10 bg-[#E79800] rounded-full flex items-center justify-center text-white font-bold shadow-lg"
-                              animate={{
-                                scale: hoveredCard === storyIndex ? 1.2 : 1,
-                                rotate: hoveredCard === storyIndex ? 360 : 0,
-                                y: hoveredCard === storyIndex ? -5 : 0,
-                              }}
-                              transition={{
-                                duration: 0.5,
-                                ease: "easeOut",
-                                rotate: { duration: 0.8, ease: "easeInOut" },
-                              }}
-                            >
-                              ✨
-                            </motion.div>
-
-                            {/* Shimmer Effect on Hover */}
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-                              animate={{
-                                x: hoveredCard === storyIndex ? "100%" : "-100%",
-                                opacity: hoveredCard === storyIndex ? 1 : 0,
-                              }}
-                              transition={{
-                                duration: 0.8,
-                                ease: "easeOut",
-                                delay: hoveredCard === storyIndex ? 0.1 : 0,
-                              }}
-                            />
+                        <div className="relative h-64 md:h-72">
+                          <img
+                            src={story.image || "/placeholder.svg"}
+                            alt="Success Story"
+                            className="w-full h-full object-cover transition-transform duration-300"
+                          />
+                          <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                            <div className="opacity-0 hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3">
+                              <svg
+                                className="w-6 h-6 text-[#833589]"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                                />
+                              </svg>
+                            </div>
                           </div>
-
-                          {/* Enhanced Text Content */}
-                          <motion.div
-                            className="p-4 md:p-6 relative"
-                            animate={{
-                              backgroundColor:
-                                hoveredCard === storyIndex ? "rgba(131, 53, 137, 0.02)" : "rgba(255, 255, 255, 1)",
-                            }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <motion.p
-                              className="text-gray-600 text-sm md:text-base leading-relaxed font-medium"
-                              animate={{
-                                color: hoveredCard === storyIndex ? "#374151" : "#6B7280",
-                                y: hoveredCard === storyIndex ? -2 : 0,
-                              }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              {story.description}
-                            </motion.p>
-
-                            {/* Animated Underline */}
-                            <motion.div
-                              className="absolute bottom-0 left-4 h-0.5 bg-gradient-to-r from-[#833589] to-[#E79800]"
-                              animate={{
-                                width: hoveredCard === storyIndex ? "calc(100% - 2rem)" : "0%",
-                              }}
-                              transition={{ duration: 0.4, ease: "easeOut" }}
-                            />
-                          </motion.div>
-                        </motion.div>
+                        </div>
+                        <div className="p-3 md:p-4">
+                          <p className="text-gray-600 text-xs md:text-sm leading-relaxed">{story.description}</p>
+                        </div>
                       </motion.div>
                     )
                   })}
                 </motion.div>
               </div>
-
               {/* Navigation Arrows - Hidden on mobile */}
               <div className="hidden lg:block absolute inset-y-0 left-0 flex items-center z-10 -ml-12">
                 <button
@@ -1431,7 +1368,6 @@ export default function IPMCareersLanding() {
                   </svg>
                 </button>
               </div>
-
               {/* Mobile Navigation Buttons */}
               <div className="lg:hidden flex justify-center mt-6 space-x-4">
                 <button
@@ -1452,8 +1388,7 @@ export default function IPMCareersLanding() {
                 </button>
               </div>
             </div>
-
-            {/* Enhanced Pagination Dots */}
+            {/* Enhanced Pagination Dots - Positioned at bottom, aligned with cards */}
             <div className="flex justify-center mt-8 space-x-2">
               {successStories.map((_, index) => (
                 <button
