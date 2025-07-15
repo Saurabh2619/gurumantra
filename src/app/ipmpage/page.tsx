@@ -363,26 +363,29 @@ export default function IPMCareersLanding() {
     },
   ]
 
-  // Mobile/Small Screen Results
+  // Enhanced Mobile/Small Screen Results - All 5 images will show properly
   const mobileResultSlides = [
     {
-      title: "Outstanding Results",
-      subtitle: "Academic Excellence",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751015341/a_zrjadn.jpg",
-      stats: [
-        { label: "Students Selected", value: "500+" },
-        { label: "Success Rate", value: "95%" },
-      ],
+      id: 1,
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.18_uzr2cw.jpg",
     },
     {
-      title: "Our Toppers",
-      subtitle: "Success Stories",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751015353/b_mq3edw.jpg",
-      stats: [
-        { label: "AIR 1-10", value: "15+" },
-        { label: "IIM Selections", value: "200+" },
-      ],
-    },
+      id: 2,
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.41_ajf7x6.jpg"},
+    {
+      id: 3,
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.16.23_dqv4od.jpg"},
+    {
+      id: 4,
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.57_s4p6pa.jpg"},
+    {
+      id: 5,
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.15.12_ss9ipd.jpg"},
   ]
 
   useEffect(() => {
@@ -416,6 +419,7 @@ export default function IPMCareersLanding() {
         return prev + 1
       })
     }, 1200) // Reduced from 1500 to 1200 for even faster, smoother speed
+
     return () => clearInterval(interval)
   }, [])
 
@@ -427,13 +431,16 @@ export default function IPMCareersLanding() {
     return () => clearInterval(interval)
   }, [])
 
-  // Mobile slider
+  // Enhanced Mobile slider - Fixed to show all 5 images properly
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentMobileSlide((prev) => (prev + 1) % mobileResultSlides.length)
-    }, 4000)
+      setCurrentMobileSlide((prev) => {
+        const nextSlide = (prev + 1) % mobileResultSlides.length
+        return nextSlide
+      })
+    }, 3500) // Slightly faster transition for better user experience
     return () => clearInterval(interval)
-  }, [])
+  }, [mobileResultSlides.length])
 
   // ENHANCED Success Stories - Continuous smooth movement, one card at a time
   useEffect(() => {
@@ -450,6 +457,7 @@ export default function IPMCareersLanding() {
         }
       }, 3000) // Smooth continuous movement - 3 seconds
     }
+
     startSuccessStoryInterval()
     return () => {
       if (successStoryIntervalRef.current) {
@@ -477,6 +485,7 @@ export default function IPMCareersLanding() {
         }
       }, 4000) // Slightly faster than before
     }
+
     startTestimonialInterval()
     return () => {
       if (testimonialIntervalRef.current) {
@@ -514,6 +523,7 @@ export default function IPMCareersLanding() {
       setNotification("City field is empty")
       return
     }
+
     setIsSubmitted(true)
     console.log("Form submitted:", formData)
   }
@@ -538,6 +548,7 @@ export default function IPMCareersLanding() {
     setCurrentSlide((prev) => (prev - 1 + resultSlides.length) % resultSlides.length)
   }
 
+  // Enhanced Mobile Navigation Functions
   const nextMobileSlide = () => {
     setCurrentMobileSlide((prev) => (prev + 1) % mobileResultSlides.length)
   }
@@ -797,69 +808,107 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </div>
-        {/* Mobile/Tablet Slider */}
+
+        {/* ENHANCED Mobile/Tablet Slider - All 5 images will show properly */}
         <div className="lg:hidden w-full px-4">
-          <div className="relative bg-white shadow-2xl overflow-hidden rounded-2xl">
-            <div className="relative h-[350px] sm:h-[400px]">
-              {mobileResultSlides.map((slide, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                    currentMobileSlide === index
-                      ? "opacity-100 translate-x-0"
-                      : index < currentMobileSlide
-                        ? "opacity-0 -translate-x-full"
-                        : "opacity-0 translate-x-full"
-                  }`}
-                >
-                  <div className="w-full h-full relative">
-                    <img
-                      src={slide.image || "/placeholder.svg"}
-                      alt={slide.title}
-                      className="w-full h-full object-contain bg-gray-100"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4 text-center">
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 drop-shadow-lg">{slide.title}</h3>
-                      <p className="text-sm sm:text-base text-white/90 drop-shadow-md">{slide.subtitle}</p>
+          <div className="relative bg-white shadow-2xl overflow-hidden rounded-3xl">
+            <div className="relative h-[400px] sm:h-[450px]">
+              <AnimatePresence mode="wait">
+                {mobileResultSlides.map((slide, index) => (
+                  <motion.div
+                    key={`${slide.id}-${index}`}
+                    className={`absolute inset-0 ${currentMobileSlide === index ? "z-10" : "z-0"}`}
+                    initial={{
+                      opacity: 0,
+                      x: index > currentMobileSlide ? 100 : -100,
+                      scale: 0.95,
+                    }}
+                    animate={{
+                      opacity: currentMobileSlide === index ? 1 : 0,
+                      x: currentMobileSlide === index ? 0 : index > currentMobileSlide ? 100 : -100,
+                      scale: currentMobileSlide === index ? 1 : 0.95,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      x: index > currentMobileSlide ? 100 : -100,
+                      scale: 0.95,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    }}
+                  >
+                    <div className="w-full h-full relative rounded-2xl overflow-hidden">
+                      <img
+                        src={slide.image || "/placeholder.svg"}
+                        alt={`Success Story ${slide.id}`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      {/* Subtle gradient overlay for better readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+
+                      {/* Slide indicator in top-right */}
+                      <div className="absolute top-4 right-4 bg-[#833589]/90 backdrop-blur-sm rounded-lg px-3 py-2 text-white text-sm font-semibold shadow-lg">
+                        <div className="flex items-center space-x-1">
+                          <span>{String(currentMobileSlide + 1).padStart(2, "0")}</span>
+                          <span className="text-xs opacity-70">/</span>
+                          <span className="text-xs opacity-70">
+                            {String(mobileResultSlides.length).padStart(2, "0")}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="absolute bottom-4 left-4 bg-[#833589]/90 backdrop-blur-sm rounded-lg p-2 text-white text-sm">
-                      <div className="font-bold">{String(currentMobileSlide + 1).padStart(2, "0")}</div>
-                      <div className="text-xs opacity-80">of {String(mobileResultSlides.length).padStart(2, "0")}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              <div className="absolute inset-y-0 left-0 flex items-center z-10">
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {/* Enhanced Navigation Arrows */}
+              <div className="absolute inset-y-0 left-0 flex items-center z-20">
                 <button
                   onClick={prevMobileSlide}
-                  className="ml-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
+                  className="ml-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-5 h-5 group-hover:scale-110 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center z-10">
+              <div className="absolute inset-y-0 right-0 flex items-center z-20">
                 <button
                   onClick={nextMobileSlide}
-                  className="mr-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
+                  className="mr-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-5 h-5 group-hover:scale-110 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
               </div>
             </div>
-            <div className="bg-white p-4 border-t">
-              <div className="flex justify-center items-center space-x-4">
+
+            {/* Enhanced Bottom Section with Pagination */}
+            <div className="bg-white p-6 border-t border-gray-100">
+              {/* Pagination Dots - Positioned at bottom as requested */}
+              <div className="flex justify-center items-center space-x-6">
                 <div className="flex space-x-2">
                   {mobileResultSlides.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentMobileSlide(index)}
                       className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        currentMobileSlide === index ? "bg-[#833589] scale-125" : "bg-gray-300 hover:bg-[#E79800]"
+                        currentMobileSlide === index
+                          ? "bg-[#833589] scale-125 shadow-md"
+                          : "bg-gray-300 hover:bg-[#E79800] hover:scale-110"
                       }`}
                     />
                   ))}
