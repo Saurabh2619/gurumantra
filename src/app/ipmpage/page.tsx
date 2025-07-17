@@ -1647,3 +1647,119 @@ export default function IPMCareersLanding() {
     </div>
   )
 }
+
+// 'use client'
+
+// import { useEffect, useState } from 'react'
+// import { motion, AnimatePresence } from 'framer-motion'
+
+// const stations = [
+//   {
+//     title: "Best & Promising IPMAT Results",
+//     points: ["Top selections in IPMAT Indore & Rohtak"]
+//   },
+//   {
+//     title: "Mentoring by IIM Alumni",
+//     points: ["Personal guidance from IIM graduates"]
+//   },
+//   {
+//     title: "Awarded #1 by ZEE News",
+//     points: ["Recognized for academic excellence"]
+//   },
+//   {
+//     title: "Media Exposure for Performance",
+//     points: ["Featured in national newspapers"]
+//   }
+// ]
+
+// export default function VerticalTrainRoadmap() {
+//   const [currentStation, setCurrentStation] = useState(0)
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setCurrentStation((prev) => (prev >= stations.length - 1 ? 0 : prev + 1))
+//     }, 1500)
+//     return () => clearInterval(interval)
+//   }, [])
+
+//   return (
+//     <section className="block md:hidden bg-white px-6 py-10 min-h-screen">
+//       {/* Heading */}
+//       <div className="text-center mb-8">
+//         <div className="text-sm font-bold text-gray-600 tracking-wider mb-2">IPM CAREERS</div>
+//         <h1 className="text-2xl font-bold leading-tight mb-3">
+//           <span className="text-gray-800">Your Journey from </span>
+//           <span className="text-[#833589]">Class 12 to IIMs</span>
+//         </h1>
+//         <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow-lg">
+//           Board the IPM Express
+//         </div>
+//       </div>
+
+//       {/* Roadmap container */}
+//       <div className="relative pl-6 border-l-4 border-gray-300">
+//         {/* Train Icon 🚂 */}
+//         <motion.div
+//           className="absolute -left-5 w-6 h-6 flex items-center justify-center z-20"
+//           animate={{
+//             top: `${currentStation * 140}px`, // Height between stations
+//           }}
+//           transition={{ duration: 0.8 }}
+//         >
+//           <div className="text-2xl">🚂</div>
+//         </motion.div>
+
+//         {/* Station Cards */}
+//         {stations.map((station, index) => (
+//           <AnimatePresence key={index}>
+//             <motion.div
+//               className="relative mb-10 pl-4"
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{
+//                 opacity: 1,
+//                 y: 0,
+//                 scale: index === currentStation ? 1.05 : 1,
+//               }}
+//               exit={{ opacity: 0 }}
+//               transition={{ duration: 0.4 }}
+//             >
+//               {/* Dot Marker */}
+//               <div className="absolute -left-[13px] top-2 w-3 h-3 bg-[#833589] border-2 border-white rounded-full shadow" />
+              
+//               {/* Card */}
+//               <div className={`bg-white p-4 rounded-xl shadow-md border ${
+//                 index === currentStation ? "border-[#833589]" : "border-gray-200"
+//               }`}>
+//                 <div className="text-base font-semibold text-gray-800 mb-2">
+//                   {station.title}
+//                 </div>
+//                 <ul className="text-sm text-gray-600 space-y-1">
+//                   {station.points.map((point, i) => (
+//                     <li key={i} className="flex items-start">
+//                       <span className="text-[#E79800] mr-2 font-bold">•</span>
+//                       <span>{point}</span>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </div>
+//             </motion.div>
+//           </AnimatePresence>
+//         ))}
+//       </div>
+
+//       {/* CTA */}
+//       <div className="mt-8 text-center">
+//         <motion.button
+//           whileHover={{ scale: 1.05 }}
+//           whileTap={{ scale: 0.95 }}
+//           className="bg-[#833589] text-white px-6 py-3 rounded-full font-bold text-base shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
+//         >
+//           Start Your Journey
+//         </motion.button>
+//         <p className="mt-3 text-gray-600 text-sm font-medium">
+//           Join thousands of students on the path to IIM success
+//         </p>
+//       </div>
+//     </section>
+//   )
+// }
