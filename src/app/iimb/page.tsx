@@ -59,7 +59,7 @@ export default function IPM() {
           {[0, 1].map((index) => (
             <div key={index} className="min-w-full relative">
               <Image
-                src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747075177/IIM_KOZHIKODE_BMS_2_dcrkrk.png"
+                src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1752837703/76767657_dcdw8m.jpg"
                 alt="IIM Kozhikode BMS"
                 width={1200}
                 height={600}
@@ -146,7 +146,7 @@ export default function IPM() {
             <div className="bg-white rounded-xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 max-w-sm w-full">
               <div className="relative h-auto aspect-square overflow-hidden">
                 <Image
-                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747123983/WhatsApp_Image_2025-05-13_at_13.41.10_e54o1z.jpg"
+                  src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1752841337/7876868769_tvuyss.jpg"
                   alt="IPMAT 2025 Online Course"
                   width={1080}
                   height={1080}
