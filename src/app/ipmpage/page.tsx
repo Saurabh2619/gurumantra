@@ -84,12 +84,6 @@ export default function IPMCareersLanding() {
       image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752493120/123_yrb1qi.jpg",
     },
     {
-      name: "Taruna Khanna",
-      role: "GCC UCLA Extension",
-      image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-04_at_13.54.17_kppbpd.jpg",
-    },
-    {
       name: "Dr. Swati A. Mishra",
       role: "Director Operations Lucknow Centre",
       role2: "Former Professor IIM Lucknow",
@@ -1648,134 +1642,134 @@ export default function IPMCareersLanding() {
   )
 }
 
-// "use client"
+// // "use client"
 
-// import { useEffect, useState } from "react"
-// import { motion, AnimatePresence } from "framer-motion"
-// import { CircleDot } from "lucide-react" // Only CircleDot is needed for stations
+// // import { useEffect, useState } from "react"
+// // import { motion, AnimatePresence } from "framer-motion"
+// // import { CircleDot } from "lucide-react" // Only CircleDot is needed for stations
 
-// const stations = [
-//   { title: "Best & Promising IPMAT Results", points: ["Top selections in IPMAT Indore & Rohtak"] },
-//   { title: "Mentoring by IIM Alumni", points: ["Personal guidance from IIM graduates"] },
-//   { title: "Awarded #1 by ZEE News", points: ["Recognized for academic excellence"] },
-//   { title: "Media Exposure for Performance", points: ["Featured in national newspapers"] },
-// ]
+// // const stations = [
+// //   { title: "Best & Promising IPMAT Results", points: ["Top selections in IPMAT Indore & Rohtak"] },
+// //   { title: "Mentoring by IIM Alumni", points: ["Personal guidance from IIM graduates"] },
+// //   { title: "Awarded #1 by ZEE News", points: ["Recognized for academic excellence"] },
+// //   { title: "Media Exposure for Performance", points: ["Featured in national newspapers"] },
+// // ]
 
-// export default function FixedZigZagRoadmap() {
-//   const [currentStation, setCurrentStation] = useState(0)
+// // export default function FixedZigZagRoadmap() {
+// //   const [currentStation, setCurrentStation] = useState(0)
 
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setCurrentStation((prev) => (prev + 1) % stations.length)
-//     }, 1500)
-//     return () => clearInterval(interval)
-//   }, [])
+// //   useEffect(() => {
+// //     const interval = setInterval(() => {
+// //       setCurrentStation((prev) => (prev + 1) % stations.length)
+// //     }, 1500)
+// //     return () => clearInterval(interval)
+// //   }, [])
 
-//   return (
-//     <section className="block md:hidden bg-white px-4 py-10">
-//       {/* Heading */}
-//       <div className="text-center mb-10">
-//         <div className="text-sm font-bold text-gray-600 mb-2">IPM CAREERS</div>
-//         <h2 className="text-2xl font-bold mb-3">
-//           <span className="text-gray-800">Your Journey from </span>
-//           <span className="text-[#833589]">Class 12 to IIMs</span>
-//         </h2>
-//         <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow">
-//           Board the IPM Express
-//         </div>
-//       </div>
-//       {/* Timeline */}
-//       <div className="relative flex flex-col items-center">
-//         {/* Vertical Line */}
-//         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gray-300 z-0" />
-//         {/* Train */}
-//         <motion.div
-//           className="absolute z-10"
-//           animate={{
-//             top: `${currentStation * 145 + 145 / 2}px`, // Center train on the station marker
-//             y: [0, -5, 0], // Subtle vertical bobbing animation
-//           }}
-//           transition={{
-//             top: { duration: 0.8 }, // Transition for top movement
-//             y: { duration: 0.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }, // Continuous bobbing
-//           }}
-//           style={{
-//             left: "50%",
-//             transform: "translate(-50%, -50%)", // Center the train icon itself
-//           }}
-//         >
-//           <span className="text-4xl">🚂</span> {/* Larger emoji for "actual train" feel */}
-//         </motion.div>
-//         {/* Station Cards */}
-//         {stations.map((station, index) => {
-//           const isLeft = index % 2 === 0
-//           const isActive = index === currentStation
-//           return (
-//             <div
-//               key={index}
-//               className="relative w-full h-[145px] flex items-center" // Fixed height for consistent spacing
-//             >
-//               {/* Station Marker - positioned on the central line */}
-//               <motion.div
-//                 className="absolute w-6 h-6 flex items-center justify-center rounded-full shadow z-20"
-//                 style={{
-//                   left: "50%",
-//                   top: "50%",
-//                   transform: "translate(-50%, -50%)", // Centered horizontally and vertically
-//                 }}
-//                 animate={{
-//                   backgroundColor: isActive ? "#833589" : "#d1d5db", // Change background color
-//                   scale: isActive ? 1.2 : 1, // Scale up when active
-//                 }}
-//                 transition={{ duration: 0.3 }}
-//               >
-//                 <CircleDot className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-600"}`} />
-//               </motion.div>
+// //   return (
+// //     <section className="block md:hidden bg-white px-4 py-10">
+// //       {/* Heading */}
+// //       <div className="text-center mb-10">
+// //         <div className="text-sm font-bold text-gray-600 mb-2">IPM CAREERS</div>
+// //         <h2 className="text-2xl font-bold mb-3">
+// //           <span className="text-gray-800">Your Journey from </span>
+// //           <span className="text-[#833589]">Class 12 to IIMs</span>
+// //         </h2>
+// //         <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow">
+// //           Board the IPM Express
+// //         </div>
+// //       </div>
+// //       {/* Timeline */}
+// //       <div className="relative flex flex-col items-center">
+// //         {/* Vertical Line */}
+// //         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gray-300 z-0" />
+// //         {/* Train */}
+// //         <motion.div
+// //           className="absolute z-10"
+// //           animate={{
+// //             top: `${currentStation * 145 + 145 / 2}px`, // Center train on the station marker
+// //             y: [0, -5, 0], // Subtle vertical bobbing animation
+// //           }}
+// //           transition={{
+// //             top: { duration: 0.8 }, // Transition for top movement
+// //             y: { duration: 0.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }, // Continuous bobbing
+// //           }}
+// //           style={{
+// //             left: "50%",
+// //             transform: "translate(-50%, -50%)", // Center the train icon itself
+// //           }}
+// //         >
+// //           <span className="text-4xl">🚂</span> {/* Larger emoji for "actual train" feel */}
+// //         </motion.div>
+// //         {/* Station Cards */}
+// //         {stations.map((station, index) => {
+// //           const isLeft = index % 2 === 0
+// //           const isActive = index === currentStation
+// //           return (
+// //             <div
+// //               key={index}
+// //               className="relative w-full h-[145px] flex items-center" // Fixed height for consistent spacing
+// //             >
+// //               {/* Station Marker - positioned on the central line */}
+// //               <motion.div
+// //                 className="absolute w-6 h-6 flex items-center justify-center rounded-full shadow z-20"
+// //                 style={{
+// //                   left: "50%",
+// //                   top: "50%",
+// //                   transform: "translate(-50%, -50%)", // Centered horizontally and vertically
+// //                 }}
+// //                 animate={{
+// //                   backgroundColor: isActive ? "#833589" : "#d1d5db", // Change background color
+// //                   scale: isActive ? 1.2 : 1, // Scale up when active
+// //                 }}
+// //                 transition={{ duration: 0.3 }}
+// //               >
+// //                 <CircleDot className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-600"}`} />
+// //               </motion.div>
 
-//               {/* Card */}
-//               <AnimatePresence>
-//                 <motion.div
-//                   initial={{ opacity: 0, x: isLeft ? -50 : 50 }} // Initial x for animation
-//                   animate={{
-//                     opacity: 1,
-//                     x: 0,
-//                     scale: isActive ? 1.05 : 1,
-//                   }}
-//                   exit={{ opacity: 0, x: isLeft ? -50 : 50 }}
-//                   transition={{ duration: 0.4 }}
-//                   className={`absolute max-w-[80%] p-4 rounded-xl shadow-md border bg-white z-10`}
-//                   style={{
-//                     top: "50%",
-//                     transform: "translateY(-50%)", // Vertically center
-//                     [isLeft ? "right" : "left"]: "calc(50% + 20px)", // Offset from center line
-//                   }}
-//                 >
-//                   <div className="text-base font-semibold text-gray-800 mb-2">{station.title}</div>
-//                   <ul className="text-sm text-gray-600 space-y-1">
-//                     {station.points.map((point, i) => (
-//                       <li key={i} className="flex items-start">
-//                         <span className="text-[#E79800] mr-2 font-bold">•</span>
-//                         <span>{point}</span>
-//                       </li>
-//                     ))}
-//                   </ul>
-//                 </motion.div>
-//               </AnimatePresence>
-//             </div>
-//           )
-//         })}
-//       </div>
-//       {/* CTA */}
-//       <div className="mt-12 text-center">
-//         <motion.button
-//           whileHover={{ scale: 1.05 }}
-//           whileTap={{ scale: 0.95 }}
-//           className="bg-[#833589] text-white px-6 py-3 rounded-full font-bold text-base shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
-//         >
-//           Start Your Journey
-//         </motion.button>
-//         <p className="mt-3 text-gray-600 text-sm font-medium">Join thousands of students on the path to IIM success</p>
-//       </div>
-//     </section>
-//   )
-// }
+// //               {/* Card */}
+// //               <AnimatePresence>
+// //                 <motion.div
+// //                   initial={{ opacity: 0, x: isLeft ? -50 : 50 }} // Initial x for animation
+// //                   animate={{
+// //                     opacity: 1,
+// //                     x: 0,
+// //                     scale: isActive ? 1.05 : 1,
+// //                   }}
+// //                   exit={{ opacity: 0, x: isLeft ? -50 : 50 }}
+// //                   transition={{ duration: 0.4 }}
+// //                   className={`absolute max-w-[80%] p-4 rounded-xl shadow-md border bg-white z-10`}
+// //                   style={{
+// //                     top: "50%",
+// //                     transform: "translateY(-50%)", // Vertically center
+// //                     [isLeft ? "right" : "left"]: "calc(50% + 20px)", // Offset from center line
+// //                   }}
+// //                 >
+// //                   <div className="text-base font-semibold text-gray-800 mb-2">{station.title}</div>
+// //                   <ul className="text-sm text-gray-600 space-y-1">
+// //                     {station.points.map((point, i) => (
+// //                       <li key={i} className="flex items-start">
+// //                         <span className="text-[#E79800] mr-2 font-bold">•</span>
+// //                         <span>{point}</span>
+// //                       </li>
+// //                     ))}
+// //                   </ul>
+// //                 </motion.div>
+// //               </AnimatePresence>
+// //             </div>
+// //           )
+// //         })}
+// //       </div>
+// //       {/* CTA */}
+// //       <div className="mt-12 text-center">
+// //         <motion.button
+// //           whileHover={{ scale: 1.05 }}
+// //           whileTap={{ scale: 0.95 }}
+// //           className="bg-[#833589] text-white px-6 py-3 rounded-full font-bold text-base shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
+// //         >
+// //           Start Your Journey
+// //         </motion.button>
+// //         <p className="mt-3 text-gray-600 text-sm font-medium">Join thousands of students on the path to IIM success</p>
+// //       </div>
+// //     </section>
+// //   )
+// // }
