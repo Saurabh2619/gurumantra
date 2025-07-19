@@ -252,9 +252,14 @@ export default function IPM() {
                   </li>
                 </ul>
                 <div className="mt-6 text-right">
-                  <span className="inline-block bg-[#833589] text-white text-xl font-bold py-2 px-6 rounded-full shadow-md">
+                  <a
+                    href="https://pages.razorpay.com/imbprep"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-[#833589] text-white text-xl font-bold py-2 px-6 rounded-full shadow-md hover:bg-[#6e2c73] transition duration-300"
+                  >
                     ₹25,000
-                  </span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -829,18 +834,17 @@ export default function IPM() {
           <div className="mb-12">
             <div className="relative w-full h-[300px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl">
               <Image
-                src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1747075179/42-indore-_ivhcmw.jpg"
-                alt="IIM Indore Results"
+                src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1752922547/INDORE-BANNER_2_hupw3s.jpg"
+                alt=""
                 fill
                 style={{ objectFit: "cover", objectPosition: "center" }}
                 className="hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#833589]/80 to-transparent flex items-end">
                 <div className="p-4 md:p-8 text-white">
-                  <h3 className="text-xl md:text-3xl font-bold mb-2">42 Selections in IIM Indore</h3>
+                  <h3 className="text-xl md:text-3xl font-bold mb-2">AIR 1 & 7 – Plus 31 More Success Stories in IIM Indore</h3>
                   <p className="text-sm md:text-xl">
-                    Our students have secured 42 seats in IIM Indore in 2024, making us one of the leading coaching
-                    institutes for IPMAT preparation.
+                    Trusted by toppers — 33 IPMAT 2025 converts from IPM Careers, including AIR 1 & AIR 7.
                   </p>
                 </div>
               </div>
