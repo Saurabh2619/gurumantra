@@ -1,7 +1,9 @@
 "use client"
+
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { CircleDot } from "lucide-react" // Added import for CircleDot
 
 const stations = [
   {
@@ -53,22 +55,18 @@ export default function IPMCareersLanding() {
   // New state for image modal
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [selectedImageDescription, setSelectedImageDescription] = useState<string>("")
-
   // Refs for intervals
   const successStoryIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const testimonialIntervalRef = useRef<NodeJS.Timeout | null>(null)
-
   // Roadmap animation states
   const [currentStation, setCurrentStation] = useState(0)
   const [animationComplete, setAnimationComplete] = useState(false)
-
   const features = [
     "Best & Promising IPMAT Results",
     "Mentoring by IIM Alumni",
     "Awarded #1 by ZEE News",
     "Gained Media Exposure for Excellent Academic Performance",
   ]
-
   const mentors = [
     {
       name: "Ashutosh Mishra",
@@ -115,7 +113,6 @@ export default function IPMCareersLanding() {
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618115/WhatsApp_Image_2025-07-04_at_13.55.26_du5hkp.jpg",
     },
   ]
-
   const testimonials = [
     {
       icon: "🏆",
@@ -148,7 +145,6 @@ export default function IPMCareersLanding() {
       description: "Regular one-on-one sessions to clear all your doubts and strengthen concepts.",
     },
   ]
-
   const reviews = [
     {
       name: "Rahul Sharma",
@@ -175,7 +171,6 @@ export default function IPMCareersLanding() {
       image: "/placeholder.svg?height=60&width=60",
     },
   ]
-
   // Enhanced Success Stories Data - 6 cards with the provided image
   const successStories = [
     {
@@ -213,7 +208,6 @@ export default function IPMCareersLanding() {
       description: "Achieved 99+ percentile in IPMAT",
     },
   ]
-
   // New Student Testimonials Data - 6 testimonials
   const studentTestimonials = [
     {
@@ -271,7 +265,6 @@ export default function IPMCareersLanding() {
       rating: 5,
     },
   ]
-
   const faqs = [
     {
       question: "How will this IPMAT preparation help me?",
@@ -302,7 +295,6 @@ export default function IPMCareersLanding() {
       answer: "For any queries contact @8299470392.",
     },
   ]
-
   // Desktop/Large Screen Results
   const resultSlides = [
     {
@@ -356,76 +348,76 @@ export default function IPMCareersLanding() {
       ],
     },
   ]
-
   // Mobile/Small Screen Results
   const mobileResultSlides = [
     {
-    //   title: "Outstanding Results",
-    //   subtitle: "Academic Excellence",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.18_uzr2cw.jpg",
+      //   title: "Outstanding Results",
+      //   subtitle: "Academic Excellence",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.18_uzr2cw.jpg",
       stats: [
         { label: "Students Selected", value: "500+" },
         { label: "Success Rate", value: "95%" },
       ],
     },
     {
-    //   title: "Our Toppers",
-    //   subtitle: "Success Stories",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.41_ajf7x6.jpg",
+      //   title: "Our Toppers",
+      //   subtitle: "Success Stories",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.41_ajf7x6.jpg",
       stats: [
         { label: "AIR 1-10", value: "15+" },
         { label: "IIM Selections", value: "200+" },
       ],
     },
     {
-    //   title: "Our Toppers",
-    //   subtitle: "Success Stories",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.16.23_dqv4od.jpg",
+      //   title: "Our Toppers",
+      //   subtitle: "Success Stories",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.16.23_dqv4od.jpg",
       stats: [
         { label: "AIR 1-10", value: "15+" },
         { label: "IIM Selections", value: "200+" },
       ],
     },
     {
-    //   title: "Our Toppers",
-    //   subtitle: "Success Stories",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.57_s4p6pa.jpg",
+      //   title: "Our Toppers",
+      //   subtitle: "Success Stories",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.57_s4p6pa.jpg",
       stats: [
         { label: "AIR 1-10", value: "15+" },
         { label: "IIM Selections", value: "200+" },
       ],
     },
     {
-    //   title: "Our Toppers",
-    //   subtitle: "Success Stories",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.15.12_ss9ipd.jpg",
+      //   title: "Our Toppers",
+      //   subtitle: "Success Stories",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.15.12_ss9ipd.jpg",
       stats: [
         { label: "AIR 1-10", value: "15+" },
         { label: "IIM Selections", value: "200+" },
       ],
     },
   ]
-
   useEffect(() => {
     const interval = setInterval(() => {
       setStudentsEnrolled((prev) => prev + 1)
     }, 8000)
     return () => clearInterval(interval)
   }, [])
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentFeature((prev) => (prev + 1) % features.length)
     }, 2000)
     return () => clearInterval(interval)
   }, [])
-
   useEffect(() => {
     setTimeout(() => {
       setActivePopup(true)
     }, 5000)
   }, [])
-
   // Enhanced Roadmap animation effect - Faster speed and looping
   useEffect(() => {
     const interval = setInterval(() => {
@@ -439,7 +431,6 @@ export default function IPMCareersLanding() {
     }, 1200) // Reduced from 1500 to 1200 for even faster, smoother speed
     return () => clearInterval(interval)
   }, [])
-
   // Desktop slider
   useEffect(() => {
     const interval = setInterval(() => {
@@ -447,7 +438,6 @@ export default function IPMCareersLanding() {
     }, 4000)
     return () => clearInterval(interval)
   }, [])
-
   // Mobile slider
   useEffect(() => {
     const interval = setInterval(() => {
@@ -455,7 +445,6 @@ export default function IPMCareersLanding() {
     }, 4000)
     return () => clearInterval(interval)
   }, [])
-
   // ENHANCED Success Stories - Continuous smooth movement, one card at a time
   useEffect(() => {
     const startSuccessStoryInterval = () => {
@@ -478,7 +467,6 @@ export default function IPMCareersLanding() {
       }
     }
   }, [successStoryPaused])
-
   // Enhanced Student testimonials slider with smooth transitions and pause functionality
   useEffect(() => {
     const startTestimonialInterval = () => {
@@ -505,7 +493,6 @@ export default function IPMCareersLanding() {
       }
     }
   }, [testimonialPaused])
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Validation
@@ -538,35 +525,27 @@ export default function IPMCareersLanding() {
     setIsSubmitted(true)
     console.log("Form submitted:", formData)
   }
-
   const formProgress = Object.values(formData).filter((value) => value.trim() !== "").length * 20
-
   const validateEmail = (email: string) => {
     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
     return re.test(email)
   }
-
   const validatePhone = (phone: string) => {
     const re = /^[0-9]{10}$/
     return re.test(phone)
   }
-
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % resultSlides.length)
   }
-
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + resultSlides.length) % resultSlides.length)
   }
-
   const nextMobileSlide = () => {
     setCurrentMobileSlide((prev) => (prev + 1) % mobileResultSlides.length)
   }
-
   const prevMobileSlide = () => {
     setCurrentMobileSlide((prev) => (prev - 1 + mobileResultSlides.length) % mobileResultSlides.length)
   }
-
   // Enhanced navigation functions - ONE CARD AT A TIME for Success Stories
   const nextSuccessStory = () => {
     setCurrentSuccessStory((prev) => {
@@ -574,14 +553,12 @@ export default function IPMCareersLanding() {
       return nextIndex >= successStories.length ? 0 : nextIndex
     })
   }
-
   const prevSuccessStory = () => {
     setCurrentSuccessStory((prev) => {
       const prevIndex = prev - 1
       return prevIndex < 0 ? successStories.length - 1 : prevIndex
     })
   }
-
   const nextTestimonial = () => {
     setIsTestimonialTransitioning(true)
     setTimeout(() => {
@@ -592,7 +569,6 @@ export default function IPMCareersLanding() {
       setIsTestimonialTransitioning(false)
     }, 150)
   }
-
   const prevTestimonial = () => {
     setIsTestimonialTransitioning(true)
     setTimeout(() => {
@@ -603,20 +579,17 @@ export default function IPMCareersLanding() {
       setIsTestimonialTransitioning(false)
     }, 150)
   }
-
   // Helper function to get visible cards based on screen size
   const getVisibleCards = () => {
     // Mobile: 1 card, Tablet: 2 cards, Desktop: 3 cards
     if (typeof window !== "undefined") {
       if (window.innerWidth < 640) return 1 // Mobile
       if (window.innerWidth < 1024) return 2 // Tablet
-      return 3 // Desktop
+      return 3 // Default
     }
     return 3 // Default
   }
-
   const [visibleCards, setVisibleCards] = useState(3)
-
   useEffect(() => {
     const handleResize = () => {
       setVisibleCards(getVisibleCards())
@@ -625,19 +598,16 @@ export default function IPMCareersLanding() {
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
   }, [])
-
   // Function to handle image click
   const handleImageClick = (image: string, description: string) => {
     setSelectedImage(image)
     setSelectedImageDescription(description)
   }
-
   // Function to close modal
   const closeModal = () => {
     setSelectedImage(null)
     setSelectedImageDescription("")
   }
-
   return (
     <div className="min-h-screen bg-white">
       {/* Image Modal */}
@@ -661,7 +631,6 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       )}
-
       {/* Notification */}
       {notification && (
         <div className="fixed top-20 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
@@ -671,7 +640,6 @@ export default function IPMCareersLanding() {
           </button>
         </div>
       )}
-
       {/* Success Modal */}
       {isSubmitted && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -706,7 +674,6 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       )}
-
       {/* Fixed Contact Bar */}
       <div className="fixed top-0 left-0 right-0 bg-[#833589] text-white py-2 px-4 text-sm z-40 flex items-center justify-center gap-2">
         <span>For Enquiry:</span>
@@ -717,7 +684,6 @@ export default function IPMCareersLanding() {
           +91 96163 83524
         </a>
       </div>
-
       {/* 1. Enhanced Responsive Results Slider - FULL WIDTH FOR PC */}
       <section className="py-5 bg-gray-50">
         {/* Desktop/Large Screen Slider - FULL WIDTH */}
@@ -836,7 +802,7 @@ export default function IPMCareersLanding() {
                   <div className="w-full h-full relative">
                     <img
                       src={slide.image || "/placeholder.svg"}
-                    //   alt={slide.title}
+                      //   alt={slide.title}
                       className="w-full h-full object-contain bg-gray-100"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
@@ -890,7 +856,6 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       </section>
-
       {/* 2. Enquiry Form Section */}
       <section className="relative overflow-hidden py-16 bg-gradient-to-br from-[#7b2fa9] via-[#833589] to-[#471760]">
         <div className="absolute inset-0">
@@ -971,8 +936,8 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       </section>
-
       {/* 3. Enhanced IIM Roadmap Section - HIDDEN ON MOBILE */}
+      {/* This is the desktop roadmap */}
       <section className="hidden md:block min-h-screen bg-white p-6">
         {/* Header */}
         <div className="text-center mb-8">
@@ -1158,6 +1123,115 @@ export default function IPMCareersLanding() {
         </div>
       </section>
 
+      {/* Mobile Roadmap Section - ONLY VISIBLE ON MOBILE */}
+      <section className="block md:hidden bg-white px-4 py-10">
+        {/* Heading */}
+        <div className="text-center mb-10">
+          <div className="text-sm font-bold text-gray-600 mb-2">IPM CAREERS</div>
+          <h2 className="text-2xl font-bold mb-3">
+            <span className="text-gray-800">Your Journey from </span>
+            <span className="text-[#833589]">Class 12 to IIMs</span>
+          </h2>
+          <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow">
+            Board the IPM Express
+          </div>
+        </div>
+        {/* Timeline */}
+        <div className="relative flex flex-col items-center">
+          {/* Vertical Line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gray-300 z-0" />
+          {/* Train */}
+          <motion.div
+            className="absolute z-30"
+            animate={{
+              top: `${currentStation * 145 + 72.5}px`,
+              y: [0, -5, 0],
+            }}
+            transition={{
+              top: { duration: 0.8 },
+              y: { duration: 0.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+            }}
+            style={{
+              left: "calc(50% - 30px)",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <span className="text-5xl">🚆</span>
+          </motion.div>
+          {/* Station Cards */}
+          {stations.map((station, index) => {
+            const isLeft = index % 2 === 0
+            const isActive = index === currentStation
+            // Adjust card alignment
+            const cardShift = isLeft ? "calc(50% + 45px)" : "calc(50% + 45px)"
+            return (
+              <div key={index} className="relative w-full h-[145px] flex items-center">
+                {/* Circle Dot */}
+                <motion.div
+                  className="absolute w-10 h-10 flex items-center justify-center rounded-full shadow z-20"
+                  style={{
+                    left: "calc(50% - 18px)",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                  animate={{
+                    backgroundColor: isActive ? "#833589" : "#d1d5db",
+                    scale: isActive ? 1.2 : 1,
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <CircleDot className={`w-5 h-5 ${isActive ? "text-white" : "text-gray-600"}`} />
+                </motion.div>
+                {/* Info Card */}
+                <AnimatePresence>
+                  <motion.div
+                    initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                      scale: isActive ? 1.05 : 1,
+                    }}
+                    exit={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute max-w-[80%] p-4 rounded-xl shadow-md border bg-white z-10"
+                    style={{
+                      top: "15%",
+                      transform: "translateY(-50%)",
+                      [isLeft ? "right" : "left"]: cardShift,
+                    }}
+                  >
+                    <div className="text-base font-semibold text-gray-800 mb-2 whitespace-pre-line">
+                      {station.title}
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      {station.points.map((point, i) => (
+                        <li key={i} className="flex items-start">
+                          <span className="text-[#E79800] mr-2 font-bold">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            )
+          })}
+        </div>
+        {/* CTA */}
+        <div className="mt-18 text-center">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-[#833589] text-white px-6 py-3 rounded-full font-bold text-base shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
+          >
+            Start Your Journey
+          </motion.button>
+          <p className="mt-3 text-gray-600 text-sm font-medium">
+            Join thousands of students on the path to IIM success
+          </p>
+        </div>
+      </section>
+
       {/* 4. Words by: Our Students Section */}
       <div className="container max-w-7xl mx-auto px-4">
         {/* 5. Banner Image */}
@@ -1170,7 +1244,6 @@ export default function IPMCareersLanding() {
             />
           </div>
         </section>
-
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -1198,7 +1271,6 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
-
         {/* 5. Enhanced Mentors Section with Larger Images */}
         <section id="mentors" className="bg-white py-16">
           <div className="container mx-auto px-4">
@@ -1233,7 +1305,6 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
-
         {/* 6. Why Choose IPM Careers */}
         <section className="py-20 bg-[#F9FAFB]">
           <div className="container mx-auto px-4">
@@ -1287,7 +1358,6 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
-
         {/* 7. ENHANCED Success Stories - Smooth Movement with Click to Open */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
@@ -1427,7 +1497,6 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
-
         {/* 8. Enhanced Student Testimonials - Responsive Design (Keep 3 at a time as requested) */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
@@ -1574,7 +1643,6 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
-
         {/* 9. FAQ Section */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
@@ -1607,7 +1675,6 @@ export default function IPMCareersLanding() {
           </div>
         </section>
       </div>
-
       {/* Footer */}
       <footer className="bg-[#833589] text-white py-16">
         <div className="container mx-auto px-4">
@@ -1625,7 +1692,6 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       </footer>
-
       {/* WhatsApp Float Button */}
       {activePopup && (
         <a
@@ -1641,135 +1707,3 @@ export default function IPMCareersLanding() {
     </div>
   )
 }
-
-// // "use client"
-
-// // import { useEffect, useState } from "react"
-// // import { motion, AnimatePresence } from "framer-motion"
-// // import { CircleDot } from "lucide-react" // Only CircleDot is needed for stations
-
-// // const stations = [
-// //   { title: "Best & Promising IPMAT Results", points: ["Top selections in IPMAT Indore & Rohtak"] },
-// //   { title: "Mentoring by IIM Alumni", points: ["Personal guidance from IIM graduates"] },
-// //   { title: "Awarded #1 by ZEE News", points: ["Recognized for academic excellence"] },
-// //   { title: "Media Exposure for Performance", points: ["Featured in national newspapers"] },
-// // ]
-
-// // export default function FixedZigZagRoadmap() {
-// //   const [currentStation, setCurrentStation] = useState(0)
-
-// //   useEffect(() => {
-// //     const interval = setInterval(() => {
-// //       setCurrentStation((prev) => (prev + 1) % stations.length)
-// //     }, 1500)
-// //     return () => clearInterval(interval)
-// //   }, [])
-
-// //   return (
-// //     <section className="block md:hidden bg-white px-4 py-10">
-// //       {/* Heading */}
-// //       <div className="text-center mb-10">
-// //         <div className="text-sm font-bold text-gray-600 mb-2">IPM CAREERS</div>
-// //         <h2 className="text-2xl font-bold mb-3">
-// //           <span className="text-gray-800">Your Journey from </span>
-// //           <span className="text-[#833589]">Class 12 to IIMs</span>
-// //         </h2>
-// //         <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow">
-// //           Board the IPM Express
-// //         </div>
-// //       </div>
-// //       {/* Timeline */}
-// //       <div className="relative flex flex-col items-center">
-// //         {/* Vertical Line */}
-// //         <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gray-300 z-0" />
-// //         {/* Train */}
-// //         <motion.div
-// //           className="absolute z-10"
-// //           animate={{
-// //             top: `${currentStation * 145 + 145 / 2}px`, // Center train on the station marker
-// //             y: [0, -5, 0], // Subtle vertical bobbing animation
-// //           }}
-// //           transition={{
-// //             top: { duration: 0.8 }, // Transition for top movement
-// //             y: { duration: 0.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }, // Continuous bobbing
-// //           }}
-// //           style={{
-// //             left: "50%",
-// //             transform: "translate(-50%, -50%)", // Center the train icon itself
-// //           }}
-// //         >
-// //           <span className="text-4xl">🚂</span> {/* Larger emoji for "actual train" feel */}
-// //         </motion.div>
-// //         {/* Station Cards */}
-// //         {stations.map((station, index) => {
-// //           const isLeft = index % 2 === 0
-// //           const isActive = index === currentStation
-// //           return (
-// //             <div
-// //               key={index}
-// //               className="relative w-full h-[145px] flex items-center" // Fixed height for consistent spacing
-// //             >
-// //               {/* Station Marker - positioned on the central line */}
-// //               <motion.div
-// //                 className="absolute w-6 h-6 flex items-center justify-center rounded-full shadow z-20"
-// //                 style={{
-// //                   left: "50%",
-// //                   top: "50%",
-// //                   transform: "translate(-50%, -50%)", // Centered horizontally and vertically
-// //                 }}
-// //                 animate={{
-// //                   backgroundColor: isActive ? "#833589" : "#d1d5db", // Change background color
-// //                   scale: isActive ? 1.2 : 1, // Scale up when active
-// //                 }}
-// //                 transition={{ duration: 0.3 }}
-// //               >
-// //                 <CircleDot className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-600"}`} />
-// //               </motion.div>
-
-// //               {/* Card */}
-// //               <AnimatePresence>
-// //                 <motion.div
-// //                   initial={{ opacity: 0, x: isLeft ? -50 : 50 }} // Initial x for animation
-// //                   animate={{
-// //                     opacity: 1,
-// //                     x: 0,
-// //                     scale: isActive ? 1.05 : 1,
-// //                   }}
-// //                   exit={{ opacity: 0, x: isLeft ? -50 : 50 }}
-// //                   transition={{ duration: 0.4 }}
-// //                   className={`absolute max-w-[80%] p-4 rounded-xl shadow-md border bg-white z-10`}
-// //                   style={{
-// //                     top: "50%",
-// //                     transform: "translateY(-50%)", // Vertically center
-// //                     [isLeft ? "right" : "left"]: "calc(50% + 20px)", // Offset from center line
-// //                   }}
-// //                 >
-// //                   <div className="text-base font-semibold text-gray-800 mb-2">{station.title}</div>
-// //                   <ul className="text-sm text-gray-600 space-y-1">
-// //                     {station.points.map((point, i) => (
-// //                       <li key={i} className="flex items-start">
-// //                         <span className="text-[#E79800] mr-2 font-bold">•</span>
-// //                         <span>{point}</span>
-// //                       </li>
-// //                     ))}
-// //                   </ul>
-// //                 </motion.div>
-// //               </AnimatePresence>
-// //             </div>
-// //           )
-// //         })}
-// //       </div>
-// //       {/* CTA */}
-// //       <div className="mt-12 text-center">
-// //         <motion.button
-// //           whileHover={{ scale: 1.05 }}
-// //           whileTap={{ scale: 0.95 }}
-// //           className="bg-[#833589] text-white px-6 py-3 rounded-full font-bold text-base shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
-// //         >
-// //           Start Your Journey
-// //         </motion.button>
-// //         <p className="mt-3 text-gray-600 text-sm font-medium">Join thousands of students on the path to IIM success</p>
-// //       </div>
-// //     </section>
-// //   )
-// // }
