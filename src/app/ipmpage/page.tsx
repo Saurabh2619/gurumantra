@@ -1,30 +1,30 @@
 "use client"
-
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { CircleDot } from "lucide-react" // Added import for CircleDot
+import { CircleDot } from "lucide-react"
 
+// Simplified stations for mobile with shorter content
 const stations = [
   {
     title: "Start",
-    points: ["Begin your journey", "Set your goals", "Dream big!"],
+    points: ["Begin journey", "Set goals"],
   },
   {
-    title: "Class 12\nBoard Exams",
-    points: ["Focus on academics", "Build your foundation", "Start early prep"],
+    title: "Class 12 Boards",
+    points: ["Focus academics", "Build foundation"],
   },
   {
-    title: "Take the Exams",
-    points: ["IPMAT Indore", "IPMAT Rohtak", "JIPMAT (IIM Ranchi)"],
+    title: "Take Exams",
+    points: ["IPMAT Indore", "IPMAT Rohtak"],
   },
   {
     title: "Interview",
-    points: ["Personal Interview", "Group Discussion", "Final Selection"],
+    points: ["Personal Interview", "Final Selection"],
   },
   {
-    title: "Journey Accomplished\nIIM",
-    points: ["5-Year Integrated Programme", "Top B-Schools", "Career Head Start!"],
+    title: "IIM Success",
+    points: ["5-Year Programme", "Career Start"],
   },
 ]
 
@@ -47,26 +47,24 @@ export default function IPMCareersLanding() {
   const [currentMobileSlide, setCurrentMobileSlide] = useState(0)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [currentSuccessStory, setCurrentSuccessStory] = useState(0)
-  // Enhanced carousel states for smoother transitions
   const [isSuccessStoryTransitioning, setIsSuccessStoryTransitioning] = useState(false)
   const [isTestimonialTransitioning, setIsTestimonialTransitioning] = useState(false)
   const [successStoryPaused, setSuccessStoryPaused] = useState(false)
   const [testimonialPaused, setTestimonialPaused] = useState(false)
-  // New state for image modal
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [selectedImageDescription, setSelectedImageDescription] = useState<string>("")
-  // Refs for intervals
   const successStoryIntervalRef = useRef<NodeJS.Timeout | null>(null)
   const testimonialIntervalRef = useRef<NodeJS.Timeout | null>(null)
-  // Roadmap animation states
   const [currentStation, setCurrentStation] = useState(0)
   const [animationComplete, setAnimationComplete] = useState(false)
+
   const features = [
     "Best & Promising IPMAT Results",
     "Mentoring by IIM Alumni",
     "Awarded #1 by ZEE News",
     "Gained Media Exposure for Excellent Academic Performance",
   ]
+
   const mentors = [
     {
       name: "Ashutosh Mishra",
@@ -113,6 +111,7 @@ export default function IPMCareersLanding() {
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618115/WhatsApp_Image_2025-07-04_at_13.55.26_du5hkp.jpg",
     },
   ]
+
   const testimonials = [
     {
       icon: "🏆",
@@ -145,6 +144,7 @@ export default function IPMCareersLanding() {
       description: "Regular one-on-one sessions to clear all your doubts and strengthen concepts.",
     },
   ]
+
   const reviews = [
     {
       name: "Rahul Sharma",
@@ -171,7 +171,7 @@ export default function IPMCareersLanding() {
       image: "/placeholder.svg?height=60&width=60",
     },
   ]
-  // Enhanced Success Stories Data - 6 cards with the provided image
+
   const successStories = [
     {
       id: 1,
@@ -208,7 +208,7 @@ export default function IPMCareersLanding() {
       description: "Achieved 99+ percentile in IPMAT",
     },
   ]
-  // New Student Testimonials Data - 6 testimonials
+
   const studentTestimonials = [
     {
       name: "Anurag Pratap Singh",
@@ -265,6 +265,7 @@ export default function IPMCareersLanding() {
       rating: 5,
     },
   ]
+
   const faqs = [
     {
       question: "How will this IPMAT preparation help me?",
@@ -295,7 +296,7 @@ export default function IPMCareersLanding() {
       answer: "For any queries contact @8299470392.",
     },
   ]
-  // Desktop/Large Screen Results
+
   const resultSlides = [
     {
       title: "Our Outstanding Results",
@@ -348,11 +349,9 @@ export default function IPMCareersLanding() {
       ],
     },
   ]
-  // Mobile/Small Screen Results
+
   const mobileResultSlides = [
     {
-      //   title: "Outstanding Results",
-      //   subtitle: "Academic Excellence",
       image:
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.18_uzr2cw.jpg",
       stats: [
@@ -361,8 +360,6 @@ export default function IPMCareersLanding() {
       ],
     },
     {
-      //   title: "Our Toppers",
-      //   subtitle: "Success Stories",
       image:
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.41_ajf7x6.jpg",
       stats: [
@@ -371,8 +368,6 @@ export default function IPMCareersLanding() {
       ],
     },
     {
-      //   title: "Our Toppers",
-      //   subtitle: "Success Stories",
       image:
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.16.23_dqv4od.jpg",
       stats: [
@@ -381,8 +376,6 @@ export default function IPMCareersLanding() {
       ],
     },
     {
-      //   title: "Our Toppers",
-      //   subtitle: "Success Stories",
       image:
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.14.57_s4p6pa.jpg",
       stats: [
@@ -391,8 +384,6 @@ export default function IPMCareersLanding() {
       ],
     },
     {
-      //   title: "Our Toppers",
-      //   subtitle: "Success Stories",
       image:
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752572875/WhatsApp_Image_2025-07-15_at_15.15.12_ss9ipd.jpg",
       stats: [
@@ -401,51 +392,53 @@ export default function IPMCareersLanding() {
       ],
     },
   ]
+
   useEffect(() => {
     const interval = setInterval(() => {
       setStudentsEnrolled((prev) => prev + 1)
     }, 8000)
     return () => clearInterval(interval)
   }, [])
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentFeature((prev) => (prev + 1) % features.length)
     }, 2000)
     return () => clearInterval(interval)
   }, [])
+
   useEffect(() => {
     setTimeout(() => {
       setActivePopup(true)
     }, 5000)
   }, [])
-  // Enhanced Roadmap animation effect - Faster speed and looping
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentStation((prev) => {
         if (prev >= stations.length - 1) {
-          // Reset to start for looping
           return 0
         }
         return prev + 1
       })
-    }, 1200) // Reduced from 1500 to 1200 for even faster, smoother speed
+    }, 1200)
     return () => clearInterval(interval)
   }, [])
-  // Desktop slider
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % resultSlides.length)
     }, 4000)
     return () => clearInterval(interval)
   }, [])
-  // Mobile slider
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentMobileSlide((prev) => (prev + 1) % mobileResultSlides.length)
     }, 4000)
     return () => clearInterval(interval)
   }, [])
-  // ENHANCED Success Stories - Continuous smooth movement, one card at a time
+
   useEffect(() => {
     const startSuccessStoryInterval = () => {
       if (successStoryIntervalRef.current) {
@@ -458,7 +451,7 @@ export default function IPMCareersLanding() {
             return nextIndex >= successStories.length ? 0 : nextIndex
           })
         }
-      }, 3000) // Smooth continuous movement - 3 seconds
+      }, 3000)
     }
     startSuccessStoryInterval()
     return () => {
@@ -467,7 +460,7 @@ export default function IPMCareersLanding() {
       }
     }
   }, [successStoryPaused])
-  // Enhanced Student testimonials slider with smooth transitions and pause functionality
+
   useEffect(() => {
     const startTestimonialInterval = () => {
       if (testimonialIntervalRef.current) {
@@ -482,9 +475,9 @@ export default function IPMCareersLanding() {
               return nextIndex >= studentTestimonials.length ? 0 : nextIndex
             })
             setIsTestimonialTransitioning(false)
-          }, 150) // Brief transition delay for smoother effect
+          }, 150)
         }
-      }, 4000) // Slightly faster than before
+      }, 4000)
     }
     startTestimonialInterval()
     return () => {
@@ -493,9 +486,9 @@ export default function IPMCareersLanding() {
       }
     }
   }, [testimonialPaused])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Validation
     if (!formData.fullname || formData.fullname.trim() === "") {
       setNotification("Fullname field is empty")
       return
@@ -525,40 +518,49 @@ export default function IPMCareersLanding() {
     setIsSubmitted(true)
     console.log("Form submitted:", formData)
   }
+
   const formProgress = Object.values(formData).filter((value) => value.trim() !== "").length * 20
+
   const validateEmail = (email: string) => {
     const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
     return re.test(email)
   }
+
   const validatePhone = (phone: string) => {
     const re = /^[0-9]{10}$/
     return re.test(phone)
   }
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % resultSlides.length)
   }
+
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + resultSlides.length) % resultSlides.length)
   }
+
   const nextMobileSlide = () => {
     setCurrentMobileSlide((prev) => (prev + 1) % mobileResultSlides.length)
   }
+
   const prevMobileSlide = () => {
     setCurrentMobileSlide((prev) => (prev - 1 + mobileResultSlides.length) % mobileResultSlides.length)
   }
-  // Enhanced navigation functions - ONE CARD AT A TIME for Success Stories
+
   const nextSuccessStory = () => {
     setCurrentSuccessStory((prev) => {
       const nextIndex = prev + 1
       return nextIndex >= successStories.length ? 0 : nextIndex
     })
   }
+
   const prevSuccessStory = () => {
     setCurrentSuccessStory((prev) => {
       const prevIndex = prev - 1
       return prevIndex < 0 ? successStories.length - 1 : prevIndex
     })
   }
+
   const nextTestimonial = () => {
     setIsTestimonialTransitioning(true)
     setTimeout(() => {
@@ -569,6 +571,7 @@ export default function IPMCareersLanding() {
       setIsTestimonialTransitioning(false)
     }, 150)
   }
+
   const prevTestimonial = () => {
     setIsTestimonialTransitioning(true)
     setTimeout(() => {
@@ -579,37 +582,39 @@ export default function IPMCareersLanding() {
       setIsTestimonialTransitioning(false)
     }, 150)
   }
-  // Helper function to get visible cards based on screen size
+
   const getVisibleCards = () => {
-    // Mobile: 1 card, Tablet: 2 cards, Desktop: 3 cards
     if (typeof window !== "undefined") {
-      if (window.innerWidth < 640) return 1 // Mobile
-      if (window.innerWidth < 1024) return 2 // Tablet
-      return 3 // Default
+      if (window.innerWidth < 640) return 1
+      if (window.innerWidth < 1024) return 2
+      return 3
     }
-    return 3 // Default
+    return 3
   }
+
   const [visibleCards, setVisibleCards] = useState(3)
+
   useEffect(() => {
     const handleResize = () => {
       setVisibleCards(getVisibleCards())
     }
-    handleResize() // Set initial value
+    handleResize()
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
   }, [])
-  // Function to handle image click
+
   const handleImageClick = (image: string, description: string) => {
     setSelectedImage(image)
     setSelectedImageDescription(description)
   }
-  // Function to close modal
+
   const closeModal = () => {
     setSelectedImage(null)
     setSelectedImageDescription("")
   }
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Image Modal */}
       {selectedImage && (
         <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
@@ -631,6 +636,7 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       )}
+
       {/* Notification */}
       {notification && (
         <div className="fixed top-20 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg z-50">
@@ -640,6 +646,7 @@ export default function IPMCareersLanding() {
           </button>
         </div>
       )}
+
       {/* Success Modal */}
       {isSubmitted && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -674,6 +681,7 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       )}
+
       {/* Fixed Contact Bar */}
       <div className="fixed top-0 left-0 right-0 bg-[#833589] text-white py-2 px-4 text-sm z-40 flex items-center justify-center gap-2">
         <span>For Enquiry:</span>
@@ -684,6 +692,7 @@ export default function IPMCareersLanding() {
           +91 96163 83524
         </a>
       </div>
+
       {/* 1. Enhanced Responsive Results Slider - FULL WIDTH FOR PC */}
       <section className="py-5 bg-gray-50">
         {/* Desktop/Large Screen Slider - FULL WIDTH */}
@@ -800,37 +809,25 @@ export default function IPMCareersLanding() {
                   }`}
                 >
                   <div className="w-full h-full relative">
-                    <img
-                      src={slide.image || "/placeholder.svg"}
-                      //   alt={slide.title}
-                      className="w-full h-full object-contain bg-gray-100"
-                    />
+                    <img src={slide.image || "/placeholder.svg"} className="w-full h-full object-contain bg-gray-100" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4 text-center">
-                      {/* <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 drop-shadow-lg">{slide.title}</h3>
-                      <p className="text-sm sm:text-base text-white/90 drop-shadow-md">{slide.subtitle}</p> */}
-                    </div>
-                    {/* <div className="absolute bottom-4 left-4 bg-[#833589]/90 backdrop-blur-sm rounded-lg p-2 text-white text-sm">
-                      <div className="font-bold">{String(currentMobileSlide + 1).padStart(2, "0")}</div>
-                      <div className="text-xs opacity-80">of {String(mobileResultSlides.length).padStart(2, "0")}</div>
-                    </div> */}
                   </div>
                 </div>
               ))}
-              <div className="absolute inset-y-0 -left-2 flex items-center z-10 top-[80%]">
+              <div className="absolute inset-y-0 left-2 flex items-center z-10">
                 <button
                   onClick={prevMobileSlide}
-                  className="ml-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
+                  className="bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
               </div>
-              <div className="absolute inset-y-0 -right-2 flex items-center z-10 top-[80%]">
+              <div className="absolute inset-y-0 right-2 flex items-center z-10">
                 <button
                   onClick={nextMobileSlide}
-                  className="mr-3 bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
+                  className="bg-white/95 hover:bg-white text-[#833589] rounded-full p-3 shadow-xl transition-all duration-300 hover:scale-110"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -856,6 +853,7 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       </section>
+
       {/* 2. Enquiry Form Section */}
       <section className="relative overflow-hidden py-16 bg-gradient-to-br from-[#7b2fa9] via-[#833589] to-[#471760]">
         <div className="absolute inset-0">
@@ -936,6 +934,7 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       </section>
+
       {/* 3. Enhanced IIM Roadmap Section - HIDDEN ON MOBILE */}
       {/* This is the desktop roadmap */}
       <section className="hidden md:block min-h-screen bg-white p-6">
@@ -1019,11 +1018,11 @@ export default function IPMCareersLanding() {
             }}
             transition={{
               left: {
-                duration: 1.2, // Reduced from 1.5 for faster, smoother movement
+                duration: 1.2,
                 ease: [0.25, 0.46, 0.45, 0.94],
               },
               y: {
-                duration: 0.5, // Faster bouncing for more dynamic feel
+                duration: 0.5,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               },
@@ -1036,7 +1035,7 @@ export default function IPMCareersLanding() {
                 rotate: [0, 0.3, 0, -0.3, 0],
               }}
               transition={{
-                duration: 0.8, // Faster rotation for more dynamic movement
+                duration: 0.8,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
@@ -1066,7 +1065,7 @@ export default function IPMCareersLanding() {
                   x: [0, 1, -0.5, 0],
                 }}
                 transition={{
-                  duration: 1.0, // Faster steam animation for more dynamic effect
+                  duration: 1.0,
                   repeat: Number.POSITIVE_INFINITY,
                   ease: "easeInOut",
                 }}
@@ -1077,7 +1076,7 @@ export default function IPMCareersLanding() {
                     scaleY: [1, 1.5, 1],
                   }}
                   transition={{
-                    duration: 0.6, // Faster steam puffs
+                    duration: 0.6,
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
                   }}
@@ -1089,7 +1088,7 @@ export default function IPMCareersLanding() {
                     x: [0, 2, -1, 0],
                   }}
                   transition={{
-                    duration: 1.2, // Faster dispersal
+                    duration: 1.2,
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
                   }}
@@ -1101,7 +1100,7 @@ export default function IPMCareersLanding() {
                     x: [0, 3, -2, 0],
                   }}
                   transition={{
-                    duration: 1.5, // Faster final dispersal
+                    duration: 1.5,
                     repeat: Number.POSITIVE_INFINITY,
                     ease: "easeInOut",
                   }}
@@ -1123,91 +1122,89 @@ export default function IPMCareersLanding() {
         </div>
       </section>
 
-      {/* Mobile Roadmap Section - ONLY VISIBLE ON MOBILE */}
-      <section className="block md:hidden bg-white px-4 py-10">
+      {/* Mobile Roadmap Section - FIXED VERSION */}
+      <section className="block md:hidden bg-white px-4 py-12 overflow-x-hidden">
         {/* Heading */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <div className="text-sm font-bold text-gray-600 mb-2">IPM CAREERS</div>
-          <h2 className="text-2xl font-bold mb-3">
+          <h2 className="text-2xl font-bold mb-3 leading-tight">
             <span className="text-gray-800">Your Journey from </span>
             <span className="text-[#833589]">Class 12 to IIMs</span>
           </h2>
-          <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow">
+          <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow text-sm">
             Board the IPM Express
           </div>
         </div>
-        {/* Timeline */}
-        <div className="relative flex flex-col items-center">
-          {/* Vertical Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gray-300 z-0" />
-          {/* Train */}
+
+        {/* Fixed Timeline Container */}
+        <div className="relative w-full max-w-sm mx-auto">
+          {/* Vertical Line - Centered */}
+          <div
+            className="absolute left-1/2 transform -translate-x-0.5 w-1 bg-gray-300 z-0"
+            style={{ height: `${stations.length * 160}px` }}
+          />
+
+          {/* Train - Positioned on the line */}
           <motion.div
-            className="absolute z-30"
+            className="absolute z-30 left-1/2 transform -translate-x-1/2"
             animate={{
-              top: `${currentStation * 145 + 72.5}px`,
-              y: [0, -5, 0],
+              top: `${currentStation * 160 + 60}px`,
+              y: [0, -3, 0],
             }}
             transition={{
-              top: { duration: 0.8 },
-              y: { duration: 0.8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
-            }}
-            style={{
-              left: "calc(50% - 30px)",
-              transform: "translate(-50%, -50%)",
+              top: { duration: 0.8, ease: "easeInOut" },
+              y: { duration: 0.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
             }}
           >
-            <span className="text-5xl">🚆</span>
+            <span className="text-3xl">🚆</span>
           </motion.div>
+
           {/* Station Cards */}
           {stations.map((station, index) => {
             const isLeft = index % 2 === 0
             const isActive = index === currentStation
-            // Adjust card alignment
-            const cardShift = isLeft ? "calc(50% + 45px)" : "calc(50% + 45px)"
+
             return (
-              <div key={index} className="relative w-full h-[145px] flex items-center">
-                {/* Circle Dot */}
+              <div key={index} className="relative h-40 flex items-center">
+                {/* Circle Dot - Centered on line */}
                 <motion.div
-                  className="absolute w-10 h-10 flex items-center justify-center rounded-full shadow z-20"
-                  style={{
-                    left: "calc(50% - 18px)",
-                    top: "50%",
-                    transform: "translate(-50%, -50%)",
-                  }}
+                  className="absolute w-8 h-8 flex items-center justify-center rounded-full shadow z-20 left-1/2 transform -translate-x-1/2"
                   animate={{
                     backgroundColor: isActive ? "#833589" : "#d1d5db",
-                    scale: isActive ? 1.2 : 1,
+                    scale: isActive ? 1.1 : 1,
                   }}
                   transition={{ duration: 0.3 }}
                 >
-                  <CircleDot className={`w-5 h-5 ${isActive ? "text-white" : "text-gray-600"}`} />
+                  <CircleDot className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-600"}`} />
                 </motion.div>
-                {/* Info Card */}
+
+                {/* Info Card - Positioned to avoid overlap */}
                 <AnimatePresence>
                   <motion.div
-                    initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                    initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
                     animate={{
                       opacity: 1,
                       x: 0,
-                      scale: isActive ? 1.05 : 1,
+                      scale: isActive ? 1.02 : 1,
                     }}
-                    exit={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                    exit={{ opacity: 0, x: isLeft ? -30 : 30 }}
                     transition={{ duration: 0.4 }}
-                    className="absolute max-w-[80%] p-4 rounded-xl shadow-md border bg-white z-10"
+                    className={`absolute w-36 p-3 rounded-xl shadow-md border bg-white z-10 ${
+                      isLeft ? "right-[10px]" : "left-[10px]"
+                    }`}
                     style={{
-                      top: "15%",
-                      transform: "translateY(-50%)",
-                      [isLeft ? "right" : "left"]: cardShift,
+                      top: "20px",
+                      borderColor: isActive ? "#833589" : "#e5e7eb",
                     }}
                   >
-                    <div className="text-base font-semibold text-gray-800 mb-2 whitespace-pre-line">
+                    <div className="text-sm font-semibold text-gray-800 mb-2 text-center leading-tight">
                       {station.title}
                     </div>
-                    <ul className="text-sm text-gray-600 space-y-1">
+                    <ul className="text-xs text-gray-600 space-y-1">
                       {station.points.map((point, i) => (
                         <li key={i} className="flex items-start">
-                          <span className="text-[#E79800] mr-2 font-bold">•</span>
-                          <span>{point}</span>
+                          <span className="text-[#E79800] mr-1 font-bold text-xs">•</span>
+                          <span className="leading-tight">{point}</span>
                         </li>
                       ))}
                     </ul>
@@ -1217,8 +1214,9 @@ export default function IPMCareersLanding() {
             )
           })}
         </div>
+
         {/* CTA */}
-        <div className="mt-18 text-center">
+        <div className="mt-12 text-center">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -1226,12 +1224,13 @@ export default function IPMCareersLanding() {
           >
             Start Your Journey
           </motion.button>
-          <p className="mt-3 text-gray-600 text-sm font-medium">
+          <p className="mt-3 text-gray-600 text-sm font-medium px-4">
             Join thousands of students on the path to IIM success
           </p>
         </div>
       </section>
 
+      {/* Rest of the sections remain the same... */}
       {/* 4. Words by: Our Students Section */}
       <div className="container max-w-7xl mx-auto px-4">
         {/* 5. Banner Image */}
@@ -1244,6 +1243,7 @@ export default function IPMCareersLanding() {
             />
           </div>
         </section>
+
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -1271,6 +1271,7 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
+
         {/* 5. Enhanced Mentors Section with Larger Images */}
         <section id="mentors" className="bg-white py-16">
           <div className="container mx-auto px-4">
@@ -1305,6 +1306,7 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
+
         {/* 6. Why Choose IPM Careers */}
         <section className="py-20 bg-[#F9FAFB]">
           <div className="container mx-auto px-4">
@@ -1358,6 +1360,7 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
+
         {/* 7. ENHANCED Success Stories - Smooth Movement with Click to Open */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
@@ -1497,6 +1500,7 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
+
         {/* 8. Enhanced Student Testimonials - Responsive Design (Keep 3 at a time as requested) */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
@@ -1643,6 +1647,7 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </section>
+
         {/* 9. FAQ Section */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
@@ -1675,6 +1680,7 @@ export default function IPMCareersLanding() {
           </div>
         </section>
       </div>
+
       {/* Footer */}
       <footer className="bg-[#833589] text-white py-16">
         <div className="container mx-auto px-4">
@@ -1692,6 +1698,7 @@ export default function IPMCareersLanding() {
           </div>
         </div>
       </footer>
+
       {/* WhatsApp Float Button */}
       {activePopup && (
         <a
