@@ -1124,111 +1124,112 @@ export default function IPMCareersLanding() {
 
       {/* Mobile Roadmap Section - FIXED VERSION */}
       <section className="block md:hidden bg-white px-4 py-12 overflow-x-hidden">
-        {/* Heading */}
-        <div className="text-center mb-8">
-          <div className="text-sm font-bold text-gray-600 mb-2">IPM CAREERS</div>
-          <h2 className="text-2xl font-bold mb-3 leading-tight">
-            <span className="text-gray-800">Your Journey from </span>
-            <span className="text-[#833589]">Class 12 to IIMs</span>
-          </h2>
-          <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow text-sm">
-            Board the IPM Express
-          </div>
-        </div>
+  {/* Heading */}
+  <div className="text-center mb-8">
+    <div className="text-sm font-bold text-gray-600 mb-2">IPM CAREERS</div>
+    <h2 className="text-2xl font-bold mb-3 leading-tight">
+      <span className="text-gray-800">Your Journey from </span>
+      <span className="text-[#833589]">Class 12 to IIMs</span>
+    </h2>
+    <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow text-sm">
+      Board the IPM Express
+    </div>
+  </div>
 
-        {/* Fixed Timeline Container */}
-        <div className="relative w-full max-w-sm mx-auto">
-          {/* Vertical Line - Centered */}
-          <div
-            className="absolute left-1/2 transform -translate-x-0.5 w-1 bg-gray-300 z-0"
-            style={{ height: `${stations.length * 160}px` }}
-          />
+  {/* Fixed Timeline Container */}
+  <div className="relative w-full max-w-sm mx-auto">
+    {/* Vertical Line - Centered */}
+    <div
+      className="absolute left-1/2 transform -translate-x-0.5 w-1 bg-gray-300 z-0"
+      style={{ height: `${stations.length * 120}px` }}
+    />
 
-          {/* Train - Positioned on the line */}
+    {/* Train - Positioned on the line */}
+    <motion.div
+      className="absolute z-30 left-1/2 transform -translate-x-1/2"
+      animate={{
+        top: `${currentStation * 120 + 50}px`, // Centered on the circle dot
+        y: [0, -3, 0],
+      }}
+      transition={{
+        top: { duration: 0.8, ease: "easeInOut" },
+        y: { duration: 0.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+      }}
+    >
+      <span className="text-3xl">🚆</span>
+    </motion.div>
+
+    {/* Station Cards */}
+    {stations.map((station, index) => {
+      const isLeft = index % 2 === 0;
+      const isActive = index === currentStation;
+
+      return (
+        <div key={index} className="relative h-30 flex items-center">
+          {/* Circle Dot - Centered on line */}
           <motion.div
-            className="absolute z-30 left-1/2 transform -translate-x-1/2"
+            className="absolute w-8 h-8 flex items-center justify-center rounded-full shadow z-20 left-1/2 transform -translate-x-1/2"
             animate={{
-              top: `${currentStation * 160 + 60}px`,
-              y: [0, -3, 0],
+              backgroundColor: isActive ? "#833589" : "#d1d5db",
+              scale: isActive ? 1.1 : 1,
             }}
-            transition={{
-              top: { duration: 0.8, ease: "easeInOut" },
-              y: { duration: 0.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
-            }}
+            transition={{ duration: 0.3 }}
           >
-            <span className="text-3xl">🚆</span>
+            <CircleDot className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-600"}`} />
           </motion.div>
 
-          {/* Station Cards */}
-          {stations.map((station, index) => {
-            const isLeft = index % 2 === 0
-            const isActive = index === currentStation
-
-            return (
-              <div key={index} className="relative h-40 flex items-center">
-                {/* Circle Dot - Centered on line */}
-                <motion.div
-                  className="absolute w-8 h-8 flex items-center justify-center rounded-full shadow z-20 left-1/2 transform -translate-x-1/2"
-                  animate={{
-                    backgroundColor: isActive ? "#833589" : "#d1d5db",
-                    scale: isActive ? 1.1 : 1,
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <CircleDot className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-600"}`} />
-                </motion.div>
-
-                {/* Info Card - Positioned to avoid overlap */}
-                <AnimatePresence>
-                  <motion.div
-                    initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                      scale: isActive ? 1.02 : 1,
-                    }}
-                    exit={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                    transition={{ duration: 0.4 }}
-                    className={`absolute w-36 p-3 rounded-xl shadow-md border bg-white z-10 ${
-                      isLeft ? "right-[10px]" : "left-[10px]"
-                    }`}
-                    style={{
-                      top: "20px",
-                      borderColor: isActive ? "#833589" : "#e5e7eb",
-                    }}
-                  >
-                    <div className="text-sm font-semibold text-gray-800 mb-2 text-center leading-tight">
-                      {station.title}
-                    </div>
-                    <ul className="text-xs text-gray-600 space-y-1">
-                      {station.points.map((point, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="text-[#E79800] mr-1 font-bold text-xs">•</span>
-                          <span className="leading-tight">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                </AnimatePresence>
+          {/* Info Card - Positioned to avoid overlap */}
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                scale: isActive ? 1.02 : 1,
+              }}
+              exit={{ opacity: 0, x: isLeft ? -30 : 30 }}
+              transition={{ duration: 0.4 }}
+              className={`absolute w-36 p-3 rounded-xl shadow-md border bg-white z-10 ${
+                isLeft ? "right-[10px]" : "left-[10px]"
+              }`}
+              style={{
+                top: "20px",
+                borderColor: isActive ? "#833589" : "#e5e7eb",
+              }}
+            >
+              <div className="text-sm font-semibold text-gray-800 mb-2 text-center leading-tight">
+                {station.title}
               </div>
-            )
-          })}
+              <ul className="text-xs text-gray-600 space-y-1">
+                {station.points.map((point, i) => (
+                  <li key={i} className="flex items-start">
+                    <span className="text-[#E79800] mr-1 font-bold text-xs">•</span>
+                    <span className="leading-tight">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </AnimatePresence>
         </div>
+      );
+    })}
+  </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-[#833589] text-white px-6 py-3 rounded-full font-bold text-base shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
-          >
-            Start Your Journey
-          </motion.button>
-          <p className="mt-3 text-gray-600 text-sm font-medium px-4">
-            Join thousands of students on the path to IIM success
-          </p>
-        </div>
-      </section>
+  {/* CTA */}
+  <div className="mt-12 text-center">
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="bg-[#833589] text-white px-6 py-3 rounded-full font-bold text-base shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
+    >
+      Start Your Journey
+    </motion.button>
+    <p className="mt-3 text-gray-600 text-sm font-medium px-4">
+      Join thousands of students on the path to IIM success
+    </p>
+  </div>
+</section>
+
 
       {/* Rest of the sections remain the same... */}
       {/* 4. Words by: Our Students Section */}
