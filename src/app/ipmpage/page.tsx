@@ -90,7 +90,7 @@ export default function IPMCareersLanding() {
       name: "ViKas Saxena",
       role: "IIT Roorkee",
       image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1753260810/DSC02344_qinr5i.jpg",
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1753263520/DSC02342_v0gm3b.jpg",
     },
     {
       name: "Manish Dixit",
