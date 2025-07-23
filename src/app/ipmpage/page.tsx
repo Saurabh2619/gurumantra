@@ -87,16 +87,16 @@ export default function IPMCareersLanding() {
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-04_at_13.54.03_qc5oxh.jpg",
     },
     {
-      name: "Vikash Saxena",
+      name: "ViKas Saxena",
       role: "IIT Roorkee",
       image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-04_at_13.54.03_qc5oxh.jpg",
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1753260810/DSC02344_qinr5i.jpg",
     },
     {
       name: "Manish Dixit",
       role: "IIT BHU Alumnus",
       image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1753260810/DSC02344_qinr5i.jpg",
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1752492922/WhatsApp_Image_2025-07-06_at_20.17.12_k9vbh2.jpg",
     },
     {
       name: "Rishabh Singh",
