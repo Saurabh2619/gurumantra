@@ -1274,39 +1274,41 @@ export default function IPMCareersLanding() {
         </section>
 
         {/* 5. Enhanced Mentors Section with Larger Images */}
-        <section id="mentors" className="bg-white py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Know: Your Mentors</h2>
-              <p className="text-lg md:text-xl text-gray-600">Learn from the best IIM Alumni</p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {mentors.map((mentor, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-2"
-                >
-                  <div className="relative h-64 md:h-72 bg-gradient-to-br from-[#833589] to-[#6b2a70] flex items-center justify-center">
-                    <div className="absolute inset-0 bg-[#833589]/10"></div>
-                    <div className="relative">
-                      <img
-                        src={mentor.image || "/placeholder.svg"}
-                        alt={mentor.name}
-                        className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white object-cover shadow-2xl"
-                      />
-                      <div className="absolute inset-0 rounded-full ring-4 ring-[#E79800]/30"></div>
-                    </div>
-                  </div>
-                  <div className="pt-8 pb-6 px-6 text-center">
-                    <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-3">{mentor.name}</h3>
-                    <p className="text-[#833589] font-semibold mb-2 text-sm md:text-base">{mentor.role}</p>
-                    {mentor.role2 && <p className="text-gray-600 text-xs md:text-sm">{mentor.role2}</p>}
-                  </div>
-                </div>
-              ))}
-            </div>
+       <section id="mentors" className="bg-white py-16">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+        Know: Your Mentors
+      </h2>
+      <p className="text-lg md:text-xl text-gray-600">
+        Learn from the best IIM Alumni
+      </p>
+    </div>
+
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      {mentors.map((mentor, index) => (
+        <div
+          key={index}
+          className="rounded-2xl overflow-hidden border border-gray-200 shadow hover:shadow-xl transition duration-300 bg-white hover:-translate-y-1"
+        >
+          <img
+            src={mentor.image || "/placeholder.svg"}
+            alt={mentor.name}
+            className="w-full h-64 object-cover hover:scale-105 transition duration-300"
+          />
+          <div className="p-4 text-center">
+            <h3 className="text-lg font-semibold text-gray-800">{mentor.name}</h3>
+            <p className="text-sm text-[#833589] mt-1 font-medium">{mentor.role}</p>
+            {mentor.role2 && (
+              <p className="text-xs text-gray-500 mt-1">{mentor.role2}</p>
+            )}
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
         {/* 6. Why Choose IPM Careers */}
         <section className="py-20 bg-[#F9FAFB]">
