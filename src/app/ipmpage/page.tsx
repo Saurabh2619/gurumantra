@@ -90,7 +90,7 @@ export default function IPMCareersLanding() {
       name: "ViKas Saxena",
       role: "IIT Roorkee",
       image:
-        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1753263520/DSC02342_v0gm3b.jpg",
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1753263520/DSC02342_v0gm3b.jpgclo",
     },
     {
       name: "Manish Dixit",
@@ -1244,7 +1244,7 @@ export default function IPMCareersLanding() {
         <section className="py-8 bg-gray-50">
           <div className="w-full">
             <img
-              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1751011010/IPMC_BANNER_12_ebilrk.jpg"
+              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1753336534/IPMC_BANNER_okm55r.jpg"
               alt="IPMC Banner"
               className="w-full h-auto object-cover shadow-md"
             />
