@@ -87,7 +87,7 @@ export default function IPMCareersLanding() {
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1751618114/WhatsApp_Image_2025-07-04_at_13.54.03_qc5oxh.jpg",
     },
     {
-      name: "ViKas Saxena",
+      name: "Vikas Saxena",
       role: "IIT Roorkee",
       image:
         "https://res.cloudinary.com/duyo9pzxy/image/upload/v1753263520/DSC02342_v0gm3b.jpg",
