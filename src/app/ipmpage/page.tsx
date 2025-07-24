@@ -1244,7 +1244,7 @@ export default function IPMCareersLanding() {
         <section className="py-8 bg-gray-50">
           <div className="w-full">
             <img
-              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1753336534/IPMC_BANNER_okm55r.jpg"
+              src="https://res.cloudinary.com/duyo9pzxy/image/upload/v1753336960/IPMC_BANNER_ctwtmg.jpg"
               alt="IPMC Banner"
               className="w-full h-auto object-cover shadow-md"
             />
