@@ -89,7 +89,8 @@ export default function IPMCareersLanding() {
     {
       name: "Vikas Saxena",
       role: "IIT Roorkee",
-      image: "https://res.cloudinary.com/duyo9pzxy/image/upload/v1753263520/DSC02342_v0gm3b.jpg",
+      image:
+        "https://res.cloudinary.com/duyo9pzxy/image/upload/v1753263520/DSC02342_v0gm3b.jpg",
     },
     {
       name: "Manish Dixit",
@@ -698,10 +699,10 @@ export default function IPMCareersLanding() {
         </a>
       </div>
 
-      {/* 1. Enhanced Responsive Results Slider - FULL WIDTH FOR PC - DESKTOP ONLY */}
-      <section className="py-5 bg-gray-50 hidden lg:block">
+      {/* 1. Enhanced Responsive Results Slider - FULL WIDTH FOR PC */}
+      <section className="py-5 bg-gray-50">
         {/* Desktop/Large Screen Slider - FULL WIDTH */}
-        <div className="w-full">
+        <div className="hidden lg:block w-full">
           <div className="relative bg-white shadow-2xl overflow-hidden w-full">
             <div className="relative h-[600px]">
               {resultSlides.map((slide, index) => (
@@ -798,93 +799,8 @@ export default function IPMCareersLanding() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* 2. Enquiry Form Section - MODIFIED FOR MOBILE LAYOUT */}
-      <section className="relative overflow-hidden py-16 bg-gradient-to-br from-[#7b2fa9] via-[#833589] to-[#471760]">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#ffffff1a] via-transparent to-transparent mix-blend-overlay"></div>
-        </div>
-        <div className="relative z-10 container mx-auto px-4 py-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            {/* Right Column: Form - FIRST ON MOBILE */}
-            <div className="bg-white rounded-xl p-6 shadow-xl w-full max-w-sm mx-auto text-gray-800 order-1 lg:order-2">
-              <h2 className="text-xl font-bold mb-4 text-center">Schedule FREE 1‑1 Consultation with an Expert</h2>
-              {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <input
-                  className="w-full h-10 px-3 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589]"
-                  placeholder="Full Name"
-                  value={formData.fullname}
-                  onChange={(e) => setFormData({ ...formData, fullname: e.target.value })}
-                />
-                <input
-                  type="email"
-                  className={`w-full h-10 px-3 border rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589] ${
-                    formData.email && !validateEmail(formData.email) ? "border-red-500" : "border-gray-300"
-                  }`}
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-                <input
-                  className={`w-full h-10 px-3 border rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589] ${
-                    formData.phone && !validatePhone(formData.phone) ? "border-red-500" : "border-gray-300"
-                  }`}
-                  placeholder="Phone"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                />
-                <input
-                  className="w-full h-10 px-3 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589]"
-                  placeholder="City"
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                />
-                {formProgress < 100 && <p className="text-xs text-red-500 text-center">Please fill all the fields</p>}
-                <button
-                  type="submit"
-                  className="w-full h-10 bg-[#833589] hover:bg-[#6b2a70] text-white font-semibold rounded-md text-sm transition-transform hover:scale-105"
-                >
-                  SUBMIT
-                </button>
-              </form>
-            </div>
-
-            {/* Left Column - SECOND ON MOBILE */}
-            <div className="space-y-6 text-white order-2 lg:order-1">
-              <span className="inline-block bg-[#E79800] text-black px-4 py-1.5 rounded-full text-xs font-semibold">
-                TRUSTED BY THOUSANDS OF STUDENTS
-              </span>
-              <h1 className="text-3xl md:text-5xl font-bold">{"India's Premium IPMAT Coaching"}</h1>
-              <p className="text-lg text-purple-100">Join now to grab the opportunity to learn from our experts</p>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <h3 className="text-xl font-bold text-center">
-                  <span className="text-[#E79800]">✨</span> {features[currentFeature]}
-                </h3>
-              </div>
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                  <div className="text-2xl font-bold text-[#E79800]">{studentsEnrolled.toLocaleString()}</div>
-                  <div className="text-sm text-purple-200">Students Enrolled</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                  <div className="text-2xl font-bold text-[#E79800]">{(studentsEnrolled * 2).toLocaleString()}</div>
-                  <div className="text-sm text-purple-200">Classes Completed</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
-                  <div className="text-2xl font-bold text-[#E79800]">{(studentsEnrolled * 33).toLocaleString()}</div>
-                  <div className="text-sm text-purple-200">Hours Taught</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mobile/Tablet Slider - MOVED AFTER ENQUIRY FORM SECTION */}
-      <section className="py-5 bg-gray-50 lg:hidden">
-        <div className="w-full px-4 mt-8">
+        {/* Mobile/Tablet Slider */}
+        <div className="lg:hidden w-full px-4 mt-8">
           <div className="relative bg-white shadow-2xl overflow-hidden rounded-2xl">
             <div className="relative h-[350px] sm:h-[400px]">
               {mobileResultSlides.map((slide, index) => (
@@ -944,6 +860,87 @@ export default function IPMCareersLanding() {
         </div>
       </section>
 
+      {/* 2. Enquiry Form Section */}
+      <section className="relative overflow-hidden py-16 bg-gradient-to-br from-[#7b2fa9] via-[#833589] to-[#471760]">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#ffffff1a] via-transparent to-transparent mix-blend-overlay"></div>
+        </div>
+        <div className="relative z-10 container mx-auto px-4 py-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left Column: Form */}
+            <div className="bg-white rounded-xl p-6 shadow-xl w-full max-w-sm mx-auto text-gray-800">
+              <h2 className="text-xl font-bold mb-4 text-center">Schedule FREE 1‑1 Consultation with an Expert</h2>
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <input
+                  className="w-full h-10 px-3 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589]"
+                  placeholder="Full Name"
+                  value={formData.fullname}
+                  onChange={(e) => setFormData({ ...formData, fullname: e.target.value })}
+                />
+                <input
+                  type="email"
+                  className={`w-full h-10 px-3 border rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589] ${
+                    formData.email && !validateEmail(formData.email) ? "border-red-500" : "border-gray-300"
+                  }`}
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                />
+                <input
+                  className={`w-full h-10 px-3 border rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589] ${
+                    formData.phone && !validatePhone(formData.phone) ? "border-red-500" : "border-gray-300"
+                  }`}
+                  placeholder="Phone"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                />
+                <input
+                  className="w-full h-10 px-3 border border-gray-300 rounded-md text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#833589]"
+                  placeholder="City"
+                  value={formData.city}
+                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                />
+                {formProgress < 100 && <p className="text-xs text-red-500 text-center">Please fill all the fields</p>}
+                <button
+                  type="submit"
+                  className="w-full h-10 bg-[#833589] hover:bg-[#6b2a70] text-white font-semibold rounded-md text-sm transition-transform hover:scale-105"
+                >
+                  SUBMIT
+                </button>
+              </form>
+            </div>
+            {/* Right Column */}
+            <div className="space-y-6 text-white">
+              <span className="inline-block bg-[#E79800] text-black px-4 py-1.5 rounded-full text-xs font-semibold">
+                TRUSTED BY THOUSANDS OF STUDENTS
+              </span>
+              <h1 className="text-3xl md:text-5xl font-bold">{"India's Premium IPMAT Coaching"}</h1>
+              <p className="text-lg text-purple-100">Join now to grab the opportunity to learn from our experts</p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                <h3 className="text-xl font-bold text-center">
+                  <span className="text-[#E79800]">✨</span> {features[currentFeature]}
+                </h3>
+              </div>
+              <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-[#E79800]">{studentsEnrolled.toLocaleString()}</div>
+                  <div className="text-sm text-purple-200">Students Enrolled</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-[#E79800]">{(studentsEnrolled * 2).toLocaleString()}</div>
+                  <div className="text-sm text-purple-200">Classes Completed</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+                  <div className="text-2xl font-bold text-[#E79800]">{(studentsEnrolled * 33).toLocaleString()}</div>
+                  <div className="text-sm text-purple-200">Hours Taught</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3. Enhanced IIM Roadmap Section - HIDDEN ON MOBILE */}
       {/* This is the desktop roadmap */}
       <section className="hidden md:block min-h-screen bg-white p-6">
@@ -976,7 +973,7 @@ export default function IPMCareersLanding() {
             <div className="absolute top-1/2 left-0 w-full h-2 bg-gray-600 rounded-full transform translate-y-0 shadow-sm" />
           </div>
           {/* Stations - positioned well above the train */}
-          <div className="absolute -top-45 left-0 w-full">
+          <div className="absolute -top-40 left-0 w-full">
             <div className="flex justify-between items-end relative">
               {stations.map((station, index) => (
                 <div key={index} className="flex flex-col items-center w-48">
@@ -1133,105 +1130,112 @@ export default function IPMCareersLanding() {
 
       {/* Mobile Roadmap Section - FIXED VERSION */}
       <section className="block md:hidden bg-white px-4 py-12 overflow-x-hidden">
-        {/* Heading */}
-        <div className="text-center mb-8">
-          <div className="text-sm font-bold text-gray-600 mb-2">IPM CAREERS</div>
-          <h2 className="text-2xl font-bold mb-3 leading-tight">
-            <span className="text-gray-800">Your Journey from </span>
-            <span className="text-[#833589]">Class 12 to IIMs</span>
-          </h2>
-          <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow text-sm">
-            Board the IPM Express
-          </div>
-        </div>
-        {/* Fixed Timeline Container */}
-        <div className="relative w-full max-w-sm mx-auto">
-          {/* Vertical Line - Centered */}
-          <div
-            className="absolute left-1/2 transform -translate-x-0.5 w-1 bg-gray-300 z-0"
-            style={{ height: `${stations.length * 120}px` }}
-          />
-          {/* Train - Positioned on the line */}
+  {/* Heading */}
+  <div className="text-center mb-8">
+    <div className="text-sm font-bold text-gray-600 mb-2">IPM CAREERS</div>
+    <h2 className="text-2xl font-bold mb-3 leading-tight">
+      <span className="text-gray-800">Your Journey from </span>
+      <span className="text-[#833589]">Class 12 to IIMs</span>
+    </h2>
+    <div className="inline-block bg-[#E79800] text-white px-4 py-2 rounded-lg font-semibold shadow text-sm">
+      Board the IPM Express
+    </div>
+  </div>
+
+  {/* Fixed Timeline Container */}
+  <div className="relative w-full max-w-sm mx-auto">
+    {/* Vertical Line - Centered */}
+    <div
+      className="absolute left-1/2 transform -translate-x-0.5 w-1 bg-gray-300 z-0"
+      style={{ height: `${stations.length * 120}px` }}
+    />
+
+    {/* Train - Positioned on the line */}
+    <motion.div
+      className="absolute z-30 left-1/2 transform -translate-x-1/2"
+      animate={{
+        top: `${currentStation * 120 + 50}px`, // Centered on the circle dot
+        y: [0, -3, 0],
+      }}
+      transition={{
+        top: { duration: 0.8, ease: "easeInOut" },
+        y: { duration: 0.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
+      }}
+    >
+      <span className="text-3xl">🚆</span>
+    </motion.div>
+
+    {/* Station Cards */}
+    {stations.map((station, index) => {
+      const isLeft = index % 2 === 0;
+      const isActive = index === currentStation;
+
+      return (
+        <div key={index} className="relative h-30 flex items-center">
+          {/* Circle Dot - Centered on line */}
           <motion.div
-            className="absolute z-30 left-1/2 transform -translate-x-1/2"
+            className="absolute w-8 h-8 flex items-center justify-center rounded-full shadow z-20 left-1/2 transform -translate-x-1/2"
             animate={{
-              top: `${currentStation * 120 + 50}px`, // Centered on the circle dot
-              y: [0, -3, 0],
+              backgroundColor: isActive ? "#833589" : "#d1d5db",
+              scale: isActive ? 1.1 : 1,
             }}
-            transition={{
-              top: { duration: 0.8, ease: "easeInOut" },
-              y: { duration: 0.6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" },
-            }}
+            transition={{ duration: 0.3 }}
           >
-            <span className="text-3xl">🚆</span>
+            <CircleDot className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-600"}`} />
           </motion.div>
-          {/* Station Cards */}
-          {stations.map((station, index) => {
-            const isLeft = index % 2 === 0
-            const isActive = index === currentStation
-            return (
-              <div key={index} className="relative h-30 flex items-center">
-                {/* Circle Dot - Centered on line */}
-                <motion.div
-                  className="absolute w-8 h-8 flex items-center justify-center rounded-full shadow z-20 left-1/2 transform -translate-x-1/2"
-                  animate={{
-                    backgroundColor: isActive ? "#833589" : "#d1d5db",
-                    scale: isActive ? 1.1 : 1,
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <CircleDot className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-600"}`} />
-                </motion.div>
-                {/* Info Card - Positioned to avoid overlap */}
-                <AnimatePresence>
-                  <motion.div
-                    initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                      scale: isActive ? 1.02 : 1,
-                    }}
-                    exit={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                    transition={{ duration: 0.4 }}
-                    className={`absolute w-36 p-3 rounded-xl shadow-md border bg-white z-10 ${
-                      isLeft ? "right-[10px]" : "left-[10px]"
-                    }`}
-                    style={{
-                      top: "20px",
-                      borderColor: isActive ? "#833589" : "#e5e7eb",
-                    }}
-                  >
-                    <div className="text-sm font-semibold text-gray-800 mb-2 text-center leading-tight">
-                      {station.title}
-                    </div>
-                    <ul className="text-xs text-gray-600 space-y-1">
-                      {station.points.map((point, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="text-[#E79800] mr-1 font-bold text-xs">•</span>
-                          <span className="leading-tight">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                </AnimatePresence>
+
+          {/* Info Card - Positioned to avoid overlap */}
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                scale: isActive ? 1.02 : 1,
+              }}
+              exit={{ opacity: 0, x: isLeft ? -30 : 30 }}
+              transition={{ duration: 0.4 }}
+              className={`absolute w-36 p-3 rounded-xl shadow-md border bg-white z-10 ${
+                isLeft ? "right-[10px]" : "left-[10px]"
+              }`}
+              style={{
+                top: "20px",
+                borderColor: isActive ? "#833589" : "#e5e7eb",
+              }}
+            >
+              <div className="text-sm font-semibold text-gray-800 mb-2 text-center leading-tight">
+                {station.title}
               </div>
-            )
-          })}
+              <ul className="text-xs text-gray-600 space-y-1">
+                {station.points.map((point, i) => (
+                  <li key={i} className="flex items-start">
+                    <span className="text-[#E79800] mr-1 font-bold text-xs">•</span>
+                    <span className="leading-tight">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </AnimatePresence>
         </div>
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-[#833589] text-white px-6 py-3 rounded-full font-bold text-base shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
-          >
-            Start Your Journey
-          </motion.button>
-          <p className="mt-3 text-gray-600 text-sm font-medium px-4">
-            Join thousands of students on the path to IIM success
-          </p>
-        </div>
-      </section>
+      );
+    })}
+  </div>
+
+  {/* CTA */}
+  <div className="mt-12 text-center">
+    <motion.button
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="bg-[#833589] text-white px-6 py-3 rounded-full font-bold text-base shadow-xl hover:bg-[#6b2a70] transition-colors duration-300"
+    >
+      Start Your Journey
+    </motion.button>
+    <p className="mt-3 text-gray-600 text-sm font-medium px-4">
+      Join thousands of students on the path to IIM success
+    </p>
+  </div>
+</section>
+
 
       {/* Rest of the sections remain the same... */}
       {/* 4. Words by: Our Students Section */}
@@ -1246,6 +1250,7 @@ export default function IPMCareersLanding() {
             />
           </div>
         </section>
+
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -1275,33 +1280,41 @@ export default function IPMCareersLanding() {
         </section>
 
         {/* 5. Enhanced Mentors Section with Larger Images */}
-        <section id="mentors" className="bg-white py-16">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Know: Your Mentors</h2>
-              <p className="text-lg md:text-xl text-gray-600">Learn from the best IIM Alumni</p>
-            </div>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {mentors.map((mentor, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl overflow-hidden border border-gray-200 shadow hover:shadow-xl transition duration-300 bg-white hover:-translate-y-1"
-                >
-                  <img
-                    src={mentor.image || "/placeholder.svg"}
-                    alt={mentor.name}
-                    className="w-full h-64 object-cover hover:scale-105 transition duration-300"
-                  />
-                  <div className="p-4 text-center">
-                    <h3 className="text-lg font-semibold text-gray-800">{mentor.name}</h3>
-                    <p className="text-sm text-[#833589] mt-1 font-medium">{mentor.role}</p>
-                    {mentor.role2 && <p className="text-xs text-gray-500 mt-1">{mentor.role2}</p>}
-                  </div>
-                </div>
-              ))}
-            </div>
+       <section id="mentors" className="bg-white py-16">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+        Know: Your Mentors
+      </h2>
+      <p className="text-lg md:text-xl text-gray-600">
+        Learn from the best IIM Alumni
+      </p>
+    </div>
+
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      {mentors.map((mentor, index) => (
+        <div
+          key={index}
+          className="rounded-2xl overflow-hidden border border-gray-200 shadow hover:shadow-xl transition duration-300 bg-white hover:-translate-y-1"
+        >
+          <img
+            src={mentor.image || "/placeholder.svg"}
+            alt={mentor.name}
+            className="w-full h-64 object-cover hover:scale-105 transition duration-300"
+          />
+          <div className="p-4 text-center">
+            <h3 className="text-lg font-semibold text-gray-800">{mentor.name}</h3>
+            <p className="text-sm text-[#833589] mt-1 font-medium">{mentor.role}</p>
+            {mentor.role2 && (
+              <p className="text-xs text-gray-500 mt-1">{mentor.role2}</p>
+            )}
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
         {/* 6. Why Choose IPM Careers */}
         <section className="py-20 bg-[#F9FAFB]">
