@@ -41,7 +41,7 @@ const cityGroups: CityGroup[] = [
   },
   {
     title: "South India",
-    cities: ["Bangalore", "Karnataka"],
+    cities: ["Bangalore"],
     icon: Target,
     description: "Tech capital with cutting-edge institutions and innovation centers",
     color: "from-green-500 to-green-600",
@@ -53,7 +53,22 @@ const cityGroups: CityGroup[] = [
     description: "Rich educational heritage with established universities and colleges",
     color: "from-orange-500 to-orange-600",
   },
+  {
+    title: "Gujarat",
+    cities: ["Ahmedabad"],
+    icon: GraduationCap,
+    description: "A rapidly growing hub for management and commerce education",
+    color: "from-pink-500 to-pink-600",
+  },
+  {
+    title: "Uttarakhand",
+    cities: ["Dehradun"],
+    icon: MapPin,
+    description: "Known for scenic campuses and institutions in management and sciences",
+    color: "from-teal-500 to-teal-600",
+  },
 ]
+
 
 export default function CollegesPage() {
   const [isVisible, setIsVisible] = useState(false)
