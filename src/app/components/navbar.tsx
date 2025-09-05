@@ -43,8 +43,15 @@ export default function Navbar() {
     >
       <div className="container flex h-16 items-center justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
-          <GraduationCap className="h-8 w-8 text-blue-700" />
-          <h1 className="text-3xl font-bold text-blue-900">GuruMantra</h1>
+          <Link href="/" className="flex items-center gap-2">
+            <img
+              src="/gm_logo.svg"
+              alt="GuruMantra Logo"
+              width={100}
+              height={100}
+              className="h-15 w-15"
+            />
+          </Link>
         </div>
 
         <nav className="hidden md:flex items-center gap-6 text-lg" onMouseLeave={handleMouseLeave}>

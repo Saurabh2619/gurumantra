@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import DefaultLayout from "../../defaultlayout";
 import {
   MapPin,
@@ -27,7 +28,7 @@ export default async function CityCollegesPage({
 }: {
   params: Promise<{ citySlug?: string }>; // 👈 tell TS it’s a Promise
 }) {
-  const { citySlug } = await params;      // 👈 wait until params is ready
+  const { citySlug } = await params; // 👈 wait until params is ready
 
   if (!citySlug) return notFound();
 
@@ -43,13 +44,12 @@ export default async function CityCollegesPage({
 
   const { data: colleges, error: collegeError } = await supabase
     .from("colleges")
-    .select("id,name,logo_url,image_url")
+    .select("id, name, slug, logo_url, image_url") // ✅ include slug
     .eq("city_id", city.id);
-
 
   return (
     <DefaultLayout>
-      {/* Enhanced Hero Section */}
+      {/* Hero Section */}
       <div className="relative py-20 bg-gradient-to-br from-[#0d47a1] via-[#1565c0] to-[#1976d2] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute top-0 left-0 w-full h-full">
@@ -103,13 +103,16 @@ export default async function CityCollegesPage({
           {colleges && colleges.length > 0 ? (
             <>
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Colleges & Universities</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  Featured Colleges & Universities
+                </h2>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                   Explore {colleges.length} verified institutions in {city.name} offering quality education and
                   excellent career opportunities.
                 </p>
               </div>
 
+              {/* College Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {colleges.map((c) => (
                   <div
@@ -165,11 +168,15 @@ export default async function CityCollegesPage({
                         </div>
                       </div>
 
+                      {/* ✅ Updated Buttons */}
                       <div className="flex gap-3">
-                        <button className="flex-1 bg-gradient-to-r from-[#0d47a1] to-[#1565c0] text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-300 font-medium flex items-center justify-center gap-2">
+                        <Link
+                          href={`/colleges/${slug}/${c.slug}`} // ✅ navigate to dedicated page
+                          className="flex-1 bg-gradient-to-r from-[#0d47a1] to-[#1565c0] text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all duration-300 font-medium flex items-center justify-center gap-2"
+                        >
                           <span>View Details</span>
                           <ExternalLink className="w-4 h-4" />
-                        </button>
+                        </Link>
                         <button className="px-4 py-2 border-2 border-[#0d47a1] text-[#0d47a1] rounded-lg hover:bg-[#0d47a1] hover:text-white transition-all duration-300 font-medium">
                           <Phone className="w-4 h-4" />
                         </button>
@@ -178,30 +185,6 @@ export default async function CityCollegesPage({
                     <div className="h-1 bg-gradient-to-r from-[#0d47a1] to-[#1565c0] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
                   </div>
                 ))}
-              </div>
-
-              <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Need Help Choosing?</h3>
-                  <p className="text-gray-600 max-w-2xl mx-auto">
-                    Our expert counselors can help you find the perfect college match based on your preferences, budget,
-                    and career goals.
-                  </p>
-                </div>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <button className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#0d47a1] to-[#1565c0] text-white rounded-lg shadow-lg hover:shadow-xl transition-all font-medium">
-                    <Users className="w-5 h-5" />
-                    <span>Get Free Counseling</span>
-                  </button>
-                  <button className="flex items-center gap-2 px-6 py-3 border-2 border-[#0d47a1] text-[#0d47a1] rounded-lg hover:bg-[#0d47a1] hover:text-white transition-all font-medium">
-                    <Phone className="w-5 h-5" />
-                    <span>Call Now</span>
-                  </button>
-                  <button className="flex items-center gap-2 px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all font-medium">
-                    <Mail className="w-5 h-5" />
-                    <span>Email Us</span>
-                  </button>
-                </div>
               </div>
             </>
           ) : (
@@ -229,5 +212,5 @@ export default async function CityCollegesPage({
         </div>
       </div>
     </DefaultLayout>
-  )
+  );
 }

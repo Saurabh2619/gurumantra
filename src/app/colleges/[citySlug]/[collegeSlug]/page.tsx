@@ -18,6 +18,7 @@ interface CollegeData {
   specialization: string;
   highest_placement: string;
   college_id: number;
+  year: number;
 }
 
 export default async function CollegePage({
@@ -51,7 +52,7 @@ export default async function CollegePage({
   // 3. Get college details from college_data table
   const { data: collegeData, error: dataError } = await supabase
     .from("college_data")
-    .select("id, course, clg_fees, specialization, highest_placement, college_id")
+    .select("id, course, clg_fees, specialization, highest_placement, college_id, year")
     .eq("college_id", college.id);
 
   if (dataError) {
@@ -62,27 +63,33 @@ export default async function CollegePage({
   return (
     <DefaultLayout>
       <div className="container max-w-5xl mx-auto py-12 px-4">
-        <h1 className="text-3xl font-bold mb-6">{college.name}</h1>
-        <p className="text-gray-600 mb-8">
-          Located in {city.name}. Explore course details, fees, and placement records.
+        {/* College heading */}
+        <h1 className="text-3xl font-bold mb-2 text-[#0d47a1]">{college.name}</h1>
+        <p className="text-gray-600 mb-10 text-lg">
+          Located in <span className="font-medium">{city.name}</span>. Explore
+          course details, fees, and placement records.
         </p>
 
         {/* Courses Section */}
-        <div className="space-y-6">
+        <div className="space-y-8">
           {collegeData && collegeData.length > 0 ? (
             collegeData.map((row: CollegeData) => (
               <div
                 key={row.id}
-                className="p-6 bg-white shadow-md rounded-xl border border-gray-200"
+                className="w-full p-6 bg-white shadow-lg hover:shadow-xl transition-shadow rounded-2xl border border-gray-100"
               >
-                <h2 className="text-xl font-semibold text-[#0d47a1] mb-2">
-                  {row.course}
+                <h2 className="text-xl font-semibold text-[#0d47a1] mb-3">
+                  Courses:  {row.course}
                 </h2>
-                <p className="text-gray-600 mb-1">
+                <p className="text-gray-600 mb-2">
+                  <span className="font-medium">Established Year:</span>{" "}
+                  {row.year}
+                </p>
+                <p className="text-gray-600 mb-2">
                   <span className="font-medium">Specialization:</span>{" "}
                   {row.specialization}
                 </p>
-                <p className="text-gray-600 mb-1">
+                <p className="text-gray-600 mb-2">
                   <span className="font-medium">Fees:</span> {row.clg_fees}
                 </p>
                 <p className="text-gray-600">

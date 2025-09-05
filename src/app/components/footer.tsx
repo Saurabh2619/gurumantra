@@ -18,7 +18,17 @@ export default function Footer() {
         
         {/* Logo and Description */}
         <div className="text-center md:text-left mb-6 md:mb-0 max-w-sm">
-          <h2 className="text-3xl font-extrabold text-[#2196f3]">GuruMantra</h2>
+          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            <img
+              src="/gm_logo.svg"
+              alt="GuruMantra Logo"
+              width={40}
+              height={40}
+              className="h-15 w-15"
+            />
+          </div>
+        </div>
           <p className="text-gray-300 mt-3 leading-relaxed">
             Your go-to platform for in-depth college details, admissions, and career guidance.
           </p>
